@@ -2,6 +2,7 @@
 layout: post
 title:  JavaScript Abuse
 date:   2012-01-28 09:33:53
+category: post
 ---
 
 If there's one thing I like to do in life, it's abuse JavaScript.
