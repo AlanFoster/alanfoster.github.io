@@ -1,5 +1,6 @@
 import React from "react"
 import Link from "gatsby-link";
+import Helmet from "react-helmet";
 
 const Post = function({ id, frontmatter, excerpt, fields }) {
   return (
@@ -18,6 +19,7 @@ export default function({ data }) {
 
   return (
     <div>
+      <Helmet title="Posts" />
       {data.allMarkdownRemark.edges.map(function ({ node }) {
         return (
           <Post key={node.id} {...node} />

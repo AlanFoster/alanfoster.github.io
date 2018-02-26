@@ -2,7 +2,6 @@ import React from "react"
 import Link from "gatsby-link";
 import "prismjs/themes/prism-tomorrow.css";
 
-
 export default ({ children }) =>{
   return (
     <div>
