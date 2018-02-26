@@ -28,7 +28,7 @@ Unfortunately page objects are an overloaded term. In my experience there are ge
 
 Consider a simple RSpec Capybara test that creates blogs and does not make use of page objects:
 
-{% highlight ruby %}
+```ruby
 require 'feature_helper'
 
 feature 'Blog management', type: :feature do
@@ -65,7 +65,7 @@ feature 'Blog management', type: :feature do
     expect(page).to have_content('Text is too short')
   end
 end
-{% endhighlight %}
+```
 
 Looking at this snippet - there are multiple concerns. There is the act of navigating to the appropriate page, interacting with the page, and asserting content. It is also possible to see duplicated code that could potentially be more DRY.
 
@@ -81,7 +81,7 @@ Taking the previous example, and introducing a PageObject for creating new blogs
 
 Without providing specific implementation details, the end-goal should be readable, and lacking specific user interface details should as class names, xpaths etc:
 
-{% highlight ruby %}
+```ruby
 require 'feature_helper'
 require_relative '../pages/new_blog'
 require_relative '../pages/view_blog'
@@ -114,14 +114,14 @@ feature 'Blog management', type: :feature do
                                          "Text is too short"
   end
 end
-{% endhighlight %}
+```
 
 
 ### Creating Page Objects
 
 The first step of creating page objects is to create the basic page class structure:
 
-{% highlight ruby %}
+```ruby
 module Pages
   class NewBlog
     include RSpec::Matchers
@@ -130,15 +130,15 @@ module Pages
     # ...
   end
 end
-{% endhighlight %}
+```
 
 The inclusion of `Capybara::DSL` will allow for instances of the Page Object to have access to Capybara's domain specific language:
 
-{% highlight ruby %}
+```ruby
 has_css? '.foo'
 has_content? 'hello world'
 find('.foo').click
-{% endhighlight %}
+```
 
 I have additionally chosen to make use of `include RSpec::Matchers` within the above examples in order to use RSpec's expectation library.
 
@@ -146,15 +146,15 @@ Some purists may follow the convention that Page Objects should _not_ have inbui
 
 For instance with the following code, Capybara will wait until `foo` is present within the page object, or it will fail:
 
-{% highlight ruby %}
+```ruby
 expect(self).to have_content 'foo'
-{% endhighlight %}
+```
 
 However, within the following code:
 
-{% highlight ruby %}
+```ruby
 expect(page_object.content).to match 'foo'
-{% endhighlight %}
+```
 
 It is possible to have unexpected race conditions as `page_object.content` is immediately evaluated, and potentially not valid yet, and asserted upon. For more examples, I would recommend reading thoughtbot's [writing reliable asynchronous integration tests with capayara](https://robots.thoughtbot.com/write-reliable-asynchronous-integration-tests-with-capybara#checking-a-field39s-value).
 
@@ -162,7 +162,7 @@ It is possible to have unexpected race conditions as `page_object.content` is im
 
 We can abstract the location that we wish to visit within a single method:
 
-{% highlight ruby %}
+```ruby
 def visit_location
   visit '/blogs/new'
   # It can be beneficial to assert something positive about the page
@@ -178,11 +178,11 @@ end
 def has_loaded?
   self.has_selector? 'h1', text: 'Create Blog'
 end
-{% endhighlight %}
+```
 
 It is important to provide semantically clear methods to your page objects:
 
-{% highlight ruby %}
+```ruby
 def create(title:, text:)
   # ...
 end
@@ -194,7 +194,7 @@ end
 def has_error?(error)
   # ...
 end
-{% endhighlight %}
+```
 
 In general it is important to follow provide [functionally cohesive methods](https://en.wikipedia.org/wiki/Cohesion_(computer_science)), and where possible adhere to the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle).
 
@@ -204,7 +204,7 @@ In our example we are making use of a `NewBlog` class, but the implementation fo
 
 As we are interacting with a form, we could additionally introduce a class to represent this component:
 
-{% highlight ruby %}
+```ruby
 # ...
 
 def create(title:, text:)
@@ -219,11 +219,11 @@ private
 def blog_form
   ::Components::BlogForm
 end
-{% endhighlight %}
+```
 
 Where the implementation for `BlogForm` might be:
 
-{% highlight ruby %}
+```ruby
 module Components
   class BlogForm
     include RSpec::Matchers
@@ -245,13 +245,13 @@ module Components
     end
   end
 end
-{% endhighlight %}
+```
 
 ### Wiring everything together
 
 With the above classes, it will now be possible to require and instantiate your page objects within your feature spec:
 
-{% highlight ruby %}
+```ruby
 require 'feature_helper'
 require_relative '../pages/new_blog'
 require_relative '../pages/view_blog'
@@ -262,7 +262,7 @@ feature 'Blog management', type: :feature do
 
   # ...
 end
-{% endhighlight %}
+```
 
 _Note_: I have intentionally chosen to require the page object manually at the top of the feature file. In some RSpec applications it may be convenient to auto-load all support files and provide access to them within feature files, however this can become overwhelming with large code bases. In particular it will lead to slow start-up times, and potential unintentional cyclic dependencies.
 
@@ -270,7 +270,7 @@ _Note_: I have intentionally chosen to require the page object manually at the t
 
 Within each scenario we will now have access to the `new_blog_page` and `view_blog_page` instances:
 
-{% highlight ruby %}
+```ruby
 scenario 'Successfully creating a new blog' do
   new_blog_page.create title: 'My Blog Title',
                        text: 'My new blog text'
@@ -279,7 +279,7 @@ scenario 'Successfully creating a new blog' do
   expect(view_blog_page).to have_blog title: 'My Blog Title',
                                       text: 'My new blog text'
 end
-{% endhighlight %}
+```
 
 ### Naming Conventions / Predicate Methods
 
@@ -287,15 +287,15 @@ As with most things in Rails/Ruby, there are conventions that may not be fully a
 
 Within our tests we interacted with the page object with `have_loaded` and `have_blog`:
 
-{% highlight ruby %}
+```ruby
 expect(view_blog_page).to have_loaded
 expect(view_blog_page).to have_blog title: 'My Blog Title',
                                     text: 'My new blog text'
-{% endhighlight %}
+```
 
 However, our page object's method names are actually `has_loaded?` and `has_blog?`:
 
-{% highlight ruby %}
+```ruby
 def has_loaded?
   # ...
 end
@@ -303,7 +303,7 @@ end
 def has_blog?(title:, text:)
   # ...
 end
-{% endhighlight %}
+```
 
 This is a subtle difference to notice, and attention should be drawn to it. For more details on this convention, I would recommend the [predicate matchers](https://relishapp.com/rspec/rspec-expectations/v/3-5/docs/built-in-matchers/predicate-matchers) documentation.
 

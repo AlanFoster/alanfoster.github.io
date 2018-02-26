@@ -15,15 +15,15 @@ This post assumes that you have a React/JavaScript application ready to be teste
 
 For this post I will assume that we're using [create-react-native-app](https://github.com/react-community/create-react-native-app):
 
-{% highlight shell %}
+```shell
 npm install -g create-react-app
 create-react-app my-app
 cd my-app
-{% endhighlight %}
+```
 
 You should be able to confirm that your react application is running as expected with:
 
-{% highlight shell %}
+```shell
 $ npm start
 
 Compiled successfully!
@@ -32,11 +32,11 @@ You can now view my-app in the browser.
 
   Local:            http://localhost:3000/
   On Your Network:  http://192.168.1.160:3000/
-{% endhighlight %}
+```
 
 You should be able to confirm that all tests are running as expected with:
 
-{% highlight shell %}
+```shell
 $ npm test
 
  PASS  src/App.test.js
@@ -53,7 +53,7 @@ Watch Usage
  › Press t to filter by a test name regex pattern.
  › Press q to quit watch mode.
  › Press Enter to trigger a test run.
-{% endhighlight %}
+```
 
 ### Installing docker
 
@@ -63,7 +63,7 @@ Please see the latest install steps at [https://www.docker.com](https://www.dock
 
 You should be able to verify that your local install is running with:
 
-{% highlight shell %}
+```shell
 $ docker run hello-world
 
 latest: Pulling from library/hello-world
@@ -72,7 +72,7 @@ Digest: sha256:c5515758d4c5e1e838e9cd307f6c6a0d620b5e07e6f927b07d05f6d12a1ac8d7
 Status: Downloaded newer image for hello-world:latest
 
 Hello from Docker!
-{% endhighlight %}
+```
 
 ### Containers and images
 
@@ -86,14 +86,14 @@ Docker depends on having a `Dockerfile` which specifies the environment and soft
 
 Create a new Docker file with:
 
-{% highlight shell %}
+```shell
 touch Dockerfile
-{% endhighlight %}
+```
 
 
 With the following content:
 
-{% highlight shell %}
+```shell
 FROM node:8.0.0-alpine
 
 RUN mkdir /srv/example
@@ -102,7 +102,7 @@ WORKDIR /srv/example
 COPY package.json yarn.lock ./
 RUN yarn && yarn cache clean
 COPY . .
-{% endhighlight %}
+```
 
 Docker will run sequentially through each line within the docker file.
 
@@ -123,7 +123,7 @@ Thankfully, similar to a `.gitignore` file, you can specify a `.dockerignore` fi
 
 Create a new `.dockerignore` file with the following content:
 
-{% highlight shell %}
+```shell
 # Ignore all files by default
 *
 
@@ -132,7 +132,7 @@ Create a new `.dockerignore` file with the following content:
 !public/
 !package.json
 !yarn.lock
-{% endhighlight %}
+```
 
 In my experience I prefer white-listing rather than black listing files for docker. It is better for a docker build to break because you forgot to white list an additional dependency, than it is to have secrets shared without realizing.
 
@@ -144,7 +144,7 @@ Docker compose allows you to manage multi-container docker applications. In our 
 
 Create a new file `docker-compose.yml` with the content:
 
-{% highlight shell %}
+```shell
 version: '3'
 
 services:
@@ -154,11 +154,11 @@ services:
     environment:
       - CI=true
     command: npm test
-{% endhighlight %}
+```
 
 The following commands will now build our image, as well as execute `npm test`:
 
-{% highlight shell %}
+```shell
 $ docker-compose build test
 
 ...
@@ -184,7 +184,7 @@ Time:        1.284s
 Ran all test suites.
 npm info lifecycle my-app@0.1.0~posttest: my-app@0.1.0
 npm info ok
-{% endhighlight %}
+```
 
 Note that within our docker-compose file we also needed to specify the environment variable `CI=true` - otherwise by default jest will run in `--watch` mode.
 
@@ -192,7 +192,7 @@ Additionally we have specified the `--rm` option within our run command, to dele
 
 Importantly, if our test fails - the correct status code will be returned. This is useful to break your build in a CI environment:
 
-{% highlight shell %}
+```shell
 $ docker-compose run --rm test
 
 ...
@@ -202,7 +202,7 @@ $ docker-compose run --rm test
 
 $ echo $?
 1
-{% endhighlight %}
+```
 
 ### Docker for development
 
@@ -210,7 +210,7 @@ It is also possible to use docker for development. This is useful when you wish 
 
 We can modify the `docker-compose.yml` file to have an additional `dev` service:
 
-{% highlight shell %}
+```shell
 version: '3'
 
 services:
@@ -229,7 +229,7 @@ services:
     environment:
       - CI=true
     command: npm test
-{% endhighlight %}
+```
 
 This adds an additional `dev` service which will run `npm start`, and expose port 3000 within the docker container onto port 3000 on the host machine.
 
@@ -237,7 +237,7 @@ An important addition is the `volumes` keys, which maps the current host machine
 
 We can run this container with:
 
-{% highlight shell %}
+```shell
 $ docker-compose build dev
 
 ...
@@ -267,7 +267,7 @@ dev_1   |
 dev_1   | Note that the development build is not optimized.
 dev_1   | To create a production build, use yarn run build.
 dev_1   |
-{% endhighlight %}
+```
 
 Note that we are making use of `docker-compose up` rather than the previous `run` command.
 
@@ -275,7 +275,7 @@ Note that we are making use of `docker-compose up` rather than the previous `run
 
 It's never fun to remember arbitrary commands. Let's introduce a makefile to streamline the dev process:
 
-{% highlight shell %}
+```shell
 .PHONY: dev test help
 .DEFAULT_GOAL: help
 
@@ -293,25 +293,25 @@ dev:  ## Run a development environment on port 3000
 test: ## Run the current test suite
 	@docker-compose build test
 	@docker-compose run --rm test
-{% endhighlight %}
+```
 
 _Note_: Makefiles should use tabs, rather than spaces.
 
 If we're unsure what commands are available to us, we can just run `make help`:
 
-{% highlight shell %}
+```shell
 Available commands:
 
 help:  Output available commands
 dev:   Run a development environment on port 3000
 test:  Run the current test suite
-{% endhighlight %}
+```
 
 For instance, to run the test target you can use:
 
-{% highlight shell %}
+```shell
 make test
-{% endhighlight %}
+```
 
 ### Sources
 
@@ -321,24 +321,24 @@ The full source code can be found at [create-react-app-docker-unit-tests](https:
 
 To view all of the currently running docker instances:
 
-{% highlight shell %}
+```shell
 docker ps
-{% endhighlight %}
+```
 
 To open an interactive terminal into one of your running instances:
 
-{% highlight shell %}
+```shell
 docker exec -it DOCKER_PID /bin/sh
-{% endhighlight %}
+```
 
 To create a temporary docker container, enter a shell, then delete the container after:
 
-{% highlight shell %}
+```shell
 docker run -it --rm IMAGE_NAME /bin/sh
-{% endhighlight %}
+```
 
 To view the available docker logs:
 
-{% highlight shell %}
+```shell
 docker logs -f DOCKER_PID
-{% endhighlight %}
+```

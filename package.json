@@ -9,5 +9,10 @@
   "dependencies": {
     "gatsby": "^1.9.215",
     "gatsby-link": "^1.6.37"
+  },
+  "devDependencies": {
+    "gatsby-remark-prismjs": "^1.2.15",
+    "gatsby-source-filesystem": "^1.5.24",
+    "gatsby-transformer-remark": "^1.7.33"
   }
 }

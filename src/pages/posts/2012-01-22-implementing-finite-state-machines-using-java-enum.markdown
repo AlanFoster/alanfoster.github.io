@@ -7,7 +7,7 @@ category: post
 
 I often see a lot of java programs which make use of enums for finite state machines. They perform logic based on switch statements. For instance they may do:
 
-{% highlight java %}
+```java
 protected enum State {
   FOO, BAR;
 }
@@ -23,14 +23,14 @@ public static void main(String[] args) {
       break;
   }
 }
-{% endhighlight %}
+```
 
 
 Sure, this is fine. But it's not exactly very flexible is it? It's not taking advantage of the fact that enums can offer logic within the enum itself. For instance enums can offer a public abstract void method, which all enum constants must override and implement logic to.
 
 For instance
 
-{% highlight java %}
+```java
 protected enum State {
   FOO {
     @Override
@@ -47,20 +47,20 @@ protected enum State {
 
   protected abstract void logic();
 }
-{% endhighlight %}
+```
 
 This means we can now execute our logic by doing
 
-{% highlight java %}
+```java
 public static void main(String[] args) {
   State currentState = State.FOO;
   currentState.logic();
 }
-{% endhighlight %}
+```
 
 Therefore it doesn't take much imagination to take this a step further and implement an 'actual' Java state machine such as
 
-{% highlight java %}
+```java
 protected enum State {
   FOO {
     int i;
@@ -94,6 +94,6 @@ public static void main(String[] args) {
     System.out.println(currentState);
   }
 }
-{% endhighlight %}
+```
 
 Hopefully this helps someone learn a bit more about enums, and potentially how to implement a finite state machine in java using enums.
