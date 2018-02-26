@@ -1,0 +1,13 @@
+{
+  "name": "alanfoster.github.io",
+  "description": "alanfoster.github.io",
+  "scripts": {
+    "develop": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve"
+  },
+  "dependencies": {
+    "gatsby": "^1.9.215",
+    "gatsby-link": "^1.6.37"
+  }
+}
