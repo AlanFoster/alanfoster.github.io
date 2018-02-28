@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
 export default () => (
   <div>
     <p>
-      Welcome! This is the blog of Alan Foster; a developer with a passion for learning new programming languages,
-      frameworks, and paradigms.
+      Welcome! This is the blog of Alan Foster; a developer with a passion for
+      learning new programming languages, frameworks, and paradigms.
     </p>
 
     <p>Recently I've been looking into:</p>
@@ -16,6 +16,9 @@ export default () => (
       <li>Compiler Theory</li>
     </ul>
 
-    <p>You can see what I've been up to on Github <a href='https://www.github.com/alanfoster'>@alanfoster</a></p>
+    <p>
+      You can see what I've been up to on Github{" "}
+      <a href="https://www.github.com/alanfoster">@alanfoster</a>
+    </p>
   </div>
 );
