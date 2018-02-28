@@ -1,25 +1,28 @@
 import React from "react"
-import Link from "gatsby-link";
 import Helmet from "react-helmet";
+import styles from './talks.module.css';
 
-const Talk = function({ id, frontmatter, excerpt, fields }) {
+const Talk = function ({ frontmatter, html }) {
   return (
-    <div>
-      <h5>{frontmatter.date}</h5>
-      <Link to={fields.slug}>
+    <div className={styles.talk}>
+      <div className={styles.date}>
+        {frontmatter.date}
+      </div>
+      <a href={frontmatter.slides}>
         <h2>{frontmatter.title}</h2>
-      </Link>
-      <div>{excerpt}</div>
+      </a>
+      <div dangerouslySetInnerHTML={{ __html: html }}/>
     </div>
   );
 };
 
-export default function({ data }) {
+export default function ({ data }) {
   if (!data) return <div>There are no talks</div>;
 
   return (
     <div>
-      <Helmet title="Talks" />
+      <Helmet title="Talks"/>
+      <h5>Talks</h5>
       {data.allMarkdownRemark.edges.map(function ({ node }) {
         return (
           <Talk key={node.id} {...node} />
@@ -38,12 +41,13 @@ export const query = graphql`
           id
           frontmatter {
             title
+            slides
             date(formatString: "DD MMMM, YYYY")
           }
           fields {
             slug
           }
-          excerpt
+          html
         }
       }
     }

@@ -1,15 +1,20 @@
 import React from "react"
 import Link from "gatsby-link";
 import Helmet from "react-helmet";
+import styles from './talks.module.css';
 
-const Post = function({ id, frontmatter, excerpt, fields }) {
+const Post = function({ frontmatter, excerpt, fields }) {
   return (
-    <div>
-      <h5>{frontmatter.date}</h5>
+    <div className={styles.talk}>
+      <div className={styles.date}>
+        {frontmatter.date}
+      </div>
       <Link to={fields.slug}>
         <h2>{frontmatter.title}</h2>
       </Link>
-      <div>{excerpt}</div>
+      <div>
+        {excerpt}
+      </div>
     </div>
   );
 };
@@ -20,6 +25,7 @@ export default function({ data }) {
   return (
     <div>
       <Helmet title="Posts" />
+      <h5>Posts</h5>
       {data.allMarkdownRemark.edges.map(function ({ node }) {
         return (
           <Post key={node.id} {...node} />
@@ -43,7 +49,7 @@ export const query = graphql`
           fields {
             slug
           }
-          excerpt
+          excerpt(pruneLength: 500)
         }
       }
     }

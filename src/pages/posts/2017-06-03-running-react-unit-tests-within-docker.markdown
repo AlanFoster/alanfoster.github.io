@@ -15,7 +15,7 @@ This post assumes that you have a React/JavaScript application ready to be teste
 
 For this post I will assume that we're using [create-react-native-app](https://github.com/react-community/create-react-native-app):
 
-```shell
+```bash
 npm install -g create-react-app
 create-react-app my-app
 cd my-app
@@ -23,7 +23,7 @@ cd my-app
 
 You should be able to confirm that your react application is running as expected with:
 
-```shell
+```bash
 $ npm start
 
 Compiled successfully!
@@ -36,7 +36,7 @@ You can now view my-app in the browser.
 
 You should be able to confirm that all tests are running as expected with:
 
-```shell
+```bash
 $ npm test
 
  PASS  src/App.test.js
@@ -63,7 +63,7 @@ Please see the latest install steps at [https://www.docker.com](https://www.dock
 
 You should be able to verify that your local install is running with:
 
-```shell
+```bash
 $ docker run hello-world
 
 latest: Pulling from library/hello-world
@@ -86,14 +86,14 @@ Docker depends on having a `Dockerfile` which specifies the environment and soft
 
 Create a new Docker file with:
 
-```shell
+```bash
 touch Dockerfile
 ```
 
 
 With the following content:
 
-```shell
+```docker
 FROM node:8.0.0-alpine
 
 RUN mkdir /srv/example
@@ -123,7 +123,7 @@ Thankfully, similar to a `.gitignore` file, you can specify a `.dockerignore` fi
 
 Create a new `.dockerignore` file with the following content:
 
-```shell
+```bash
 # Ignore all files by default
 *
 
@@ -144,7 +144,7 @@ Docker compose allows you to manage multi-container docker applications. In our 
 
 Create a new file `docker-compose.yml` with the content:
 
-```shell
+```yaml
 version: '3'
 
 services:
@@ -158,7 +158,7 @@ services:
 
 The following commands will now build our image, as well as execute `npm test`:
 
-```shell
+```bash
 $ docker-compose build test
 
 ...
@@ -192,7 +192,7 @@ Additionally we have specified the `--rm` option within our run command, to dele
 
 Importantly, if our test fails - the correct status code will be returned. This is useful to break your build in a CI environment:
 
-```shell
+```bash
 $ docker-compose run --rm test
 
 ...
@@ -210,7 +210,7 @@ It is also possible to use docker for development. This is useful when you wish 
 
 We can modify the `docker-compose.yml` file to have an additional `dev` service:
 
-```shell
+```yaml
 version: '3'
 
 services:
@@ -237,7 +237,7 @@ An important addition is the `volumes` keys, which maps the current host machine
 
 We can run this container with:
 
-```shell
+```bash
 $ docker-compose build dev
 
 ...
@@ -275,7 +275,7 @@ Note that we are making use of `docker-compose up` rather than the previous `run
 
 It's never fun to remember arbitrary commands. Let's introduce a makefile to streamline the dev process:
 
-```shell
+```bash
 .PHONY: dev test help
 .DEFAULT_GOAL: help
 
@@ -299,7 +299,7 @@ _Note_: Makefiles should use tabs, rather than spaces.
 
 If we're unsure what commands are available to us, we can just run `make help`:
 
-```shell
+```bash
 Available commands:
 
 help:  Output available commands
@@ -309,7 +309,7 @@ test:  Run the current test suite
 
 For instance, to run the test target you can use:
 
-```shell
+```bash
 make test
 ```
 
@@ -321,24 +321,24 @@ The full source code can be found at [create-react-app-docker-unit-tests](https:
 
 To view all of the currently running docker instances:
 
-```shell
+```bash
 docker ps
 ```
 
 To open an interactive terminal into one of your running instances:
 
-```shell
+```bash
 docker exec -it DOCKER_PID /bin/sh
 ```
 
 To create a temporary docker container, enter a shell, then delete the container after:
 
-```shell
+```bash
 docker run -it --rm IMAGE_NAME /bin/sh
 ```
 
 To view the available docker logs:
 
-```shell
+```bash
 docker logs -f DOCKER_PID
 ```
