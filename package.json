@@ -5,7 +5,8 @@
     "develop": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "lint": "eslint src --ignore-pattern \"**/__snapshots__/**\""
+    "lint": "eslint src --ignore-pattern \"**/__snapshots__/**\"",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },
   "dependencies": {
     "gatsby": "^1.9.215",
@@ -22,6 +23,7 @@
     "gatsby-remark-prismjs": "^1.2.15",
     "gatsby-source-filesystem": "^1.5.24",
     "gatsby-transformer-remark": "^1.7.33",
+    "gh-pages": "^1.1.0",
     "prettier": "^1.11.0",
     "prop-types": "^15.6.1",
     "react-helmet": "^5.2.0",
