@@ -1,11 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Link from "gatsby-link";
 import Helmet from "react-helmet";
-import styles from "./talks.module.css";
+import styles from "./index.module.css";
 
 const Post = function({ frontmatter, excerpt, fields }) {
   return (
-    <div className={styles.talk}>
+    <div className={styles.post}>
       <div className={styles.date}>{frontmatter.date}</div>
       <Link to={fields.slug}>
         <h2>{frontmatter.title}</h2>
@@ -15,7 +16,13 @@ const Post = function({ frontmatter, excerpt, fields }) {
   );
 };
 
-export default function({ data }) {
+Post.propTypes = {
+  frontmatter: PropTypes.object.isRequired,
+  excerpt: PropTypes.string.isRequired,
+  fields: PropTypes.object.isRequired
+};
+
+const Posts = function({ data }) {
   if (!data) return <div>There are no posts</div>;
 
   return (
@@ -27,7 +34,13 @@ export default function({ data }) {
       })}
     </div>
   );
-}
+};
+
+Posts.propTypes = {
+  data: PropTypes.object.isRequired
+};
+
+export default Posts;
 
 export const query = graphql`
   query PostsQuery {

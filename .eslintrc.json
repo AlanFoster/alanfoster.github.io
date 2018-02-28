@@ -1,6 +1,9 @@
 {
+  "globals": {
+    "graphql": false
+  },
   "parser": "babel-eslint",
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "graphql"],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",

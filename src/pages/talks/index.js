@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Helmet from "react-helmet";
-import styles from "./talks.module.css";
+import styles from "./index.module.css";
 
 const Talk = function({ frontmatter, html }) {
   return (
@@ -14,7 +15,12 @@ const Talk = function({ frontmatter, html }) {
   );
 };
 
-export default function({ data }) {
+Talk.propTypes = {
+  frontmatter: PropTypes.object.isRequired,
+  html: PropTypes.string.isRequired
+};
+
+const Talks = function({ data }) {
   if (!data) return <div>There are no talks</div>;
 
   return (
@@ -26,7 +32,13 @@ export default function({ data }) {
       })}
     </div>
   );
-}
+};
+
+Talks.propTypes = {
+  data: PropTypes.object.isRequired
+};
+
+export default Talks;
 
 export const query = graphql`
   query TalksQuery {
