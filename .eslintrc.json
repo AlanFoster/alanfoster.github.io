@@ -1,0 +1,15 @@
+{
+  "globals": {
+    "graphql": false
+  },
+  "parser": "babel-eslint",
+  "plugins": ["prettier", "graphql"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": "error"
+  }
+}
