@@ -6,7 +6,7 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "lint": "eslint src --ignore-pattern \"**/__snapshots__/**\"",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public -b master"
   },
   "dependencies": {
     "gatsby": "^1.9.215",
