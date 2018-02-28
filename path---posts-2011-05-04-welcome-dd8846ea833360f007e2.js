@@ -1,0 +1,2 @@
+webpackJsonp([1802164805192],{351:function(t,o){t.exports={data:{markdownRemark:{html:"<p>Hello, I am Alan Foster and I hope you enjoy reading my first blog post.</p>\n<p>Within this portfolio I hope to maintain a list of the things that I achieve to do with computers!</p>",frontmatter:{title:"Welcome",date:"04 May, 2011"},fields:{slug:"/posts/2011-05-04-welcome/"}}},pathContext:{slug:"/posts/2011-05-04-welcome/"}}}});
+//# sourceMappingURL=path---posts-2011-05-04-welcome-dd8846ea833360f007e2.js.map
