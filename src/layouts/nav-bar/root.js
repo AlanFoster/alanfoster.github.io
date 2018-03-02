@@ -22,7 +22,11 @@ NavLinkTag.propTypes = {
 };
 
 const TopBar = ({ brand, onToggle, isOpen }) => (
-  <Navbar color="faded" light className={`${styles.navbar} navbar-expand-sm`}>
+  <Navbar
+    color="faded"
+    light
+    className={`${styles.navbar} navbar-expand-sm sticky-top`}
+  >
     <NavbarBrand href="/">{brand}</NavbarBrand>
     <NavbarToggler onClick={onToggle} />
     <Collapse isOpen={isOpen} navbar>
@@ -40,6 +44,11 @@ const TopBar = ({ brand, onToggle, isOpen }) => (
         <NavItem>
           <NavLink tag={NavLinkTag} href="/talks">
             Talks
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink tag={NavLinkTag} href="/workshops">
+            Workshops
           </NavLink>
         </NavItem>
       </Nav>
