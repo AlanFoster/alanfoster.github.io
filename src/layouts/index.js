@@ -11,6 +11,8 @@ import NavBar from "./nav-bar/root";
 import "prismjs/themes/prism-tomorrow.css";
 import "bootstrap/dist/css/bootstrap.css";
 
+import sidebar from '../pages/workshops/jest/sidebar.yaml'
+
 const metadata = {
   name: "Alan Foster",
   website: "alanfoster.me",
@@ -21,7 +23,7 @@ const metadata = {
 const WorkshopMenu = () => (
   <div className={styles.workshopMenu}>
     <div>
-      <h4>Heading</h4>
+      <h4>{JSON.stringify(sidebar)}</h4>
     </div>
   </div>
 );
@@ -43,7 +45,7 @@ class Layout extends React.Component {
 
   render() {
     // Note: Gatsby provides custom layouts via the onCreatePage callback, KISS/YAGNI for now.
-    const isWorkshop = this.props.location.pathname === "/workshops";
+    const isWorkshop = this.props.location.pathname.indexOf('/workshops/jest/') > -1;
 
     return (
       <div style={{ position: "relative" }}>
