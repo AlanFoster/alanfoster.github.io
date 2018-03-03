@@ -47,7 +47,7 @@ Ran all test suites.
 
 ## Your Turn
 
-Add an additional test that can multiply two numbers, and add a test that ensures
-5 multiplied by 7 is 35.
+We now want a multiply function, with the relevant tests. Create the your new JavaScript file
+for multiplying, and create a test - remember that the test file extension should be `.spec.js`
 
 Remember to run your tests with `yarn run test`
