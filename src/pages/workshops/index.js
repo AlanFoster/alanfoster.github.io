@@ -4,7 +4,7 @@ import Link from "gatsby-link";
 import Helmet from "react-helmet";
 import styles from "./index.module.css";
 
-const Workshop = function({ frontmatter, fields, html }) {
+const Workshop = function({ frontmatter, html }) {
   return (
     <div className={styles.workshop}>
       <div className={styles.date}>{frontmatter.date}</div>
