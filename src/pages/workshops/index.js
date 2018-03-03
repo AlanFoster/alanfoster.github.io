@@ -4,7 +4,7 @@ import Link from "gatsby-link";
 import Helmet from "react-helmet";
 import styles from "./index.module.css";
 
-const Workshop = function ({ frontmatter, fields, html }) {
+const Workshop = function({ frontmatter, fields, html }) {
   return (
     <div className={styles.workshop}>
       <div className={styles.date}>{frontmatter.date}</div>
@@ -21,14 +21,14 @@ Workshop.propTypes = {
   html: PropTypes.string.isRequired
 };
 
-const Workshops = function ({ data }) {
+const Workshops = function({ data }) {
   if (!data) return <div>There are no workshops</div>;
 
   return (
     <div>
-      <Helmet title="Talks"/>
+      <Helmet title="Talks" />
       <h5>Workshops</h5>
-      {data.allMarkdownRemark.edges.map(function ({ node }) {
+      {data.allMarkdownRemark.edges.map(function({ node }) {
         return <Workshop key={node.id} {...node} />;
       })}
     </div>

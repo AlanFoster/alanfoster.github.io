@@ -1,3 +1,24 @@
 items:
-  - title: Testing
-    link: /testing
+  - title: Overview
+    link: /workshops/jest/overview/
+
+  - title: Setup
+    link: /workshops/jest/setup/
+
+  - title: Basic tests
+    link: /workshops/jest/basic-tests/
+
+  - title: Babel
+    link: /workshops/jest/babel/
+
+  - title: Asychronous Testing
+    link: /workshops/jest/asynchronous-testing/
+
+  - title: Mocks
+    link: /workshops/jest/mocks/
+
+  - title: Matchers
+    link: /workshops/jest/matchers/
+
+  - title: React
+    link: /workshops/jest/react/

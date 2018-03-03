@@ -3,7 +3,7 @@ layout: workshop
 title:  Jest
 date:   2018-02-25 09:33:53
 category: workshop
-workshop: /workshops/jest/part-one/
+workshop: /workshops/jest/overview/
 ---
 
 At the end of this workshop you will learn how to use the [Jest](https://facebook.github.io/jest/) testing
