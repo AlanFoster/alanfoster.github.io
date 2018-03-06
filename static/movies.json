@@ -1,0 +1,12 @@
+{
+  "movies": [
+    {
+      "title": "The Hitchhiker's Guide to the Galaxy",
+      "releaseYear": 2005
+    },
+    {
+      "title": "Thor: Ragnarok",
+      "releaseYear": 2017
+    }
+  ]
+}
