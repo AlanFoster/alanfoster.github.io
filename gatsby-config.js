@@ -13,6 +13,7 @@ module.exports = {
         plugins: [
           'gatsby-plugin-sharp',
           'gatsby-remark-images',
+          'gatsby-remark-autolink-headers',
           {
             resolve: 'gatsby-remark-prismjs',
             options: {

@@ -22,6 +22,9 @@ export const query = graphql`
   query WorkshopQuery($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
+      headings {
+        value
+      }
       frontmatter {
         title
         date(formatString: "DD MMMM, YYYY")

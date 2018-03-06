@@ -7,6 +7,8 @@ title:  Jest workshop - Basic Tests
 Let's create a new file within the top level directory called `add.js`. It will be
 a function that takes two numbers, and returns the added value:
 
+`add.js`
+
 ```javascript
 function add(x, y) {
   return x + y;
@@ -15,7 +17,9 @@ function add(x, y) {
 module.exports = add;
 ```
 
-And let's add the subsequent test in a file called `add.spec.js`:
+And let's add the subsequent test:
+
+`add.spec.js`
 
 ```javascript
 var add = require('./add')

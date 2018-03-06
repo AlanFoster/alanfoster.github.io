@@ -11,8 +11,8 @@ we relied on Node's `require` syntax - rather than the more modern `import` synt
 latest bells and whistles into an equivalent form that can run on older versions of JavaScript
 that may exist in older browsers for instance.
 
-Install Babel-Core, the integration support for jest, as well as babel-present-env - which is
-will provide access to the latest language features.
+Install Babel-Core, the integration support for jest, as well as babel-present-env - which
+will provide access to the latest language features:
 
 ```bash
 yarn add --save-dev babel-jest babel-core babel-preset-env
@@ -30,7 +30,7 @@ that we want to use the previously installed `babel-present-env` present:
 If we re-run the tests, nothing will have changed. Verify this to prove to yourself that
 this is true.
 
-We can now however make use of the more modern export/import syntax as a result of this change.
+We can now make use of the more modern export/import syntax as a result of this change:
 
 `add.js`
 

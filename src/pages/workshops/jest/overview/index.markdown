@@ -36,17 +36,17 @@ console.log(mockCounter()); // 2
 console.log(mockCounter()); // 3
 ```
 
-## Snapshot Testing
-
-Storing the previous output of a function for future comparison.
-
-TODO
-
 ### Error Messages
 
 On test failure it will generate useful error messages:
 
 ![](./test-failure.png "Example of Jest failing an equality check between between 5 and 7")
+
+## Snapshot Testing
+
+Storing the previous output of a function for future comparison.
+
+![](./test-snapshot.png "Example of a test failing due to the latest test result being different")
 
 ## Code Coverage Reports
 
