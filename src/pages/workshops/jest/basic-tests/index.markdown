@@ -55,3 +55,25 @@ We now want a multiply function, with the relevant tests. Create the your new Ja
 for multiplying, and create a test - remember that the test file extension should be `.spec.js`
 
 Remember to run your tests with `yarn run test`
+
+`multiply.js`
+
+```spoilers javascript
+function multiply(x, y) {
+  return x * y;
+}
+
+module.exports = add;
+```
+
+`multiply.spec.js`
+
+```spoilers javascript
+var multiply = require('./multiply')
+
+describe('multiply', function () {
+  it('multiples 2 * 3 to equal 6', function () {
+    expect(multiply(2, 3)).toBe(6)
+  });
+});
+```

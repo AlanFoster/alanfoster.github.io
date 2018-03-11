@@ -55,36 +55,35 @@ Now we can install jest:
 yarn add --dev jest
 ```
 
-This command has also modified your package file:
+This command has also modified your `package.json` file:
 
-```diff
- {
-   "name": "jest-workshop",
-   "version": "1.0.0",
-   "main": "index.js",
--  "license": "MIT"
-+  "license": "MIT",
-+  "devDependencies": {
-+    "jest": "^22.4.2"
-+  }
- }
+```json{6-8}
+{
+  "name": "jest-workshop",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^22.4.2"
+  }
+}
 ```
 
 Let's define a script within our `package.json` file to run our test suite via jest:
 
-```diff
- {
-   "name": "jest-workshop",
-   "version": "1.0.0",
-   "main": "index.js",
-   "license": "MIT",
-+  "scripts": {
-+    "test": "jest"
-+  }
-   "devDependencies": {
-     "jest": "^22.4.2"
-   }
- }
+```json{6-8}
+{
+  "name": "jest-workshop",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  }
+  "devDependencies": {
+    "jest": "^22.4.2"
+  }
+}
 ```
 
 We can now run our JavaScript tests with the `yarn run` command:

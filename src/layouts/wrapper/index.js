@@ -30,7 +30,7 @@ class Layout extends React.Component {
 
   render() {
     return (
-      <div style={{ position: "relative" }}>
+      <div>
         <Helmet
           titleTemplate={`%s | ${metadata.website}`}
           title="Welcome"

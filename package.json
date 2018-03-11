@@ -5,7 +5,7 @@
     "develop": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "lint": "eslint src --ignore-pattern \"**/__snapshots__/**\"",
+    "lint": "eslint src plugins --ignore-pattern \"__snapshots__\" --ignore-pattern \"node_modules\"",
     "deploy": "gatsby build && cp ./CNAME public/ && gh-pages -d public -b master"
   },
   "dependencies": {

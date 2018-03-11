@@ -73,10 +73,10 @@ Note that in Jest, `it` and `test` are aliases for one another.
 
 You can focus on particular tests with `it.only`:
 
-```diff
+```javascript{3}
  describe('repository-list', function () {
    describe.only('when there is no data available', function () {
-+     it.only('renders no rows', function () {
+     it.only('renders no rows', function () {
        // ...
      });
    });
@@ -93,7 +93,7 @@ You can focus on particular tests with `it.only`:
 
 If you want to run a specific block of code before, or after each test:
 
-```javascript
+```javascript{2-8}
 describe.only('my-library', function () {
   beforeEach(function () {
     console.log('Code called before each test');
@@ -135,12 +135,12 @@ Out of the box Jest provides lots of useful matchers, and you can even write you
 Some common matchers that you might use are:
 
 - .toBe(value)
+- .toEqual(value)
+- .toMatchSnapshot(optionalString)
 - .toHaveBeenCalled()
 - .toHaveBeenCalledTimes(number)
 - .toHaveBeenCalledWith(arg1, arg2, ...)
 - .toHaveBeenLastCalledWith(arg1, arg2, ...)
 - .toBeInstanceOf(Class)
 - .toContain(item)
-- .toEqual(value)
-- .toMatchSnapshot(optionalString)
 - .toThrow(error)

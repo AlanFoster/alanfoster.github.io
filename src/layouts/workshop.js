@@ -6,6 +6,7 @@ import Footer from "./footer";
 import WorkshopMenu from "./workshop-menu";
 import jestWorkshop from "../pages/workshops/jest/sidebar.yaml";
 import styles from "./index.module.css";
+import "./globals.css";
 
 const Workshop = ({ children }) => (
   <Wrapper>

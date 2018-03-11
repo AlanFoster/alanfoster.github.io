@@ -25,6 +25,8 @@ export default function () {
 Jest provides multiple ways of testing asynchronous code, however the `.resolves` and `.rejects`
 syntax can often be the easiest:
 
+`meaning-of-life.spec.js`
+
 ```javascript
 import meaningOfLife from '../';
 
@@ -40,11 +42,74 @@ it will fail to work.
 
 ## Your turn
 
-Increase the time taken to compute the meaning of life, what happens? How do we fix it?
+We want to write a module for fetching a list of popular movies, and add the corresponding tests.
 
-Write the corresponding test for an API call:
+`http://www.alanfoster.me/movies.json`
 
-yarn add whatwg-fetch --save-dev
-
+```json
+{
+  "movies": [
+    {
+      "title": "The Hitchhiker's Guide to the Galaxy",
+      "releaseYear": 2005
+    },
+    {
+      "title": "Thor: Ragnarok",
+      "releaseYear": 2017
+    }
+  ]
+}
 ```
+
+To load this data within JavaScript we can make use of `fetch`. Fetch is a modern way of loading fetching resources.
+Although `fetch` is available on modern browsers, we can make use of a pollyfill to ensure that older
+browsers also have support.
+
+Add the fetch pollyfill dependency to your project:
+
+```bash
+yarn add --save-dev whatwg-fetch
+```
+
+Create your new module for retrieving the movie list:
+
+`src/api/movies/index.js`
+
+```javascript
+import 'whatwg-fetch';
+
+export const fetchMovies = function () {
+  return fetch('http://www.alanfoster.me/movies.json')
+    .then(response => response.json())
+};
+```
+
+With the above implementation, you should be able to write a test for the above module with `.resolves` and a
+suitable [matcher](/workshops/jest/globals-and-matchers/#matchers).
+
+Look at the initial example for inspiration.
+
+`src/api/movies/__tests__/index.spec.js`
+
+```spoilers javascript
+import * as service from '../';
+
+describe('movies-api', function() {
+  describe('fetchMovies', function() {
+    it('returns the data', function() {
+      return expect(service.fetchMovies()).resolves.toEqual({
+        "movies": [
+          {
+            "title": "The Hitchhiker's Guide to the Galaxy",
+            "releaseYear": 2005
+          },
+          {
+            "title": "Thor: Ragnarok",
+            "releaseYear": 2017
+          }
+        ]
+      })
+    });
+  });
+});
 ```
