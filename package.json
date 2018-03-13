@@ -5,7 +5,7 @@
     "develop": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "lint": "eslint src --ignore-pattern \"**/__snapshots__/**\"",
+    "lint": "eslint src plugins --ignore-pattern \"__snapshots__\" --ignore-pattern \"node_modules\"",
     "deploy": "gatsby build && cp ./CNAME public/ && gh-pages -d public -b master"
   },
   "dependencies": {
@@ -20,6 +20,9 @@
     "eslint-plugin-graphql": "^1.5.0",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.7.0",
+    "gatsby-plugin-sharp": "^1.6.37",
+    "gatsby-remark-autolink-headers": "^1.4.13",
+    "gatsby-remark-images": "^1.5.53",
     "gatsby-remark-prismjs": "^1.2.15",
     "gatsby-source-filesystem": "^1.5.24",
     "gatsby-transformer-remark": "^1.7.33",

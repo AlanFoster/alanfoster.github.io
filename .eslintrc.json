@@ -3,7 +3,10 @@
     "graphql": false
   },
   "parser": "babel-eslint",
-  "plugins": ["prettier", "graphql"],
+  "plugins": [
+    "prettier",
+    "graphql"
+  ],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -11,5 +14,13 @@
   ],
   "rules": {
     "prettier/prettier": "error"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["plugins/**"],
+      "env": {
+        "node": true
+      }
+    }
+  ]
 }

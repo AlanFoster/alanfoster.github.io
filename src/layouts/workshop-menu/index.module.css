@@ -1,0 +1,23 @@
+.workshopMenu {
+  padding: 1em;
+}
+
+.list {
+  width: 100%;
+}
+
+.link {
+  display: block;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  color: rgba(0, 0, 0, .5);
+}
+
+.link:hover {
+  color: rgba(0, 0, 0, .7);
+  text-decoration: none;
+}
+
+.linkActive {
+  color: #007bff !important;
+}

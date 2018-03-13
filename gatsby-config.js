@@ -1,22 +1,20 @@
 module.exports = {
   plugins: [
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: "gatsby-source-filesystem",
       options: {
-        name: 'src',
+        name: "src",
         path: `${__dirname}/src/`
       }
     },
     {
-      resolve: 'gatsby-transformer-remark',
+      resolve: "gatsby-transformer-remark",
       options: {
         plugins: [
-          {
-            resolve: 'gatsby-remark-prismjs',
-            options: {
-              classPrefix: 'language-'
-            }
-          }
+          "gatsby-plugin-sharp",
+          "gatsby-remark-images",
+          "gatsby-remark-autolink-headers",
+          "remark-prism-with-spoilers",
         ]
       }
     }

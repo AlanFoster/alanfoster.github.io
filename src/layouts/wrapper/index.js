@@ -1,11 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
-import { Container } from "reactstrap";
-import Footer from "./footer/index";
-// Bug: Gatsby seems to have a bug where `/nav-bar/index` doesn't work, and it
-// is chosen as the the default layout for some reason
-import NavBar from "./nav-bar/root";
+import NavBar from "../nav-bar";
 
 import "prismjs/themes/prism-tomorrow.css";
 import "bootstrap/dist/css/bootstrap.css";
@@ -52,9 +48,7 @@ class Layout extends React.Component {
           isOpen={this.state.isOpen}
         />
 
-        <Container>{this.props.children()}</Container>
-
-        <Footer />
+        {this.props.children}
       </div>
     );
   }
