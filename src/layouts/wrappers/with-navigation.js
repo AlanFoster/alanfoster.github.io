@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Helmet from "react-helmet";
+
 import NavBar from "../nav-bar";
 
 import "prismjs/themes/prism-tomorrow.css";
@@ -31,17 +31,6 @@ class Layout extends React.Component {
   render() {
     return (
       <div>
-        <Helmet
-          titleTemplate={`%s | ${metadata.website}`}
-          title="Welcome"
-          meta={[
-            {
-              name: "description",
-              content: metadata.description
-            }
-          ]}
-        />
-
         <NavBar
           brand={metadata.name}
           onToggle={this.onToggle}

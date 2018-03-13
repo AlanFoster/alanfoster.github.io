@@ -17,7 +17,7 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
 exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators;
 
-  return new Promise((resolve, reject) => {
+  const createMarkdownPages = new Promise((resolve, reject) => {
     graphql(`
       {
         allMarkdownRemark {
@@ -51,6 +51,44 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       resolve();
     });
   });
+
+  const createAggregatedPresentation = new Promise((resolve, reject) => {
+    graphql(`
+       {
+         allMarkdownRemark(filter: {frontmatter: {category: {eq: "workshop"}}}) {
+           totalCount
+           edges {
+             node {
+               id
+               frontmatter {
+                 title
+                 workshop
+                 date(formatString: "DD MMMM, YYYY")
+               }
+               fields {
+                 slug
+               }
+             }
+           }
+         }
+       }
+     `).then(result => {
+      result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+        createPage({
+          path: `${node.fields.slug}presentation`,
+          component: path.resolve("./src/templates/presentation-loader.js"),
+          layout: 'presentation',
+          context: {
+            slug: node.fields.slug
+          }
+        });
+      });
+
+      resolve();
+    });
+  });
+
+  return Promise.all([createMarkdownPages, createAggregatedPresentation]);
 };
 
 exports.onCreatePage = async ({ page, boundActionCreators }) => {
