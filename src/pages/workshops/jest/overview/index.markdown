@@ -36,7 +36,7 @@ console.log(mockCounter()); // 2
 console.log(mockCounter()); // 3
 ```
 
-### Error Messages
+## Error Messages
 
 On test failure it will generate useful error messages:
 

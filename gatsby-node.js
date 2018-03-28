@@ -1,7 +1,8 @@
 const path = require("path");
-const { createFilePath } = require("gatsby-source-filesystem");
+const jsYaml = require("js-yaml");
+const { createFilePath, loadNodeContent } = require("gatsby-source-filesystem");
 
-exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
+exports.onCreateNode = async ({ node, getNode, boundActionCreators }) => {
   const { createNodeField } = boundActionCreators;
 
   if (node.internal.type === "MarkdownRemark") {
@@ -11,6 +12,17 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
       name: "slug",
       value: slug
     });
+  }
+
+  if (node.internal.type === 'File' && node.relativePath.indexOf('/sidebar.yaml') > -1) {
+    const content = await loadNodeContent(node);
+    const parsedContent = jsYaml.load(content);
+
+    createNodeField({
+      node,
+      name: 'yml',
+      value: parsedContent
+    })
   }
 };
 
@@ -79,7 +91,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           component: path.resolve("./src/templates/presentation-loader.js"),
           layout: 'presentation',
           context: {
-            slug: node.fields.slug
+            sidebarPath: `pages/${node.fields.slug}/sidebar.yaml`,
+            slugRegex: `/${node.fields.slug}.*/`
           }
         });
       });

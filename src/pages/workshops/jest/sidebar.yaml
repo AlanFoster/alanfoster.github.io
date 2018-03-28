@@ -1,4 +1,7 @@
 items:
+  - title: Presentation
+    link: /workshops/jest/presentation/
+
   - title: Overview
     link: /workshops/jest/overview/
 

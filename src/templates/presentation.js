@@ -1,13 +1,18 @@
 import React from "react";
-import {Deck, Slide, Heading, Link, Text} from "spectacle";
+import { Deck, Slide, Heading, List, ListItem, Image, Link } from "spectacle";
+import visit from "unist-util-visit";
+import select from "unist-util-select";
+import toHtml from "hast-util-to-html";
+
 import createTheme from "spectacle/lib/themes/default";
+import PropTypes from "prop-types";
 
 const theme = createTheme(
   {
     primary: "white",
     secondary: "#1F2022",
     tertiary: "#03A9FC",
-    quartenary: "#CECECE"
+    quarternary: "#CECECE"
   },
   {
     primary: "Montserrat",
@@ -15,37 +20,132 @@ const theme = createTheme(
   }
 );
 
-export default class Presentation extends React.Component {
-  render() {
-    return (
-      <Deck
-        transition={["zoom", "slide"]}
-        theme={theme}
-        transitionDuration={500}
-      >
-        <Slide transition={["zoom"]} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="black">
-            Spectacle
-          </Heading>
-          <Heading size={1} fit caps>
-            A ReactJS Presentation Library
-          </Heading>
-          <Heading size={1} fit caps textColor="black">
-            Where You Can Write Your Decks In JSX
-          </Heading>
-          <Link href="https://github.com/FormidableLabs/spectacle">
-            <Text bold caps textColor="tertiary">
-              View on Github
-            </Text>
-          </Link>
-        </Slide>
+const htmlAstToIntermediateRepresentation = function(ast) {
+  const result = [];
+  const isHeader = node => node.tagName === "h1" || node.tagName === "h2";
+  const isImage = node => node.tagName === "img";
+  const isCode = node => node.tagName === "pre";
 
-        <Slide transition={["zoom"]} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="black">
-            Test 2
+  visit(ast, function(node) {
+    if (isHeader(node)) {
+      result.push(select(node, "text")[0]);
+    }
+
+    if (isImage(node)) {
+      result.push(node);
+    }
+
+    if (isCode(node)) {
+      result.push(node);
+    }
+  });
+
+  return result;
+};
+
+const extractLargestImage = srcSet => srcSet[srcSet.length - 1].split(" ")[0];
+
+const renderSection = (section, index) => {
+  if (section.title === "Presentation") return null;
+
+  const sectionIntroduction = (
+    <Slide transition={["zoom"]} bgColor="primary">
+      <Heading size={1} fit caps lineHeight={1} textColor="black">
+        {section.title}
+      </Heading>
+
+      <Heading size={4} caps>
+        <Link href={section.link} textColor="tertiary">Part {index}</Link>
+      </Heading>
+    </Slide>
+  );
+
+  const slides = section.page.map((node, node_index) => {
+    return (
+      <Slide
+        key={`${section.link}__${node_index}`}
+        transition={["zoom"]}
+        bgColor="primary"
+      >
+        {node.type === "text" && (
+          <Heading size={1} caps lineHeight={1} textColor="black">
+            {node.value}
           </Heading>
-        </Slide>
-      </Deck>
+        )}
+
+        {node.tagName === "pre" && (
+          <div dangerouslySetInnerHTML={{ __html: toHtml(node) }} />
+        )}
+
+        {node.tagName === "img" && (
+          <Image
+            width="100%"
+            src={extractLargestImage(node.properties.srcSet)}
+          />
+        )}
+      </Slide>
     );
-  }
-}
+  });
+
+  return [sectionIntroduction].concat(slides);
+};
+
+const Presentation = ({ data }) => {
+  const { overview, content, sidebar } = data;
+  if (!overview) return null;
+
+  const sidebarItems = sidebar.fields.yml.items;
+  const pages = content.edges.reduce(function(acc, edge) {
+    acc[edge.node.fields.slug] = htmlAstToIntermediateRepresentation(
+      edge.node.htmlAst
+    );
+    return acc;
+  }, {});
+
+  const sections = sidebarItems.map(item => {
+    return {
+      title: item.title,
+      link: item.link,
+      page: pages[item.link]
+    };
+  });
+
+  return (
+    <Deck transition={["zoom", "slide"]} theme={theme} transitionDuration={500}>
+      <Slide transition={["zoom"]} bgColor="primary">
+        <Heading size={1} fit caps lineHeight={1} textColor="black">
+          {overview.frontmatter.title}
+        </Heading>
+        <Heading size={4} caps textColor="tertiary">
+          The workshop
+        </Heading>
+      </Slide>
+
+      <Slide transition={["zoom"]} bgColor="primary">
+        <List>
+          {sidebarItems.map(function(item) {
+            return (
+              <ListItem key={item.title}>
+                <Link href={item.link}>{item.title}</Link>
+              </ListItem>
+            );
+          })}
+        </List>
+      </Slide>
+
+      {sections.map(renderSection)}
+
+      <Slide transition={["zoom"]} bgColor="primary">
+        <Heading size={4} caps textColor="tertiary">
+          le fin
+        </Heading>
+      </Slide>
+    </Deck>
+  );
+};
+
+Presentation.propTypes = {
+  data: PropTypes.object
+};
+
+export default Presentation;

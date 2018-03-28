@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Row, Col} from "reactstrap";
+import { Row, Col } from "reactstrap";
 import Footer from "./footer";
 import WithDefaultHelmet from "./wrappers/with-default-helmet";
 import WithNavigation from "./wrappers/with-navigation";
@@ -14,11 +14,11 @@ const Workshop = ({ children }) => (
     <WithNavigation>
       <Row>
         <Col sm={4} md={3} className={`${styles.left} bg-light`}>
-          <WorkshopMenu items={jestWorkshop.items}/>
+          <WorkshopMenu items={jestWorkshop.items} />
         </Col>
         <Col className={`${styles.content}`}>
           <div>{children()}</div>
-          <Footer/>
+          <Footer />
         </Col>
       </Row>
     </WithNavigation>
