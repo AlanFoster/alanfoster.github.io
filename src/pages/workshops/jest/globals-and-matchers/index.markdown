@@ -140,7 +140,6 @@ Some common matchers that you might use are:
 - .toHaveBeenCalled()
 - .toHaveBeenCalledTimes(number)
 - .toHaveBeenCalledWith(arg1, arg2, ...)
-- .toHaveBeenLastCalledWith(arg1, arg2, ...)
 - .toBeInstanceOf(Class)
 - .toContain(item)
 - .toThrow(error)

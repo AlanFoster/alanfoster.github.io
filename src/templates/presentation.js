@@ -25,6 +25,7 @@ const htmlAstToIntermediateRepresentation = function(ast) {
   const isHeader = node => node.tagName === "h1" || node.tagName === "h2";
   const isImage = node => node.tagName === "img";
   const isCode = node => node.tagName === "pre";
+  const isList = node => node.tagName == "ul";
 
   visit(ast, function(node) {
     if (isHeader(node)) {
@@ -36,6 +37,10 @@ const htmlAstToIntermediateRepresentation = function(ast) {
     }
 
     if (isCode(node)) {
+      result.push(node);
+    }
+
+    if (isList(node)) {
       result.push(node);
     }
   });
@@ -84,6 +89,17 @@ const renderSection = (section, index) => {
             width="100%"
             src={extractLargestImage(node.properties.srcSet)}
           />
+        )}
+
+        {node.tagName === "ul" && (
+          <List>
+            {node.children.map(function(child) {
+              if (child.tagName !== "li") return null;
+              const text = child.children[0].value;
+
+              return <ListItem key={text}>{text}</ListItem>;
+            })}
+          </List>
         )}
       </Slide>
     );
