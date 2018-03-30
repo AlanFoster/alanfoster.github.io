@@ -6,7 +6,7 @@ import styles from "./index.module.css";
 const WorkshopMenu = ({ items }) => (
   <nav className="navbar">
     <ul className={`navbar-nav ${styles.list}`}>
-      {items.map(function(item) {
+      {items.map(function(item, index) {
         return (
           <li className="nav-item" key={item.title}>
             <Link
@@ -15,7 +15,7 @@ const WorkshopMenu = ({ items }) => (
               activeClassName={styles.linkActive}
               className={styles.link}
             >
-              {item.title}
+              {index}. {item.title}
             </Link>
           </li>
         );

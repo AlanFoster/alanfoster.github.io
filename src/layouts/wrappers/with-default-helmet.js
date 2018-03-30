@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 
 const metadata = {
@@ -23,5 +24,12 @@ const DefaultHelmet = ({ children }) => (
     {children}
   </div>
 );
+
+DefaultHelmet.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element)
+  ]).isRequired
+};
 
 export default DefaultHelmet;
