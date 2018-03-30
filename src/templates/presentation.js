@@ -97,7 +97,7 @@ const renderSection = (section, index) => {
 
       <Heading size={4} caps>
         <Link href={section.link} textColor="tertiary">
-          Part {index}
+          Part {index + 1}
         </Link>
       </Heading>
     </Slide>
@@ -129,10 +129,6 @@ const Presentation = ({ data }) => {
     );
     return acc;
   }, {});
-
-  pages[
-    `${overview.fields.slug}workshop-goals/`
-  ] = htmlAstToIntermediateRepresentation(overview.htmlAst);
 
   const sections = sidebarItems
     .map(item => {

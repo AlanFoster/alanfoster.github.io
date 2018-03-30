@@ -27,9 +27,9 @@ exports.onCreateNode = async ({ node, getNode, boundActionCreators }) => {
 };
 
 exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators;
+  const { createPage, createRedirect } = boundActionCreators;
 
-  const createMarkdownPages = new Promise((resolve, reject) => {
+  const createMarkdownPages = new Promise((resolve) => {
     graphql(`
       {
         allMarkdownRemark {
@@ -64,11 +64,11 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     });
   });
 
-  const createIndexForWorkshop = new Promise((resolve, reject) => {
+  const createIndexRedirectForWorkshops = new Promise((resolve, reject) => {
     graphql(`
       {
         allMarkdownRemark(filter: {
-          fileAbsolutePath: {regex: "/pages/workshops/\\\\w+/index.markdown/"}
+          fileAbsolutePath: {regex: "/pages/workshops/\\\\w+/workshop-goals/index.markdown/"}
         }) {
           edges {
             node {
@@ -81,21 +81,26 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       }
     `).then(result => {
       result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-        createPage({
-          path: `${node.fields.slug}workshop-goals`,
-          component: path.resolve("./src/templates/workshop.js"),
-          layout: 'workshop',
-          context: {
-            slug: node.fields.slug
-          }
-        });
+        const createRedirectToWorkshopGoals = ({ fromPath }) => (
+          createRedirect({
+            fromPath,
+            isPermanent: true,
+            redirectInBrowser: true,
+            toPath: node.fields.slug,
+          })
+        );
+
+        const workshopBase = node.fields.slug.split('/workshop-goals/')[0];
+
+        createRedirectToWorkshopGoals({ fromPath: workshopBase });
+        createRedirectToWorkshopGoals({ fromPath: workshopBase + '/' });
       });
 
       resolve();
     });
   });
 
-  const createAggregatedPresentation = new Promise((resolve, reject) => {
+  const createAggregatedPresentation = new Promise((resolve) => {
     graphql(`
        {
          allMarkdownRemark(filter: {frontmatter: {category: {eq: "workshop"}}}) {
@@ -117,13 +122,15 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
        }
      `).then(result => {
       result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+        const workshopBase = node.fields.slug.split('/workshop-goals/')[0];
+
         createPage({
-          path: `${node.fields.slug}presentation`,
+          path: `${workshopBase}/presentation`,
           component: path.resolve("./src/templates/presentation-loader.js"),
           layout: 'presentation',
           context: {
-            sidebarPath: `pages/${node.fields.slug}/sidebar.yaml`,
-            slugRegex: `/${node.fields.slug}.*/`
+            sidebarPath: `pages/${workshopBase}/sidebar.yaml`,
+            slugRegex: `/${workshopBase}.*/`
           }
         });
       });
@@ -132,7 +139,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     });
   });
 
-  return Promise.all([createMarkdownPages, createAggregatedPresentation]);
+  return Promise.all([createMarkdownPages, createIndexRedirectForWorkshops, createAggregatedPresentation]);
 };
 
 exports.onCreatePage = async ({ page, boundActionCreators }) => {
