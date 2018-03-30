@@ -48,8 +48,6 @@ export const query = graphql`
     }
 
     sidebar: file(relativePath: { eq: "pages/workshops/jest/sidebar.yaml" }) {
-      relativePath
-      absolutePath
       fields {
         yml {
           items {

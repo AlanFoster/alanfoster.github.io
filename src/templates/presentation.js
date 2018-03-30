@@ -55,7 +55,9 @@ const renderSection = (section, index) => {
       </Heading>
 
       <Heading size={4} caps>
-        <Link href={section.link} textColor="tertiary">Part {index}</Link>
+        <Link href={section.link} textColor="tertiary">
+          Part {index}
+        </Link>
       </Heading>
     </Slide>
   );

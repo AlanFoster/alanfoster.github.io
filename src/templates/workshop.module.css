@@ -1,0 +1,11 @@
+.navigation {
+  padding: .5rem
+}
+
+.previous {
+  text-align: left;
+}
+
+.next {
+  text-align: right;
+}
