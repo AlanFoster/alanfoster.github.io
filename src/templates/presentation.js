@@ -140,8 +140,8 @@ const Presentation = ({ data }) => {
       </Slide>
 
       <Slide transition={["zoom"]} bgColor="primary">
-        <List>
-          {sidebarItems.map(function(item) {
+        <List ordered>
+          {sidebarItems.map(function(item, index) {
             return (
               <ListItem key={item.title}>
                 <Link href={item.link}>{item.title}</Link>
