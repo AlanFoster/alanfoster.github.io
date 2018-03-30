@@ -2,16 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Container } from "reactstrap";
 import WithDefaultHelmet from "./wrappers/with-default-helmet";
-import WithNavigation from "./wrappers/with-navigation";
+import WithTopNavigation from "./wrappers/with-top-navigation";
 import Footer from "./footer";
 import styles from "./index.module.css";
 
 const Main = ({ children }) => (
   <WithDefaultHelmet>
-    <WithNavigation>
+    <WithTopNavigation>
       <Container className={`${styles.content}`}>{children()}</Container>
       <Footer />
-    </WithNavigation>
+    </WithTopNavigation>
   </WithDefaultHelmet>
 );
 

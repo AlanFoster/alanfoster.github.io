@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Row, Col } from "reactstrap";
 import Footer from "./footer";
 import WithDefaultHelmet from "./wrappers/with-default-helmet";
-import WithNavigation from "./wrappers/with-navigation";
+import WithTopNavigation from "./wrappers/with-top-navigation";
 import WorkshopMenu from "./workshop-menu";
 import jestWorkshop from "../pages/workshops/jest/sidebar.yaml";
 import styles from "./index.module.css";
@@ -11,17 +10,17 @@ import "./globals.css";
 
 const Workshop = ({ children }) => (
   <WithDefaultHelmet>
-    <WithNavigation>
-      <Row>
-        <Col sm={4} md={3} className={`${styles.left} bg-light`}>
+    <WithTopNavigation>
+      <div className={styles.wrapper}>
+        <div className={`${styles.left} bg-light`}>
           <WorkshopMenu items={jestWorkshop.items} />
-        </Col>
-        <Col className={`${styles.content}`}>
+        </div>
+        <div className={styles.content}>
           <div>{children()}</div>
           <Footer />
-        </Col>
-      </Row>
-    </WithNavigation>
+        </div>
+      </div>
+    </WithTopNavigation>
   </WithDefaultHelmet>
 );
 
