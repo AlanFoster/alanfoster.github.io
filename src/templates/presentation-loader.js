@@ -45,6 +45,10 @@ export const query = graphql`
         workshop
         date(formatString: "DD MMMM, YYYY")
       }
+      fields {
+        slug
+      }
+      htmlAst
     }
 
     sidebar: file(relativePath: { eq: "pages/workshops/jest/sidebar.yaml" }) {

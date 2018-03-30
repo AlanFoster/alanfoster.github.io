@@ -64,6 +64,37 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     });
   });
 
+  const createIndexForWorkshop = new Promise((resolve, reject) => {
+    graphql(`
+      {
+        allMarkdownRemark(filter: {
+          fileAbsolutePath: {regex: "/pages/workshops/\\\\w+/index.markdown/"}
+        }) {
+          edges {
+            node {
+              fields {
+                slug
+              }
+            }
+          }
+        }
+      }
+    `).then(result => {
+      result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+        createPage({
+          path: `${node.fields.slug}workshop-goals`,
+          component: path.resolve("./src/templates/workshop.js"),
+          layout: 'workshop',
+          context: {
+            slug: node.fields.slug
+          }
+        });
+      });
+
+      resolve();
+    });
+  });
+
   const createAggregatedPresentation = new Promise((resolve, reject) => {
     graphql(`
        {

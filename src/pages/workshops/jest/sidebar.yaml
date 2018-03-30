@@ -2,8 +2,11 @@ items:
   - title: Presentation
     link: /workshops/jest/presentation/
 
-  - title: Overview
-    link: /workshops/jest/overview/
+  - title: Workshop Goals
+    link: /workshops/jest/workshop-goals/
+
+  - title: Features
+    link: /workshops/jest/features/
 
   - title: Setup
     link: /workshops/jest/setup/

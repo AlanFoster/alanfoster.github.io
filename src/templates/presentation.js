@@ -25,7 +25,7 @@ const htmlAstToIntermediateRepresentation = function(ast) {
   const isHeader = node => node.tagName === "h1" || node.tagName === "h2";
   const isImage = node => node.tagName === "img";
   const isCode = node => node.tagName === "pre";
-  const isList = node => node.tagName == "ul";
+  const isList = node => node.tagName === "ul";
 
   visit(ast, function(node) {
     if (isHeader(node)) {
@@ -49,6 +49,42 @@ const htmlAstToIntermediateRepresentation = function(ast) {
 };
 
 const extractLargestImage = srcSet => srcSet[srcSet.length - 1].split(" ")[0];
+
+const renderNodeToSpectacle = node => {
+  if (node.type === "text") {
+    return (
+      <Heading size={1} caps lineHeight={1} textColor="black">
+        {node.value}
+      </Heading>
+    );
+  }
+
+  if (node.tagName === "pre") {
+    return <div dangerouslySetInnerHTML={{ __html: toHtml(node) }} />;
+  }
+
+  if (node.tagName === "img") {
+    return (
+      <Image width="100%" src={extractLargestImage(node.properties.srcSet)} />
+    );
+  }
+
+  if (node.tagName === "ul") {
+    return (
+      <List>
+        {node.children.map(function(child, index) {
+          if (child.tagName !== "li") return null;
+          return (
+            <div
+              key={index}
+              dangerouslySetInnerHTML={{ __html: toHtml(child) }}
+            />
+          );
+        })}
+      </List>
+    );
+  }
+};
 
 const renderSection = (section, index) => {
   if (section.title === "Presentation") return null;
@@ -74,33 +110,7 @@ const renderSection = (section, index) => {
         transition={["zoom"]}
         bgColor="primary"
       >
-        {node.type === "text" && (
-          <Heading size={1} caps lineHeight={1} textColor="black">
-            {node.value}
-          </Heading>
-        )}
-
-        {node.tagName === "pre" && (
-          <div dangerouslySetInnerHTML={{ __html: toHtml(node) }} />
-        )}
-
-        {node.tagName === "img" && (
-          <Image
-            width="100%"
-            src={extractLargestImage(node.properties.srcSet)}
-          />
-        )}
-
-        {node.tagName === "ul" && (
-          <List>
-            {node.children.map(function(child) {
-              if (child.tagName !== "li") return null;
-              const text = child.children[0].value;
-
-              return <ListItem key={text}>{text}</ListItem>;
-            })}
-          </List>
-        )}
+        {renderNodeToSpectacle(node)}
       </Slide>
     );
   });
@@ -120,16 +130,27 @@ const Presentation = ({ data }) => {
     return acc;
   }, {});
 
-  const sections = sidebarItems.map(item => {
-    return {
-      title: item.title,
-      link: item.link,
-      page: pages[item.link]
-    };
-  });
+  pages[
+    `${overview.fields.slug}workshop-goals/`
+  ] = htmlAstToIntermediateRepresentation(overview.htmlAst);
+
+  const sections = sidebarItems
+    .map(item => {
+      return {
+        title: item.title,
+        link: item.link,
+        page: pages[item.link]
+      };
+    })
+    .filter(section => section.title !== "Presentation");
 
   return (
-    <Deck transition={["zoom", "slide"]} theme={theme} transitionDuration={500}>
+    <Deck
+      transition={["zoom", "slide"]}
+      progress="bar"
+      theme={theme}
+      transitionDuration={500}
+    >
       <Slide transition={["zoom"]} bgColor="primary">
         <Heading size={1} fit caps lineHeight={1} textColor="black">
           {overview.frontmatter.title}
@@ -141,7 +162,7 @@ const Presentation = ({ data }) => {
 
       <Slide transition={["zoom"]} bgColor="primary">
         <List ordered>
-          {sidebarItems.map(function(item, index) {
+          {sections.map(function(item) {
             return (
               <ListItem key={item.title}>
                 <Link href={item.link}>{item.title}</Link>
