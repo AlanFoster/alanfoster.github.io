@@ -10,12 +10,12 @@ code:
 `meaning-of-life.js`
 
 ```javascript
-// Let's pretend
-const sevenAndAHalfMillionYears = 750;
-
 export default function () {
   return new Promise(function (resolve, reject) {
-    setTimeout(() => resolve(42), sevenAndAHalfMillionYears)
+    setTimeout(
+      () => resolve(42),
+      sevenAndAHalfMillionYearsLater
+    );
   });
 }
 ```
@@ -39,6 +39,22 @@ describe('meaning-of-life', function () {
 
 *Note* - the `return` is important! Jest needs to know about the promise otherwise
 it will fail to work.
+
+## ES6 Async/Await
+
+If you have integrated Babel with your Jest setup you can make use of the new async/await syntax.
+
+```javascript
+import meaningOfLife from '../';
+
+describe('meaning-of-life', function () {
+  it('calculates the meaning of life', async function () {
+    const result = await meaningOfLife();
+
+    expect(result).toBe(42);
+  });
+});
+```
 
 ## Your turn
 
@@ -80,12 +96,12 @@ import 'whatwg-fetch';
 
 export const fetchMovies = function () {
   return fetch('http://www.alanfoster.me/movies.json')
-    .then(response => response.json())
+    .then(response => response.json());
 };
 ```
 
-With the above implementation, you should be able to write a test for the above module with `.resolves` and a
-suitable [matcher](/workshops/jest/globals-and-matchers/#matchers).
+With the above implementation, you should be able to write a test for the above module with either `.resolves` and a
+suitable [matcher](/workshops/jest/globals-and-matchers/#matchers), or the new `async/await` functionality.
 
 Look at the initial example for inspiration.
 
@@ -96,8 +112,10 @@ import * as service from '../';
 
 describe('movies-api', function() {
   describe('fetchMovies', function() {
-    it('returns the data', function() {
-      return expect(service.fetchMovies()).resolves.toEqual({
+    it('returns the data', async function() {
+      const result = await service.fetchMovies();
+
+      expect(result).toEqual({
         "movies": [
           {
             "title": "The Hitchhiker's Guide to the Galaxy",

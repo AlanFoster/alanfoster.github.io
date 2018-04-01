@@ -57,7 +57,7 @@ import 'whatwg-fetch';
 
 export const fetchMovies = function () {
   return fetch('http://www.alanfoster.me/movies.json')
-    .then(response => response.json())
+    .then(response => response.json());
 };
 ```
 
@@ -71,10 +71,11 @@ import * as service from '../';
 describe('movies-api', function() {
   describe('fetchMovies', function() {
     describe('when there are no movies available', function () {
-      it('returns the data', function() {
-        return expect(service.fetchMovies()).resolves.toEqual({
+      it('returns the data', async function() {
+        const result = await service.fetchMovies();
+        expect(result).toEqual({
           "movies": []
-        })
+        });
       });
     });
   });
@@ -96,7 +97,9 @@ A call to `jest.spyOn` will return a mock which we can configure. By default, th
 
 Before our test runs we can spy on the the fetch call and return our mock data:  
 
-```javascript{3-13}
+```javascript{6-15}
+import * as service from '../';
+
 describe('movies-api', function() {
   describe('fetchMovies', function() {
     describe('when there are no movies available', function () {
@@ -111,19 +114,22 @@ describe('movies-api', function() {
         }));
       });
 
-      it('returns the data', function() {
-        return expect(service.fetchMovies()).resolves.toEqual({
+      it('returns the data', async function() {
+        const result = await service.fetchMovies();
+        expect(result).toEqual({
           "movies": []
-        })
+        });
       });
     });
   });
 });
 ```
 
-We can add another test to ensure that the fetch API was called as expected:
+We can add another expectation to ensure that the fetch API was called as expected:
 
-```javascript{19-22}
+```javascript{22}
+import * as service from '../';
+
 describe('movies-api', function() {
   describe('fetchMovies', function() {
     describe('when there are no movies available', function () {
@@ -138,13 +144,11 @@ describe('movies-api', function() {
         }));
       });
 
-      it('returns the data', function() {
-        return expect(service.fetchMovies()).resolves.toEqual({
+      it('returns the data', async function() {
+        const result = await service.fetchMovies();
+        expect(result).toEqual({
           "movies": []
-        })
-      });
-
-      it('calls the API correctly', function () {
+        });
         expect(fetch).toHaveBeenCalledWith('http://www.alanfoster.me/movies.json');
       });
     });
@@ -155,3 +159,53 @@ describe('movies-api', function() {
 ## Your turn
 
 Add an additional test test for when there are multiple movies return from the movies endpoint.
+
+
+```spoilers javascript
+import * as service from '../';
+
+describe('movies-api', function() {
+  describe('fetchMovies', function() {
+    // ...
+
+    describe('when there are multiple movies available', function () {
+      beforeEach(function () {
+        const fetchMock = jest.spyOn(global, 'fetch');
+        fetchMock.mockReturnValueOnce(Promise.resolve({
+          json: function () {
+            return Promise.resolve({
+              "movies": [
+                {
+                  "title": "The Hitchhiker's Guide to the Galaxy",
+                  "releaseYear": 2005
+                },
+                {
+                  "title": "Thor: Ragnarok",
+                  "releaseYear": 2017
+                }
+              ]
+            })
+          }
+        }));
+      });
+
+      it('returns the data', async function() {
+        const result = await service.fetchMovies();
+        expect(result).toEqual({
+          "movies": [
+            {
+              "title": "The Hitchhiker's Guide to the Galaxy",
+              "releaseYear": 2005
+            },
+            {
+              "title": "Thor: Ragnarok",
+              "releaseYear": 2017
+            }
+          ]
+        });
+        expect(fetch).toHaveBeenCalledWith('http://www.alanfoster.me/movies.json');
+      });
+    });
+  });
+});
+```
