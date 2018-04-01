@@ -46,8 +46,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       result.data.allMarkdownRemark.edges.forEach(({ node }) => {
         const isWorkshop = node.fields.slug.indexOf("/workshops/") === 0;
         const component = isWorkshop
-          ? path.resolve("./src/templates/workshop.js")
-          : path.resolve("./src/templates/post.js");
+          ? path.resolve("./src/templates/workshop/index.js")
+          : path.resolve("./src/templates/post/index.js");
         const layout = isWorkshop ? "workshop" : "main";
 
         createPage({
@@ -126,7 +126,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
         createPage({
           path: `${workshopBase}/presentation`,
-          component: path.resolve("./src/templates/presentation-loader.js"),
+          component: path.resolve("./src/templates/presentation/index.js"),
           layout: 'presentation',
           context: {
             sidebarPath: `pages/${workshopBase}/sidebar.yaml`,

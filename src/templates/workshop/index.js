@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import Link from "gatsby-link";
-import styles from "./workshop.module.css";
+import styles from "./index.module.css";
 
 const getNavigation = function(sidebar, workshop) {
   const links = sidebar.fields.yml.items.map(item => item.link);

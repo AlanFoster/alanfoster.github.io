@@ -15,7 +15,7 @@ class WithoutServerSideRendering extends React.Component {
 
   componentDidMount() {
     // eslint-disable-next-line no-undef
-    LoadedPresentation = require("./presentation");
+    LoadedPresentation = require("./deferred-presentation");
     this.setState({ hasMounted: true });
   }
 
