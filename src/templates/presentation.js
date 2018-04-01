@@ -90,7 +90,11 @@ const renderSection = (section, index) => {
   if (section.title === "Presentation") return null;
 
   const sectionIntroduction = (
-    <Slide transition={["zoom"]} bgColor="primary">
+    <Slide
+      transition={["zoom"]}
+      bgColor="primary"
+      id={encodeURIComponent(section.link)}
+    >
       <Heading size={1} fit caps lineHeight={1} textColor="black">
         {section.title}
       </Heading>
@@ -135,6 +139,7 @@ const Presentation = ({ data }) => {
       return {
         title: item.title,
         link: item.link,
+        id: item.link,
         page: pages[item.link]
       };
     })

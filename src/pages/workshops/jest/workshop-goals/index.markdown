@@ -6,6 +6,8 @@ category: workshop
 workshop: /workshops/jest/workshop-goals/
 ---
 
+### Workshop Goals
+
 At the end of this workshop you will learn how to use the [Jest](https://facebook.github.io/jest/) testing
 framework for JavaScript through a series of small tutorials and real world examples.
 

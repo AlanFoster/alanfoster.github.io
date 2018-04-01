@@ -37,7 +37,9 @@ export default WithoutServerSideRendering;
 export const query = graphql`
   query PresentationQuery($slugRegex: String!) {
     overview: markdownRemark(
-      fileAbsolutePath: { regex: "/pages/workshops/jest/workshop-goals/index.markdown/" }
+      fileAbsolutePath: {
+        regex: "/pages/workshops/jest/workshop-goals/index.markdown/"
+      }
     ) {
       fileAbsolutePath
       frontmatter {

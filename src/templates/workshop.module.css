@@ -1,11 +1,11 @@
+.viewPresentation {
+  float: right;
+  padding: 0.6rem;
+}
+
 .navigation {
-  padding: .5rem
-}
-
-.previous {
-  text-align: left;
-}
-
-.next {
-  text-align: right;
+  padding: .5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
