@@ -34,7 +34,7 @@ const Workshop = ({ data }) => {
         <ProjectorIcon />
       </a>
 
-      <HtmlRenderer debug={true} ast={workshop.htmlAst} />
+      <HtmlRenderer ast={workshop.htmlAst} />
 
       <div className={styles.navigation}>
         <span>
