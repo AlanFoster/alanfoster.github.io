@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`html-renderer when there are spoilers present does renders correctly 1`] = `
+<div>
+  <div>
+    <Spoilers>
+      Text which should be hidden
+    </Spoilers>
+  </div>
+</div>
+`;
+
+exports[`html-renderer when there is a heading does renders correctly 1`] = `
+<div>
+  <div>
+    <h2
+      id="heading-example"
+    />
+  </div>
+</div>
+`;
+
+exports[`html-renderer when there is a text node present which is a react-example does renders correctly 1`] = `
+<div>
+  <div>
+    <ComponentPlayground
+      code="This is slightly hacky"
+      theme="dark"
+    />
+  </div>
+</div>
+`;

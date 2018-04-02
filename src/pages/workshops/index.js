@@ -9,7 +9,7 @@ const Workshop = function({ frontmatter, html }) {
     <div className={styles.workshop}>
       <div className={styles.date}>{frontmatter.date}</div>
       <Link to={frontmatter.workshop}>
-        <h2>{frontmatter.title}</h2>
+        <h1>{frontmatter.title}</h1>
       </Link>
       <div dangerouslySetInnerHTML={{ __html: html }} />
     </div>

@@ -8,7 +8,7 @@ const Talk = function({ frontmatter, html }) {
     <div className={styles.talk}>
       <div className={styles.date}>{frontmatter.date}</div>
       <a href={frontmatter.slides}>
-        <h2>{frontmatter.title}</h2>
+        <h1>{frontmatter.title}</h1>
       </a>
       <div dangerouslySetInnerHTML={{ __html: html }} />
     </div>

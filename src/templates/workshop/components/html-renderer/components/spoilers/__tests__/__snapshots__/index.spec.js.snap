@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`spoilers when closed does not render its children 1`] = `
+<div>
+  <div
+    className="card"
+  >
+    <div
+      className="card-header"
+    >
+      <h5
+        className="card"
+      >
+        <button
+          className="btn btn-link"
+          onClick={[Function]}
+        >
+          View Spoiler?
+        </button>
+      </h5>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`spoilers when open does not render its children 1`] = `
+<div>
+  <div
+    className="card"
+  >
+    <div
+      className="card-header"
+    >
+      <h5
+        className="card"
+      >
+        <button
+          className="btn btn-link"
+          onClick={[Function]}
+        >
+          View Spoiler?
+        </button>
+      </h5>
+    </div>
+    <div
+      className="card-wrapper"
+    >
+      <div
+        className="card-body"
+      >
+        This text should appear in the test
+      </div>
+    </div>
+  </div>
+</div>
+`;

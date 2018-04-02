@@ -1,8 +1,8 @@
 const visit = require("unist-util-visit");
-
 const parseLanguageDetails = require("./parse-language-details");
 const highlightCode = require("gatsby-remark-prismjs/highlight-code");
 
+// This will be replaced with a real react component later via rehype
 const withSpoilers = html => {
   return `
     <spoilers>
@@ -33,7 +33,9 @@ module.exports = ({ markdownAST }, { classPrefix = "language-" } = {}) => {
 
     if (language === "react-example") {
       // Quick hack to shortcircuit react-examples, so that they can be picked
-      // up later and converted into a real react component
+      // up later and converted into a real react component. We can't swap this
+      // to be an HTML node, as we don't want the tree to be parsed. We want the
+      // original plaintext to be used later in the rendering process.
       node.type = "text";
       node.value = `react-example->${node.value.replace(/ /g, "Z")}`;
 

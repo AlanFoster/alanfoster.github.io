@@ -9,7 +9,7 @@ const Post = function({ frontmatter, excerpt, fields }) {
     <div className={styles.post}>
       <div className={styles.date}>{frontmatter.date}</div>
       <Link to={fields.slug}>
-        <h2>{frontmatter.title}</h2>
+        <h1>{frontmatter.title}</h1>
       </Link>
       <div>{excerpt}</div>
     </div>

@@ -21,6 +21,12 @@
       "env": {
         "node": true
       }
+    },
+    {
+      "files": ["*.spec.js"],
+      "env": {
+        "jest": true
+      }
     }
   ]
 }

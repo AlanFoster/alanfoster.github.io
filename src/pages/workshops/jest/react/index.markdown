@@ -9,8 +9,13 @@ has support for Jest by default. We will continue this tutorial _without_ using 
 
 ## Movie List Component
 
-We've been tasked with building a new React component for our movie list.
-Below is an example of the component we have developed.
+We've been tasked with building a new React component for a movie list.
+The component will:
+
+- Tell us when there are no movies available
+- When there are movies available; Show movie details
+
+Below is an example of the component we have developed:
 
 ```react-example
 // Simple Stateless/Functional React Component
