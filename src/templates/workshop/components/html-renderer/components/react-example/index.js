@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ComponentPlayground } from "spectacle";
+// Import the playground directly to avoid createHashHistory clashes
+// during gatsby production compilation cycle when the topmost spectacle
+// component is imported.
+import ComponentPlayground from "spectacle/lib/components/component-playground.js";
 import createTheme from "spectacle/lib/themes/default";
-
 const theme = createTheme();
 
 class ReactExample extends React.Component {
