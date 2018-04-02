@@ -14,3 +14,23 @@ a svg {
 a:hover svg {
   fill: rgba(0, 0, 0, .7);
 }
+
+/*
+ * Swap the order of the code editor so that the code panel is
+ * on the left, and column headers are centered
+ */
+.react-live {
+  margin-bottom: 2rem;
+}
+
+.react-live-preview {
+  text-align: initial;
+}
+
+.react-live > * {
+  flex-direction: row-reverse;
+}
+
+.react-live > *:first-child {
+  text-align: center;
+}

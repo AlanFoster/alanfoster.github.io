@@ -1,5 +1,14 @@
 import React from "react";
-import { Deck, Slide, Heading, List, ListItem, Image, Link } from "spectacle";
+import {
+  Deck,
+  Slide,
+  Heading,
+  List,
+  ListItem,
+  Image,
+  Link,
+  ComponentPlayground
+} from "spectacle";
 import visit from "unist-util-visit";
 import select from "unist-util-select";
 import toHtml from "hast-util-to-html";
@@ -27,6 +36,10 @@ const htmlAstToIntermediateRepresentation = function(ast) {
   const isCode = node => node.tagName === "pre";
   const isList = node => node.tagName === "ul";
 
+  const reactPrefix = "react-example->";
+  const isReactExample = node =>
+    node.value && node.value.indexOf("\nreact-example->") === 0;
+
   visit(ast, function(node) {
     if (isHeader(node)) {
       result.push(select(node, "text")[0]);
@@ -42,6 +55,13 @@ const htmlAstToIntermediateRepresentation = function(ast) {
 
     if (isList(node)) {
       result.push(node);
+    }
+
+    if (isReactExample(node)) {
+      result.push({
+        tagName: "react-example",
+        value: node.value.split(reactPrefix)[1].replace(/Z/g, " ")
+      });
     }
   });
 
@@ -83,6 +103,10 @@ const renderNodeToSpectacle = node => {
         })}
       </List>
     );
+  }
+
+  if (node.tagName === "react-example") {
+    return <ComponentPlayground theme="dark" code={node.value.toString()} />;
   }
 };
 

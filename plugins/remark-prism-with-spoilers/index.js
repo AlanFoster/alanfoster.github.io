@@ -4,29 +4,10 @@ const parseLanguageDetails = require("./parse-language-details");
 const highlightCode = require("gatsby-remark-prismjs/highlight-code");
 
 const withSpoilers = html => {
-  // This can be re-visited after MVP
-  const hackyOpenSpoiler = `
-    this.parentNode.parentNode.parentNode.parentNode
-      .querySelector('.card-wrapper').classList.toggle('d-none')
-  `;
-
   return `
-    <div>
-      <div class="card">
-        <div class="card-header">
-          <h5 class="mb-0 card">
-            <button class="btn btn-link" onClick="${hackyOpenSpoiler}">
-              View Spoiler?
-            </button>
-          </h5>
-        </div>
-
-        <div class="card-wrapper d-none">
-          <div class="card-body">
-            ${html}
-          </div>
-        </div>
-      </div>
+    <spoilers>
+      ${html}
+    </spoilers>
   `;
 };
 
@@ -48,6 +29,15 @@ module.exports = ({ markdownAST }, { classPrefix = "language-" } = {}) => {
     if (language) {
       language = language.toLowerCase();
       languageName = language;
+    }
+
+    if (language === "react-example") {
+      // Quick hack to shortcircuit react-examples, so that they can be picked
+      // up later and converted into a real react component
+      node.type = "text";
+      node.value = `react-example->${node.value.replace(/ /g, "Z")}`;
+
+      return;
     }
 
     // Allow users to specify a custom class prefix to avoid breaking

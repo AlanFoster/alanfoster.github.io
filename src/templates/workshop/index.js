@@ -2,6 +2,111 @@ import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import Link from "gatsby-link";
+import { ComponentPlayground } from "spectacle";
+
+import createTheme from "spectacle/lib/themes/default";
+
+const theme = createTheme(
+  {
+    primary: "white",
+    secondary: "#1F2022",
+    tertiary: "#03A9FC",
+    quarternary: "#CECECE"
+  },
+  {
+    primary: "Montserrat",
+    secondary: "Helvetica"
+  }
+);
+
+class ReactExample extends React.Component {
+  getChildContext() {
+    return {
+      styles: theme.screen
+    };
+  }
+
+  render() {
+    return (
+      <ComponentPlayground theme="dark" code={this.props.code.toString()} />
+    );
+  }
+}
+
+ReactExample.childContextTypes = {
+  styles: PropTypes.object
+};
+
+import { Collapse } from "reactstrap";
+
+class Spoilers extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.onToggle = this.onToggle.bind(this);
+    this.state = { isOpen: false };
+  }
+
+  onToggle() {
+    this.setState({ isOpen: !this.state.isOpen });
+  }
+
+  render() {
+    return (
+      <div>
+        <div className="card">
+          <div className="card-header">
+            <h5 className="card">
+              <button className="btn btn-link" onClick={this.onToggle}>
+                View Spoiler?
+              </button>
+            </h5>
+          </div>
+
+          <Collapse isOpen={this.state.isOpen}>
+            <div className="card-wrapper">
+              <div className="card-body">{this.props.children}</div>
+            </div>
+          </Collapse>
+        </div>
+      </div>
+    );
+  }
+}
+
+const rehype2react = require("rehype-react");
+const visit = require("unist-util-visit");
+
+const reactCompiler = new rehype2react({
+  createElement: React.createElement,
+  components: {
+    "react-example": ReactExample,
+    spoilers: Spoilers
+  }
+}).Compiler;
+
+const extractHackyReactElements = function(node) {
+  visit(node, "text", node => {
+    const reactPrefix = "react-example->";
+    const isReactExample = node =>
+      node.value.indexOf("\nreact-example->") === 0;
+
+    if (isReactExample(node)) {
+      node.type = "element";
+      node.tagName = "react-example";
+      node.properties = {
+        code: node.value.split(reactPrefix)[1].replace(/Z/g, " ")
+      };
+      node.children = [];
+    }
+  });
+
+  return node;
+};
+
+const renderAst = function(node) {
+  return reactCompiler(extractHackyReactElements(node));
+};
+
 import styles from "./index.module.css";
 
 const getNavigation = function(sidebar, workshop) {
@@ -60,7 +165,7 @@ const Workshop = ({ data }) => {
         <ProjectorIcon />
       </a>
 
-      <div dangerouslySetInnerHTML={{ __html: workshop.html }} />
+      {renderAst(workshop.htmlAst)}
 
       <div className={styles.navigation}>
         <span>
@@ -109,7 +214,7 @@ export const query = graphql`
     }
 
     workshop: markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
+      htmlAst
       headings {
         value
       }

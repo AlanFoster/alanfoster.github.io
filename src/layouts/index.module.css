@@ -23,7 +23,12 @@
     height: calc(100vh - 56px);
     overflow-y: scroll;
     overflow-x: hidden;
-    flex: 30%;
+    flex-basis: 20%;
     min-width: 10rem;
+  }
+
+  .content {
+    flex: 1;
+    overflow-x: auto;
   }
 }
