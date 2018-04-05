@@ -172,7 +172,7 @@ It has also provided us with a nice human readable diff.
 
 To record a new snapshot you can simply run the test command with the `-u` flag which will update snapshots:
 
-![](./recording-snapshot-failure.png "Example of updating a snapshot with the -u flag")
+![](./record-snapshot-updated.png "Example of updating a snapshot with the -u flag")
 
 ## Your turn
 

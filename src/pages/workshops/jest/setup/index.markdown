@@ -14,14 +14,15 @@ v1.3.2
 ```
 
 If you do not have yarn visit [installing Yarn](https://yarnpkg.com/en/docs/install) for
-further details on how to install Yarn on your operating system. At the time of writing,
-if you wish to install Yarn via homebrew:
+further details on how to install Yarn on your operating system.
+
+At the time of writing the recommended approach is to use homebrew for installing yarn:
 
 ```bash
 brew install yarn
 ```
 
-### Creating a new project
+## Creating a new project
 
 Firstly create a new directory where you want to run your project:
 
@@ -79,7 +80,7 @@ Let's define a script within our `package.json` file to run our test suite via j
   "license": "MIT",
   "scripts": {
     "test": "jest"
-  }
+  },
   "devDependencies": {
     "jest": "^22.4.2"
   }

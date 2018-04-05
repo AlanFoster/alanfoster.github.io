@@ -31,7 +31,7 @@ const theme = createTheme(
 
 const htmlAstToIntermediateRepresentation = function(ast) {
   const result = [];
-  const isHeader = node => node.tagName === "h1" || node.tagName === "h2";
+  const isHeader = node => node.tagName === "h1" || node.tagName === "h2" || node.tagName == 'h3';
   const isImage = node => node.tagName === "img";
   const isCode = node => node.tagName === "pre";
   const isList = node => node.tagName === "ul";

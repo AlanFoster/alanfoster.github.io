@@ -12,7 +12,7 @@ For example the `describe`, `it` and `expect` functions within our first tests:
 var add = require('./add')
 
 describe('add', function () {
-  it('adds 2 + 3 to equal 5', function () {
+  it('adds 2 + 3 to be 5', function () {
     expect(add(2, 3)).toBe(5)
   });
 });

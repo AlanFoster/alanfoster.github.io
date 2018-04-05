@@ -7,12 +7,19 @@ title:  Jest workshop - Babel
 You may have noticed the code we wrote did not make use of any modern syntax. In particular
 we relied on Node's `require` syntax - rather than the more modern `import` syntax.
 
+Unfortunately, at the time of writing, not all JavaScript implementations support this new modern syntax.
+For instance with node v8.9.4 using modern syntax will give you errors:
+
+![](./without-babel.png "Example of the new modern import syntax failing to run on node v8.9.4")
+
 [Babel](https://babeljs.io/) is a simple tool that can convert your modern JavaScript with the
 latest bells and whistles into an equivalent form that can run on older versions of JavaScript
-that may exist in older browsers for instance.
+that may exist in older browsers:
+
+![](./pipeline.png "Example of Modern source code being output to a transpiler such as babel, with the output being valid JavaScript that runs on legacy browsers")
 
 For example, below shows two ways of writing the same function `add` which returns the sum of
-two numbers. Both representations provide the same functionality, but the later is an example
+two numbers. Both represent provide the same functionality, but the latter is an example
 of the more terse lambda syntax available in ES6:
 
 ```javascript
@@ -26,10 +33,10 @@ const add = (x, y) => x + y;
 ```
 
 To introduce this to your Jest setup, firstly install Babel-Core, the integration support for jest,
-as well as babel-present-env - which will provide access to the latest language features:
+as well as `babel-present-env` - which will provide access to the latest language features:
 
 ```bash
-yarn add --save-dev babel-jest babel-core babel-preset-env
+yarn add --dev babel-jest babel-core babel-preset-env
 ```
 
 To configure Babel to use the latest syntax features, we can create a `.babelrc` file specifying

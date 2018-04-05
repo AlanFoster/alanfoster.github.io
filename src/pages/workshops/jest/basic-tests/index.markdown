@@ -25,7 +25,7 @@ And let's add the subsequent test:
 var add = require('./add')
 
 describe('add', function () {
-  it('adds 2 + 3 to equal 5', function () {
+  it('adds 2 + 3 to be 5', function () {
     expect(add(2, 3)).toBe(5)
   });
 });
@@ -63,7 +63,7 @@ function multiply(x, y) {
   return x * y;
 }
 
-module.exports = add;
+module.exports = multiply;
 ```
 
 `multiply.spec.js`
@@ -72,7 +72,7 @@ module.exports = add;
 var multiply = require('./multiply')
 
 describe('multiply', function () {
-  it('multiples 2 * 3 to equal 6', function () {
+  it('multiples 2 * 3 to be 6', function () {
     expect(multiply(2, 3)).toBe(6)
   });
 });

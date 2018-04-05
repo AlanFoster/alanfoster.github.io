@@ -41,10 +41,9 @@ In the previous example we made use of `fetch` to retrieve a list of movies:
 
 There are some issues with calling out to the _real_ service during tests:
 
-- It's not possible to test edge cases i.e. What if the service is down, returns empty array, lots of movies?
-- The website has gone down; and our tests are broken!
+- It's not possible to test edge cases i.e. empty payloads, lots of items, etc.
+- The website has gone down, and now our tests are broken?
 - Our tests are _slow_!
-
 
 ## Using Mocks
 
@@ -83,6 +82,8 @@ describe('movies-api', function() {
 ```
 
 You can run this test with `yarn run` you run this test, it will fail.
+
+![](./empty-comparison-failure.png "Example of tests returning the real list of movies, and not being equal to an empty array as expected")
 
 Why? Our server http://www.alanfoster.me/movies.json is currently returning multiple movies.
 

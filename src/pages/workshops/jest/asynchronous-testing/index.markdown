@@ -7,9 +7,11 @@ title:  Jest workshop - Asynchronous Testing
 In the land of JavaScript we often find ourselves writing callbacks, and asynchronous
 code:
 
-`meaning-of-life.js`
+`src/meaning-of-index/index.js`
 
 ```javascript
+const sevenAndAHalfMillionYearsLater = 2.3652e+14;
+
 export default function () {
   return new Promise(function (resolve, reject) {
     setTimeout(
@@ -25,7 +27,7 @@ export default function () {
 Jest provides multiple ways of testing asynchronous code, however the `.resolves` and `.rejects`
 syntax can often be the easiest:
 
-`meaning-of-life.spec.js`
+`src/meaning-of-index/index.spec.js`
 
 ```javascript
 import meaningOfLife from '../';
@@ -84,7 +86,7 @@ browsers also have support.
 Add the fetch pollyfill dependency to your project:
 
 ```bash
-yarn add --save-dev whatwg-fetch
+yarn add --dev whatwg-fetch
 ```
 
 Create your new module for retrieving the movie list:
