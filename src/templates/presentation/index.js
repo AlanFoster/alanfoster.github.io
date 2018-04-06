@@ -15,7 +15,7 @@ class WithoutServerSideRendering extends React.Component {
 
   componentDidMount() {
     // eslint-disable-next-line no-undef
-    LoadedPresentation = require("./deferred-presentation");
+    LoadedPresentation = require("./components/presentation");
     this.setState({ hasMounted: true });
   }
 
@@ -35,12 +35,12 @@ WithoutServerSideRendering.propTypes = {
 export default WithoutServerSideRendering;
 
 export const query = graphql`
-  query PresentationQuery($slugRegex: String!) {
-    overview: markdownRemark(
-      fileAbsolutePath: {
-        regex: "/pages/workshops/jest/workshop-goals/index.markdown/"
-      }
-    ) {
+  query PresentationQuery(
+    $workshopRegex: String!
+    $overviewPathRegex: String!
+    $sidebarPath: String!
+  ) {
+    overview: markdownRemark(fileAbsolutePath: { regex: $overviewPathRegex }) {
       fileAbsolutePath
       frontmatter {
         title
@@ -53,7 +53,7 @@ export const query = graphql`
       htmlAst
     }
 
-    sidebar: file(relativePath: { eq: "pages/workshops/jest/sidebar.yaml" }) {
+    sidebar: file(relativePath: { eq: $sidebarPath }) {
       fields {
         yml {
           items {
@@ -66,7 +66,7 @@ export const query = graphql`
 
     content: allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { fields: { slug: { regex: $slugRegex } } }
+      filter: { fields: { slug: { regex: $workshopRegex } } }
     ) {
       edges {
         node {

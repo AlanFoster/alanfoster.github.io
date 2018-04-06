@@ -1,77 +1,62 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
-import Link from "gatsby-link";
 import ProjectorIcon from "./components/projector-icon";
 import HtmlRenderer from "./components/html-renderer";
-
+import Menu from "./components/menu";
+import QuickNavigation from "./components/quick-navigation";
 import styles from "./index.module.css";
 
-const getNavigation = function(sidebar, workshop) {
-  const links = sidebar.fields.yml.items.map(item => item.link);
-  const index = links.indexOf(workshop.fields.slug);
-
-  return {
-    previous: index <= 1 ? undefined : links[index - 1],
-    next: links[index + 1]
-  };
-};
-
-const Workshop = ({ data }) => {
+const Workshop = props => {
+  const {
+    data,
+    wrapperClassName,
+    menuClassName,
+    contentClassName,
+    Footer
+  } = props;
   const { sidebar, workshop } = data;
-  const { previous, next } = getNavigation(sidebar, workshop);
 
   return (
-    <div>
+    <div className={wrapperClassName}>
       <Helmet title={workshop.frontmatter.title} />
 
-      <a
-        className={styles.viewPresentation}
-        href={`/workshops/jest/presentation/#${encodeURIComponent(
-          workshop.fields.slug
-        )}`}
-      >
-        <ProjectorIcon />
-      </a>
+      <div className={menuClassName}>
+        <Menu items={data.sidebar.fields.yml.items} />
+      </div>
+      <div className={contentClassName}>
+        <div>
+          <a
+            className={styles.viewPresentation}
+            href={`../presentation/#${encodeURIComponent(
+              workshop.fields.slug
+            )}`}
+          >
+            <ProjectorIcon />
+          </a>
 
-      <HtmlRenderer ast={workshop.htmlAst} />
-
-      <div className={styles.navigation}>
-        <span>
-          {previous && (
-            <Link
-              to={previous}
-              className={`btn btn-outline-secondary ${styles.previous}`}
-            >
-              &lt; Previous
-            </Link>
-          )}
-        </span>
-
-        <span>
-          {next && (
-            <Link
-              to={next}
-              className={`btn btn-outline-secondary ${styles.next}`}
-            >
-              Next &gt;
-            </Link>
-          )}
-        </span>
+          <HtmlRenderer ast={workshop.htmlAst} />
+          <QuickNavigation sidebar={sidebar} workshop={workshop} />
+        </div>
+        <Footer />
       </div>
     </div>
   );
 };
 
 Workshop.propTypes = {
-  data: PropTypes.object
+  data: PropTypes.object,
+  wrapperClassName: PropTypes.string,
+  menuClassName: PropTypes.string,
+  contentClassName: PropTypes.string,
+  Footer: PropTypes.func.isRequired
 };
 
 export default Workshop;
 
 export const query = graphql`
-  query WorkshopQuery($slug: String!) {
-    sidebar: file(relativePath: { eq: "pages/workshops/jest/sidebar.yaml" }) {
+  query WorkshopQuery($slug: String!, $sidebarPath: String!) {
+    sidebar: file(relativePath: { eq: $sidebarPath }) {
       fields {
         yml {
           items {

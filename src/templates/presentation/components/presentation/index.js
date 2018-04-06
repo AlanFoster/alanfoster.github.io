@@ -12,7 +12,7 @@ import {
 import visit from "unist-util-visit";
 import select from "unist-util-select";
 import toHtml from "hast-util-to-html";
-import ViewSectionIcon from "./view-section-icon";
+import ViewSectionIcon from "../view-section-icon";
 import styles from "./styles.module.css";
 
 import createTheme from "spectacle/lib/themes/default";

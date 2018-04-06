@@ -14,7 +14,7 @@ exports.onCreateNode = async ({ node, getNode, boundActionCreators }) => {
     });
   }
 
-  if (node.internal.type === 'File' && node.relativePath.indexOf('/sidebar.yaml') > -1) {
+  if (node.internal.type === 'File' && path.basename(node.relativePath) === 'sidebar.yaml') {
     const content = await loadNodeContent(node);
     const parsedContent = jsYaml.load(content);
 
@@ -24,6 +24,18 @@ exports.onCreateNode = async ({ node, getNode, boundActionCreators }) => {
       value: parsedContent
     })
   }
+};
+
+const extractWorkshopBase = function (node) {
+  return path.dirname(node.fields.slug);
+};
+
+const extractSidebarPath = function (node) {
+  return path.join('pages', extractWorkshopBase(node), 'sidebar.yaml');
+};
+
+const extractOverviewPath = function (node) {
+  return path.join('pages', extractWorkshopBase(node), 'workshop-goals/index.markdown');
 };
 
 exports.createPages = ({ graphql, boundActionCreators }) => {
@@ -55,7 +67,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           component,
           layout,
           context: {
-            slug: node.fields.slug
+            sidebarPath: isWorkshop ? extractSidebarPath(node) : null,
+            slug: node.fields.slug,
           }
         });
       });
@@ -90,8 +103,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           })
         );
 
-        const workshopBase = node.fields.slug.split('/workshop-goals/')[0];
-
+        const workshopBase = extractWorkshopBase(node);
         createRedirectToWorkshopGoals({ fromPath: workshopBase });
         createRedirectToWorkshopGoals({ fromPath: workshopBase + '/' });
       });
@@ -122,15 +134,16 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
        }
      `).then(result => {
       result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-        const workshopBase = node.fields.slug.split('/workshop-goals/')[0];
+        const workshopBase = extractWorkshopBase(node);
 
         createPage({
           path: `${workshopBase}/presentation`,
           component: path.resolve("./src/templates/presentation/index.js"),
           layout: 'presentation',
           context: {
-            sidebarPath: `pages/${workshopBase}/sidebar.yaml`,
-            slugRegex: `/${workshopBase}.*/`
+            sidebarPath: extractSidebarPath(node),
+            overviewPathRegex: `/${extractOverviewPath(node)}/`,
+            workshopRegex: `/${workshopBase}.*/`
           }
         });
       });
