@@ -159,7 +159,7 @@ describe('movies-api', function() {
 
 ## Your turn
 
-Add an additional test test for when there are multiple movies return from the movies endpoint.
+Add an additional test for when there are multiple movies return from the movies endpoint.
 
 
 ```spoilers javascript
