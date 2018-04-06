@@ -12,6 +12,8 @@ import {
 import visit from "unist-util-visit";
 import select from "unist-util-select";
 import toHtml from "hast-util-to-html";
+import ViewSectionIcon from "./view-section-icon";
+import styles from "./styles.module.css";
 
 import createTheme from "spectacle/lib/themes/default";
 import PropTypes from "prop-types";
@@ -31,7 +33,8 @@ const theme = createTheme(
 
 const htmlAstToIntermediateRepresentation = function(ast) {
   const result = [];
-  const isHeader = node => node.tagName === "h1" || node.tagName === "h2" || node.tagName == 'h3';
+  const isHeader = node =>
+    node.tagName === "h1" || node.tagName === "h2" || node.tagName === "h3";
   const isImage = node => node.tagName === "img";
   const isCode = node => node.tagName === "pre";
   const isList = node => node.tagName === "ul";
@@ -110,7 +113,7 @@ const renderNodeToSpectacle = node => {
   }
 };
 
-const renderSection = (section, index) => {
+const renderSection = (section, index, onEnterActiveSection) => {
   if (section.title === "Presentation") return null;
 
   const sectionIntroduction = (
@@ -118,6 +121,7 @@ const renderSection = (section, index) => {
       transition={["zoom"]}
       bgColor="primary"
       id={encodeURIComponent(section.link)}
+      onActive={() => onEnterActiveSection(section)}
     >
       <Heading size={1} fit caps lineHeight={1} textColor="black">
         {section.title}
@@ -136,6 +140,7 @@ const renderSection = (section, index) => {
       <Slide
         key={`${section.link}__${node_index}`}
         transition={["zoom"]}
+        onActive={() => onEnterActiveSection(section)}
         bgColor="primary"
       >
         {renderNodeToSpectacle(node)}
@@ -146,70 +151,130 @@ const renderSection = (section, index) => {
   return [sectionIntroduction].concat(slides);
 };
 
-const Presentation = ({ data }) => {
-  const { overview, content, sidebar } = data;
-  if (!overview) return null;
+class Presentation extends React.PureComponent {
+  render() {
+    const { onEnterActiveSection, onExitActiveSection } = this.props;
+    const { overview, content, sidebar } = this.props.data;
+    if (!overview) return null;
 
-  const sidebarItems = sidebar.fields.yml.items;
-  const pages = content.edges.reduce(function(acc, edge) {
-    acc[edge.node.fields.slug] = htmlAstToIntermediateRepresentation(
-      edge.node.htmlAst
+    const sidebarItems = sidebar.fields.yml.items;
+    const pages = content.edges.reduce(function(acc, edge) {
+      acc[edge.node.fields.slug] = htmlAstToIntermediateRepresentation(
+        edge.node.htmlAst
+      );
+      return acc;
+    }, {});
+
+    const sections = sidebarItems
+      .map(item => {
+        return {
+          title: item.title,
+          link: item.link,
+          id: item.link,
+          page: pages[item.link]
+        };
+      })
+      .filter(section => section.title !== "Presentation");
+
+    return (
+      <Deck
+        transition={["zoom", "slide"]}
+        progress="bar"
+        theme={theme}
+        transitionDuration={500}
+      >
+        <Slide
+          transition={["zoom"]}
+          bgColor="primary"
+          onActive={onExitActiveSection}
+        >
+          <Heading size={1} fit caps lineHeight={1} textColor="black">
+            {overview.frontmatter.title}
+          </Heading>
+          <Heading size={4} caps textColor="tertiary">
+            The workshop
+          </Heading>
+        </Slide>
+
+        <Slide
+          transition={["zoom"]}
+          bgColor="primary"
+          onActive={onExitActiveSection}
+        >
+          <List ordered>
+            {sections.map(function(item) {
+              return (
+                <ListItem key={item.title}>
+                  <Link href={item.link}>{item.title}</Link>
+                </ListItem>
+              );
+            })}
+          </List>
+        </Slide>
+
+        {sections.map((section, index) => {
+          return renderSection(section, index, onEnterActiveSection);
+        })}
+
+        <Slide
+          transition={["zoom"]}
+          bgColor="primary"
+          onActive={this.onExitActiveSection}
+        >
+          <Heading size={4} caps textColor="tertiary">
+            le fin
+          </Heading>
+        </Slide>
+      </Deck>
     );
-    return acc;
-  }, {});
-
-  const sections = sidebarItems
-    .map(item => {
-      return {
-        title: item.title,
-        link: item.link,
-        id: item.link,
-        page: pages[item.link]
-      };
-    })
-    .filter(section => section.title !== "Presentation");
-
-  return (
-    <Deck
-      transition={["zoom", "slide"]}
-      progress="bar"
-      theme={theme}
-      transitionDuration={500}
-    >
-      <Slide transition={["zoom"]} bgColor="primary">
-        <Heading size={1} fit caps lineHeight={1} textColor="black">
-          {overview.frontmatter.title}
-        </Heading>
-        <Heading size={4} caps textColor="tertiary">
-          The workshop
-        </Heading>
-      </Slide>
-
-      <Slide transition={["zoom"]} bgColor="primary">
-        <List ordered>
-          {sections.map(function(item) {
-            return (
-              <ListItem key={item.title}>
-                <Link href={item.link}>{item.title}</Link>
-              </ListItem>
-            );
-          })}
-        </List>
-      </Slide>
-
-      {sections.map(renderSection)}
-
-      <Slide transition={["zoom"]} bgColor="primary">
-        <Heading size={4} caps textColor="tertiary">
-          le fin
-        </Heading>
-      </Slide>
-    </Deck>
-  );
-};
+  }
+}
 
 Presentation.propTypes = {
-  data: PropTypes.object
+  data: PropTypes.object,
+  onEnterActiveSection: PropTypes.func,
+  onExitActiveSection: PropTypes.func
 };
 
-export default Presentation;
+class PresentationWithQuickLinks extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      activeSection: null
+    };
+  }
+
+  onEnterActiveSection = section => {
+    this.setState({
+      activeSection: section
+    });
+  };
+
+  onExitActiveSection = () => {
+    this.setState({
+      activeSection: null
+    });
+  };
+
+  render() {
+    const activeSection = this.state.activeSection;
+
+    return (
+      <div>
+        {activeSection && (
+          <a href={activeSection.link}>
+            <ViewSectionIcon className={styles.viewSection} />
+          </a>
+        )}
+
+        <Presentation
+          {...this.props}
+          onEnterActiveSection={this.onEnterActiveSection}
+          onExitActiveSection={this.onExitActiveSection}
+        />
+      </div>
+    );
+  }
+}
+
+export default PresentationWithQuickLinks;
