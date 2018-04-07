@@ -22,11 +22,11 @@ And let's add the subsequent test:
 `add.spec.js`
 
 ```javascript
-var add = require('./add')
+var add = require("./add");
 
-describe('add', function () {
-  it('adds 2 + 3 to be 5', function () {
-    expect(add(2, 3)).toBe(5)
+describe("add", function() {
+  it("adds 2 + 3 to be 5", function() {
+    expect(add(2, 3)).toBe(5);
   });
 });
 ```

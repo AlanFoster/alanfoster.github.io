@@ -5,7 +5,6 @@ date:   2017-05-31 17:33:53
 category: post
 ---
 
-
 Page objects can be used as a powerful method of abstracting your tests from implementation. Importantly they can be used reduce fragile tests, and promote DRYness - via the encapsulation of common functionality within simple methods.
 
 In plain terms:
@@ -16,13 +15,13 @@ In plain terms:
 
 Unfortunately page objects are an overloaded term. In my experience there are generally three types of page objects:
 
-- *Component Objects* - A page object which represents a particular component, or widget, on a user interface. For instance a Table, menu, article, etc.
+* _Component Objects_ - A page object which represents a particular component, or widget, on a user interface. For instance a Table, menu, article, etc.
 
   If you are coming from a React background, React components/Classes are generally a one to one mapping with this concept.
 
-- *Page Objects* - A page object can describe a particular screen, or user interface, within a web application or native application. It can be composed of multiple component objects, and can provide convenience methods for interacting with the abstraction that it is wrapping.
+* _Page Objects_ - A page object can describe a particular screen, or user interface, within a web application or native application. It can be composed of multiple component objects, and can provide convenience methods for interacting with the abstraction that it is wrapping.
 
-- *Experience* - These are commonly used to group together complex functionality that may require multiple steps, and interact with multiple pages. In my experience I have used this concept to abstract complex welcome tour functionality, creation wizards, and other complex flows.
+* _Experience_ - These are commonly used to group together complex functionality that may require multiple steps, and interact with multiple pages. In my experience I have used this concept to abstract complex welcome tour functionality, creation wizards, and other complex flows.
 
 ### Example
 
@@ -116,7 +115,6 @@ feature 'Blog management', type: :feature do
 end
 ```
 
-
 ### Creating Page Objects
 
 The first step of creating page objects is to create the basic page class structure:
@@ -196,7 +194,7 @@ def has_error?(error)
 end
 ```
 
-In general it is important to follow provide [functionally cohesive methods](https://en.wikipedia.org/wiki/Cohesion_(computer_science)), and where possible adhere to the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle).
+In general it is important to follow provide [functionally cohesive methods](<https://en.wikipedia.org/wiki/Cohesion_(computer_science)>), and where possible adhere to the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle).
 
 ### Component Objects
 
@@ -313,7 +311,7 @@ For a full example please see the Github pull request [here](https://github.com/
 
 ### Additional resources
 
-- [Martin Fowler - Page Objects](https://martinfowler.com/bliki/PageObject.html)
-- [Write Reliable, Asynchronous Integration Tests With Capybara](https://robots.thoughtbot.com/write-reliable-asynchronous-integration-tests-with-capybara)
-- [Page object DSL for capybara](https://github.com/natritmeyer/site_prism)
-- [Formulaic - Form input generation](https://github.com/thoughtbot/formulaic)
+* [Martin Fowler - Page Objects](https://martinfowler.com/bliki/PageObject.html)
+* [Write Reliable, Asynchronous Integration Tests With Capybara](https://robots.thoughtbot.com/write-reliable-asynchronous-integration-tests-with-capybara)
+* [Page object DSL for capybara](https://github.com/natritmeyer/site_prism)
+* [Formulaic - Form input generation](https://github.com/thoughtbot/formulaic)

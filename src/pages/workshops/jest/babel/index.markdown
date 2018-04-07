@@ -24,9 +24,9 @@ of the more terse lambda syntax available in ES6:
 
 ```javascript
 // Plain ol' JavaScript
-var add = function (x, y) {
+var add = function(x, y) {
   return x + y;
-}
+};
 
 // Modern, Concise, ES6 Lambda Syntax
 const add = (x, y) => x + y;

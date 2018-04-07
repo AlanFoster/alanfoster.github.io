@@ -9,11 +9,11 @@ Jest provides global functions that can be called from within your spec files.
 For example the `describe`, `it` and `expect` functions within our first tests:
 
 ```javascript
-var add = require('./add')
+var add = require("./add");
 
-describe('add', function () {
-  it('adds 2 + 3 to be 5', function () {
-    expect(add(2, 3)).toBe(5)
+describe("add", function() {
+  it("adds 2 + 3 to be 5", function() {
+    expect(add(2, 3)).toBe(5);
   });
 });
 ```
@@ -32,15 +32,15 @@ describe(name, function);
 For example:
 
 ```javascript
-describe('repository-list', function () {
-  describe('when there is no data available', function () {
-    it('renders no rows', function () {
+describe("repository-list", function() {
+  describe("when there is no data available", function() {
+    it("renders no rows", function() {
       // ...
     });
   });
 
-  describe('when there is data available', function () {
-    it('renders no rows', function () {
+  describe("when there is data available", function() {
+    it("renders no rows", function() {
       // ...
     });
   });
@@ -58,12 +58,12 @@ it(description, function, timeout);
 For example:
 
 ```javascript
-it('returns false', function () {
-  expect(yourFunction()).toBe(false)
+it("returns false", function() {
+  expect(yourFunction()).toBe(false);
 });
 
-it('returns true', function () {
-  expect(yourOtherFunction()).toBe(true)
+it("returns true", function() {
+  expect(yourOtherFunction()).toBe(true);
 });
 ```
 
@@ -127,19 +127,19 @@ We made use of Jest's [expect library](https://facebook.github.io/jest/docs/en/e
 assert that the result of `add(2, 3)` was 5. For this scenario we used the `.toBe` matcher:
 
 ```javascript
-expect(add(2, 3)).toBe(5)
+expect(add(2, 3)).toBe(5);
 ```
 
 Out of the box Jest provides lots of useful matchers, and you can even write your own!
 
 Some common matchers that you might use are:
 
-- .toBe(value)
-- .toEqual(value)
-- .toMatchSnapshot(optionalString)
-- .toHaveBeenCalled()
-- .toHaveBeenCalledTimes(number)
-- .toHaveBeenCalledWith(arg1, arg2, ...)
-- .toBeInstanceOf(Class)
-- .toContain(item)
-- .toThrow(error)
+* .toBe(value)
+* .toEqual(value)
+* .toMatchSnapshot(optionalString)
+* .toHaveBeenCalled()
+* .toHaveBeenCalledTimes(number)
+* .toHaveBeenCalledWith(arg1, arg2, ...)
+* .toBeInstanceOf(Class)
+* .toContain(item)
+* .toThrow(error)

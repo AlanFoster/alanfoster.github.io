@@ -25,7 +25,6 @@ public static void main(String[] args) {
 }
 ```
 
-
 Sure, this is fine. But it's not exactly very flexible is it? It's not taking advantage of the fact that enums can offer logic within the enum itself. For instance enums can offer a public abstract void method, which all enum constants must override and implement logic to.
 
 For instance
@@ -74,7 +73,7 @@ protected enum State {
     int i = 0;
     @Override
     protected State execute() {
-			return i++ == 0 ? FOO : HALT;
+      return i++ == 0 ? FOO : HALT;
     }
   },
 

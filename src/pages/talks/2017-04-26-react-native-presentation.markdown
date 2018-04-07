@@ -13,7 +13,7 @@ This presentation highlights the developer friendly ecosystem, and powerful deve
 
 Including, but not limited to:
 
-- Declarative Component / View creation using [React](https://facebook.github.io/react/)
-- Debugging via Chrome's developer tools
-- [Hot module reloading](https://facebook.github.io/react-native/blog/2016/03/24/introducing-hot-reloading.html)
-- Time traveling and state management with [Redux](http://redux.js.org/)
+* Declarative Component / View creation using [React](https://facebook.github.io/react/)
+* Debugging via Chrome's developer tools
+* [Hot module reloading](https://facebook.github.io/react-native/blog/2016/03/24/introducing-hot-reloading.html)
+* Time traveling and state management with [Redux](http://redux.js.org/)

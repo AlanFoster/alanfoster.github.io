@@ -6,6 +6,7 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "lint": "eslint src plugins --ignore-pattern \"__snapshots__\" --ignore-pattern \"node_modules\"",
+    "format": "prettier --write \"src/**/*.{markdown,css}\" && yarn run lint --fix",
     "deploy": "gatsby build && cp ./CNAME public/ && gh-pages -d public -b master",
     "test": "jest"
   },

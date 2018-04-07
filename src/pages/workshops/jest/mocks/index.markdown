@@ -41,9 +41,9 @@ In the previous example we made use of `fetch` to retrieve a list of movies:
 
 There are some issues with calling out to the _real_ service during tests:
 
-- It's not possible to test edge cases i.e. empty payloads, lots of items, etc.
-- The website has gone down, and now our tests are broken?
-- Our tests are _slow_!
+* It's not possible to test edge cases i.e. empty payloads, lots of items, etc.
+* The website has gone down, and now our tests are broken?
+* Our tests are _slow_!
 
 ## Using Mocks
 
@@ -52,11 +52,12 @@ Starting with the following service:
 `src/api/movies/index.js`
 
 ```javascript
-import 'whatwg-fetch';
+import "whatwg-fetch";
 
-export const fetchMovies = function () {
-  return fetch('http://www.alanfoster.me/movies.json')
-    .then(response => response.json());
+export const fetchMovies = function() {
+  return fetch("http://www.alanfoster.me/movies.json").then(response =>
+    response.json()
+  );
 };
 ```
 
@@ -65,15 +66,15 @@ We wish to test the scenario of our movies list being empty:
 `src/api/movies/__tests__/index.spec.js`
 
 ```javascript
-import * as service from '../';
+import * as service from "../";
 
-describe('movies-api', function() {
-  describe('fetchMovies', function() {
-    describe('when there are no movies available', function () {
-      it('returns the data', async function() {
+describe("movies-api", function() {
+  describe("fetchMovies", function() {
+    describe("when there are no movies available", function() {
+      it("returns the data", async function() {
         const result = await service.fetchMovies();
         expect(result).toEqual({
-          "movies": []
+          movies: []
         });
       });
     });
@@ -91,12 +92,12 @@ Fortunately Jest provides multiple ways to change the behaviour of objects, and 
 In this scenario we can make use of Jest's [spyOn](https://facebook.github.io/jest/docs/en/jest-object.html#jestspyonobject-methodname) function:
 
 ```javascript
-jest.spyOn(object, methodName)
+jest.spyOn(object, methodName);
 ```
 
 A call to `jest.spyOn` will return a mock which we can configure. By default, the mock will call the original implementation.
 
-Before our test runs we can spy on the the fetch call and return our mock data:  
+Before our test runs we can spy on the the fetch call and return our mock data:
 
 ```javascript{6-15}
 import * as service from '../';
@@ -160,7 +161,6 @@ describe('movies-api', function() {
 ## Your turn
 
 Add an additional test for when there are multiple movies return from the movies endpoint.
-
 
 ```spoilers javascript
 import * as service from '../';

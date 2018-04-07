@@ -10,14 +10,11 @@ code:
 `src/meaning-of-index/index.js`
 
 ```javascript
-const sevenAndAHalfMillionYearsLater = 2.3652e+14;
+const sevenAndAHalfMillionYearsLater = 2.3652e14;
 
-export default function () {
-  return new Promise(function (resolve, reject) {
-    setTimeout(
-      () => resolve(42),
-      sevenAndAHalfMillionYearsLater
-    );
+export default function() {
+  return new Promise(function(resolve, reject) {
+    setTimeout(() => resolve(42), sevenAndAHalfMillionYearsLater);
   });
 }
 ```
@@ -30,16 +27,16 @@ syntax can often be the easiest:
 `src/meaning-of-index/index.spec.js`
 
 ```javascript
-import meaningOfLife from '../';
+import meaningOfLife from "../";
 
-describe('meaning-of-life', function () {
-  it('calculates the meaning of life', function () {
+describe("meaning-of-life", function() {
+  it("calculates the meaning of life", function() {
     return expect(meaningOfLife()).resolves.toBe(42);
   });
 });
 ```
 
-*Note* - the `return` is important! Jest needs to know about the promise otherwise
+_Note_ - the `return` is important! Jest needs to know about the promise otherwise
 it will fail to work.
 
 ## ES6 Async/Await
@@ -47,10 +44,10 @@ it will fail to work.
 If you have integrated Babel with your Jest setup you can make use of the new async/await syntax.
 
 ```javascript
-import meaningOfLife from '../';
+import meaningOfLife from "../";
 
-describe('meaning-of-life', function () {
-  it('calculates the meaning of life', async function () {
+describe("meaning-of-life", function() {
+  it("calculates the meaning of life", async function() {
     const result = await meaningOfLife();
 
     expect(result).toBe(42);
@@ -94,11 +91,12 @@ Create your new module for retrieving the movie list:
 `src/api/movies/index.js`
 
 ```javascript
-import 'whatwg-fetch';
+import "whatwg-fetch";
 
-export const fetchMovies = function () {
-  return fetch('http://www.alanfoster.me/movies.json')
-    .then(response => response.json());
+export const fetchMovies = function() {
+  return fetch("http://www.alanfoster.me/movies.json").then(response =>
+    response.json()
+  );
 };
 ```
 

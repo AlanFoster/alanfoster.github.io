@@ -12,8 +12,8 @@ has support for Jest by default. We will continue this tutorial _without_ using 
 We've been tasked with building a new React component for a movie list.
 The component will:
 
-- Tell us when there are no movies available
-- When there are movies available; Show movie details
+* Tell us when there are no movies available
+* When there are movies available; Show movie details
 
 Below is an example of the component we have developed:
 
@@ -59,8 +59,8 @@ render(<MovieList movies={mockServerResponse.movies} />);
 
 We will write tests for the following two scenarios:
 
-- When the Component has no movies
-- When there are movies present
+* When the Component has no movies
+* When there are movies present
 
 We will not test the undefined / null / error data scenarios.
 
@@ -88,7 +88,7 @@ Let's create a file for the movie list component:
 `src/movie-list/index.js`
 
 ```javascript
-import React from 'react';
+import React from "react";
 
 // Simple Stateless/Functional React Component
 // https://reactjs.org/docs/components-and-props.html
@@ -101,12 +101,12 @@ const MovieList = ({ movies }) => {
     <div>
       <div>There are {movies.length} movies</div>
       <ul>
-        {movies.map(function (movie) {
+        {movies.map(function(movie) {
           return (
             <li key={movie.title}>
               {movie.title} - {movie.releaseYear}
             </li>
-          )
+          );
         })}
       </ul>
     </div>
@@ -121,18 +121,16 @@ Additionally create the initial test file:
 `src/movie-list/__tests__/index.spec.js`
 
 ```javascript
-import React from 'react';
-import Component from '../';
-import renderer from 'react-test-renderer';
+import React from "react";
+import Component from "../";
+import renderer from "react-test-renderer";
 
-describe('movie-list', function () {
-  describe('when there are no movies', function () {
-    it('renders the empty message', function () {
+describe("movie-list", function() {
+  describe("when there are no movies", function() {
+    it("renders the empty message", function() {
       const movies = [];
 
-      const tree = renderer.create(
-        <Component movies={movies} />
-      );
+      const tree = renderer.create(<Component movies={movies} />);
 
       expect(tree).toMatchSnapshot();
     });
@@ -178,8 +176,8 @@ To record a new snapshot you can simply run the test command with the `-u` flag 
 
 Now that the first test has been written, it is up to you to write the second test:
 
-- ~~When the Component has no movies~~
-- When there are movies present
+* ~~When the Component has no movies~~
+* When there are movies present
 
 ```spoilers javascript
 import React from 'react';
@@ -188,7 +186,7 @@ import renderer from 'react-test-renderer';
 
 describe('movie-list', function () {
   // ...
-  
+
   describe('when there are multiple movies', function () {
     it('renders the movies', function () {
       const movies = [
