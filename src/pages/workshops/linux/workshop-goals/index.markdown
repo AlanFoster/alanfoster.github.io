@@ -8,4 +8,10 @@ workshop: /workshops/linux/workshop-goals/
 
 #### Workshop Goals
 
-At the end of this workshop you will learn how to use the linux environment
+At the end of this workshop you will learn how to use a Linux environment
+
+* Brief context and history of Unix/POSIX/GNU/Linux
+* Common command line utility tools
+* The Shell language
+* The file system
+* Recipes

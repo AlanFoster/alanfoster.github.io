@@ -6,6 +6,7 @@ import {
   List,
   ListItem,
   Image,
+  Text,
   Link,
   ComponentPlayground
 } from "spectacle";
@@ -31,6 +32,18 @@ const theme = createTheme(
   }
 );
 
+const toText = function(node) {
+  let text = "";
+
+  visit(node, function(node) {
+    if (node.type === "text") {
+      text += node.value;
+    }
+  });
+
+  return text;
+};
+
 const htmlAstToIntermediateRepresentation = function(ast) {
   const result = [];
   const isHeader = node =>
@@ -38,6 +51,7 @@ const htmlAstToIntermediateRepresentation = function(ast) {
   const isImage = node => node.tagName === "img";
   const isCode = node => node.tagName === "pre";
   const isList = node => node.tagName === "ul";
+  const isStrong = node => node.tagName === "strong";
 
   const reactPrefix = "react-example->";
   const isReactExample = node =>
@@ -66,12 +80,20 @@ const htmlAstToIntermediateRepresentation = function(ast) {
         value: node.value.split(reactPrefix)[1].replace(/Z/g, " ")
       });
     }
+
+    if (isStrong(node)) {
+      result.push(node);
+    }
   });
 
   return result;
 };
 
-const extractLargestImage = srcSet => srcSet[srcSet.length - 1].split(" ")[0];
+const extractLargestImage = function(srcSet) {
+  if (!srcSet) return;
+
+  return srcSet[srcSet.length - 1].split(" ")[0];
+};
 
 const renderNodeToSpectacle = node => {
   if (node.type === "text") {
@@ -87,9 +109,9 @@ const renderNodeToSpectacle = node => {
   }
 
   if (node.tagName === "img") {
-    return (
-      <Image width="100%" src={extractLargestImage(node.properties.srcSet)} />
-    );
+    const src = extractLargestImage(node.properties.srcSet);
+
+    return <Image width="100%" src={src} alt={node.properties.title} />;
   }
 
   if (node.tagName === "ul") {
@@ -110,6 +132,10 @@ const renderNodeToSpectacle = node => {
 
   if (node.tagName === "react-example") {
     return <ComponentPlayground theme="dark" code={node.value.toString()} />;
+  }
+
+  if (node.tagName === "strong") {
+    return <Text>{toText(node)}</Text>;
   }
 };
 
@@ -134,6 +160,12 @@ const renderSection = (section, index, onEnterActiveSection) => {
       </Heading>
     </Slide>
   );
+
+  if (!section.page) {
+    throw new Error(
+      `Could not find section ${JSON.stringify(section, null, 4)}`
+    );
+  }
 
   const slides = section.page.map((node, node_index) => {
     return (

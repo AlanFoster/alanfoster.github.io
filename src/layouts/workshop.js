@@ -4,7 +4,7 @@ import Footer from "./footer";
 import WithDefaultHelmet from "./wrappers/with-default-helmet";
 import WithTopNavigation from "./wrappers/with-top-navigation";
 import styles from "./index.module.css";
-import "./globals.css";
+import "./global";
 
 const WorkshopLayout = props => {
   return (

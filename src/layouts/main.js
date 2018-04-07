@@ -5,6 +5,7 @@ import WithDefaultHelmet from "./wrappers/with-default-helmet";
 import WithTopNavigation from "./wrappers/with-top-navigation";
 import Footer from "./footer";
 import styles from "./index.module.css";
+import "./global";
 
 const Main = ({ children }) => (
   <WithDefaultHelmet>

@@ -2,9 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import WithDefaultHelmet from "./wrappers/with-default-helmet";
 import Helmet from "react-helmet";
-
-import "prismjs/themes/prism-tomorrow.css";
-import "bootstrap/dist/css/bootstrap.css";
+import "./global";
 
 const Presentation = ({ children }) => (
   <WithDefaultHelmet>

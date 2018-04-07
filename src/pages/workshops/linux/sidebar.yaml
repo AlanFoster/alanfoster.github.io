@@ -5,5 +5,14 @@ items:
   - title: Workshop Goals
     link: /workshops/linux/workshop-goals/
 
-  - title: Cat
-    link: /workshops/linux/cat/
+  - title: Context
+    link: /workshops/linux/context/
+
+  - title: Shell
+    link: /workshops/linux/shell/
+
+  - title: Commands
+    link: /workshops/linux/commands/
+
+  - title: Getting Help
+    link: /workshops/linux/getting-help/
