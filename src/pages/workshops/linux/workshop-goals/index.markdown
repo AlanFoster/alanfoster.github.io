@@ -4,6 +4,7 @@ title:  Linux
 date:   2018-03-06 09:33:53
 category: workshop
 workshop: /workshops/linux/workshop-goals/
+published: false
 ---
 
 #### Workshop Goals

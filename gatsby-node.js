@@ -114,24 +114,28 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
   const createAggregatedPresentation = new Promise((resolve) => {
     graphql(`
-       {
-         allMarkdownRemark(filter: {frontmatter: {category: {eq: "workshop"}}}) {
-           totalCount
-           edges {
-             node {
-               id
-               frontmatter {
-                 title
-                 workshop
-                 date(formatString: "DD MMMM, YYYY")
-               }
-               fields {
-                 slug
-               }
-             }
-           }
-         }
-       }
+        {
+          allMarkdownRemark(
+            filter: {
+              frontmatter: { category: { eq: "workshop" }, published: { ne: false } }
+            }
+          ) {
+            totalCount
+            edges {
+              node {
+                id
+                frontmatter {
+                  title
+                  workshop
+                  date(formatString: "DD MMMM, YYYY")
+                }
+                fields {
+                  slug
+                }
+              }
+            }
+          }
+        }
      `).then(result => {
       result.data.allMarkdownRemark.edges.forEach(({ node }) => {
         const workshopBase = extractWorkshopBase(node);
