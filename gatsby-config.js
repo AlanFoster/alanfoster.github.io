@@ -14,7 +14,7 @@ module.exports = {
           "gatsby-plugin-sharp",
           "gatsby-remark-images",
           "gatsby-remark-autolink-headers",
-          "remark-prism-with-spoilers",
+          "remark-prism-with-workshop-support",
         ]
       }
     }

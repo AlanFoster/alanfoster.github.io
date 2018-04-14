@@ -28,3 +28,9 @@ items:
 
   - title: React
     link: /workshops/jest/react/
+
+  - title: Recipes
+    link: /workshops/jest/approaches/
+
+  - title: The End
+    link: /workshops/jest/the-end/

@@ -38,3 +38,7 @@ a:hover svg {
 .react-live > *:first-child {
   text-align: center;
 }
+
+.spectacle-slide {
+  overflow-y: scroll !important;
+}

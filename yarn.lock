@@ -11532,6 +11532,13 @@ victory-core@^15.2.0:
     d3-timer "^1.0.0"
     lodash "^4.17.4"
 
+video-react@^0.10.4:
+  version "0.10.4"
+  resolved "https://registry.yarnpkg.com/video-react/-/video-react-0.10.4.tgz#5948d99628f711096f6e54c19e832dbe2d77d554"
+  dependencies:
+    classnames "^2.2.3"
+    prop-types "^15.6.0"
+
 viewport-dimensions@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/viewport-dimensions/-/viewport-dimensions-0.2.0.tgz#de740747db5387fd1725f5175e91bac76afdf36c"

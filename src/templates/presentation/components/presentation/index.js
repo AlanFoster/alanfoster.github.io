@@ -13,6 +13,7 @@ import {
 import visit from "unist-util-visit";
 import select from "unist-util-select";
 import toHtml from "hast-util-to-html";
+import { Player, BigPlayButton } from "video-react";
 import ViewSectionIcon from "../view-section-icon";
 import styles from "./styles.module.css";
 
@@ -44,6 +45,35 @@ const toText = function(node) {
   return text;
 };
 
+class Asciinema extends React.Component {
+  render() {
+    return (
+      <asciinema-player
+        src={this.props.src}
+        preload
+        poster="npt:0:3"
+        idle-time-limit="2"
+        theme="monokai"
+        {...this.props}
+      />
+    );
+  }
+}
+
+Asciinema.propTypes = {
+  src: PropTypes.string
+};
+
+const Video = ({ src }) => (
+  <Player playsInline preload src={src}>
+    <BigPlayButton position="center" />
+  </Player>
+);
+
+Video.propTypes = {
+  src: PropTypes.string
+};
+
 const htmlAstToIntermediateRepresentation = function(ast) {
   const result = [];
   const isHeader = node =>
@@ -52,6 +82,8 @@ const htmlAstToIntermediateRepresentation = function(ast) {
   const isCode = node => node.tagName === "pre";
   const isList = node => node.tagName === "ul";
   const isStrong = node => node.tagName === "strong";
+  const isAsciinema = node => node.tagName === "asciinema";
+  const isVideo = node => node.tagName === "video";
 
   const reactPrefix = "react-example->";
   const isReactExample = node =>
@@ -82,6 +114,14 @@ const htmlAstToIntermediateRepresentation = function(ast) {
     }
 
     if (isStrong(node)) {
+      result.push(node);
+    }
+
+    if (isAsciinema(node)) {
+      result.push(node);
+    }
+
+    if (isVideo(node)) {
       result.push(node);
     }
   });
@@ -136,6 +176,14 @@ const renderNodeToSpectacle = node => {
 
   if (node.tagName === "strong") {
     return <Text>{toText(node)}</Text>;
+  }
+
+  if (node.tagName === "asciinema") {
+    return <Asciinema {...node.properties} />;
+  }
+
+  if (node.tagName === "video") {
+    return <Video {...node.properties} />;
   }
 };
 

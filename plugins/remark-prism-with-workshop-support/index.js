@@ -1,6 +1,8 @@
 const visit = require("unist-util-visit");
 const parseLanguageDetails = require("./parse-language-details");
 const highlightCode = require("gatsby-remark-prismjs/highlight-code");
+const fsExtra = require("fs-extra");
+const path = require("path");
 
 // This will be replaced with a real react component later via rehype
 const withSpoilers = html => {
@@ -8,11 +10,69 @@ const withSpoilers = html => {
     <spoilers>
       ${html}
     </spoilers>
-  `;
+  `.trim();
 };
 
-module.exports = ({ markdownAST }, { classPrefix = "language-" } = {}) => {
-  visit(markdownAST, "code", node => {
+const withAsciinema = src => {
+  return `
+    <asciinema src="${src}"></asciinema>
+  `.trim();
+};
+
+const withVideo = src => {
+  return `
+    <video src="${src}"></video>
+  `.trim();
+};
+
+const copyAssetPath = async function({
+  files,
+  markdownNode,
+  getNode,
+  requiredFile
+}) {
+  const parentNode = getNode(markdownNode.parent);
+  const absolutePath = path.join(path.join(parentNode.dir), requiredFile);
+
+  const file = files.find(file => {
+    if (file && file.absolutePath === absolutePath) {
+      return file;
+    }
+
+    return null;
+  });
+
+  if (!file) {
+    // eslint-disable-next-line no-console
+    console.error("Could not find file", absolutePath);
+    return null;
+  }
+
+  const fileName = `${file.name}-${file.internal.contentDigest}.${
+    file.extension
+  }`;
+  const publicURL = path.join(process.cwd(), "public", "static", fileName);
+
+  // Don't copy anything is the file already exists at the location.
+  if (!fsExtra.existsSync(publicURL)) {
+    try {
+      await fsExtra.ensureDir(path.dirname(publicURL));
+      await fsExtra.copy(absolutePath, publicURL);
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error(`error copy ing file`, err);
+      return null;
+    }
+  }
+
+  return `/static/${fileName}`;
+};
+
+module.exports = async (
+  { files, markdownNode, getNode, markdownAST },
+  { classPrefix = "language-" } = {}
+) => {
+  visit(markdownAST, "code", async node => {
     let language = node.lang;
     let { splitLanguage, highlightLines, hasSpoilers } = parseLanguageDetails(
       language
@@ -39,6 +99,36 @@ module.exports = ({ markdownAST }, { classPrefix = "language-" } = {}) => {
       node.type = "text";
       node.value = `react-example->${node.value.replace(/ /g, "Z")}`;
 
+      return;
+    }
+
+    if (language === "video") {
+      const requiredFile = node.value.trim();
+      const assetURL = await copyAssetPath({
+        files,
+        markdownNode,
+        getNode,
+        requiredFile
+      });
+      if (!assetURL) return;
+
+      node.type = "html";
+      node.value = withVideo(assetURL);
+      return;
+    }
+
+    if (language === "asciinema") {
+      const requiredFile = node.value.trim();
+      const assetURL = await copyAssetPath({
+        files,
+        markdownNode,
+        getNode,
+        requiredFile
+      });
+      if (!assetURL) return;
+
+      node.type = "html";
+      node.value = withAsciinema(assetURL);
       return;
     }
 

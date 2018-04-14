@@ -3,13 +3,45 @@ import PropTypes from "prop-types";
 import rehype2react from "rehype-react";
 import visit from "unist-util-visit";
 import ReactExample from "./components/react-example";
+import { Player, BigPlayButton } from "video-react";
 import Spoilers from "./components/spoilers";
+
+class Asciinema extends React.Component {
+  render() {
+    return (
+      <asciinema-player
+        src={this.props.src}
+        preload
+        poster="npt:0:3"
+        idle-time-limit="2"
+        theme="monokai"
+        {...this.props}
+      />
+    );
+  }
+}
+
+Asciinema.propTypes = {
+  src: PropTypes.string
+};
+
+const Video = ({ src }) => (
+  <Player playsInline preload src={src}>
+    <BigPlayButton position="center" />
+  </Player>
+);
+
+Video.propTypes = {
+  src: PropTypes.string
+};
 
 const reactCompiler = new rehype2react({
   createElement: React.createElement,
   components: {
     "react-example": ReactExample,
-    spoilers: Spoilers
+    spoilers: Spoilers,
+    asciinema: Asciinema,
+    video: Video
   }
 }).Compiler;
 

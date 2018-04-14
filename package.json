@@ -39,7 +39,8 @@
     "react-test-renderer": "15.6.2",
     "reactstrap": "^4.8.0",
     "rehype-react": "^3.0.2",
-    "spectacle": "^4.1.0"
+    "spectacle": "^4.1.0",
+    "video-react": "^0.10.4"
   },
   "jest": {
     "testPathIgnorePatterns": [
