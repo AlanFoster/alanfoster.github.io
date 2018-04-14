@@ -20,6 +20,9 @@
       "files": ["plugins/**"],
       "env": {
         "node": true
+      },
+      "globals": {
+        "Promise": false
       }
     },
     {

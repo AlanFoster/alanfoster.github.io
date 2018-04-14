@@ -1,4 +1,4 @@
-const visit = require("unist-util-visit");
+const select = require("unist-util-select");
 const parseLanguageDetails = require("./parse-language-details");
 const highlightCode = require("gatsby-remark-prismjs/highlight-code");
 const fsExtra = require("fs-extra");
@@ -72,84 +72,97 @@ module.exports = async (
   { files, markdownNode, getNode, markdownAST },
   { classPrefix = "language-" } = {}
 ) => {
-  visit(markdownAST, "code", async node => {
-    let language = node.lang;
-    let { splitLanguage, highlightLines, hasSpoilers } = parseLanguageDetails(
-      language
-    );
-    language = splitLanguage;
+  const codeBlocks = select(markdownAST, "code");
 
-    // PrismJS's theme styles are targeting pre[class*="language-"]
-    // to apply its styles. We do the same here so that users
-    // can apply a PrismJS theme and get the expected, ready-to-use
-    // outcome without any additional CSS.
-    //
-    // @see https://github.com/PrismJS/prism/blob/1d5047df37aacc900f8270b1c6215028f6988eb1/themes/prism.css#L49-L54
-    let languageName = "none";
-    if (language) {
-      language = language.toLowerCase();
-      languageName = language;
-    }
+  return Promise.all(
+    codeBlocks.map(
+      node =>
+        new Promise(async resolve => {
+          let language = node.lang;
+          let {
+            splitLanguage,
+            highlightLines,
+            hasSpoilers
+          } = parseLanguageDetails(language);
+          language = splitLanguage;
 
-    if (language === "react-example") {
-      // Quick hack to shortcircuit react-examples, so that they can be picked
-      // up later and converted into a real react component. We can't swap this
-      // to be an HTML node, as we don't want the tree to be parsed. We want the
-      // original plaintext to be used later in the rendering process.
-      node.type = "text";
-      node.value = `react-example->${node.value.replace(/ /g, "Z")}`;
+          // PrismJS's theme styles are targeting pre[class*="language-"]
+          // to apply its styles. We do the same here so that users
+          // can apply a PrismJS theme and get the expected, ready-to-use
+          // outcome without any additional CSS.
+          //
+          // @see https://github.com/PrismJS/prism/blob/1d5047df37aacc900f8270b1c6215028f6988eb1/themes/prism.css#L49-L54
+          let languageName = "none";
+          if (language) {
+            language = language.toLowerCase();
+            languageName = language;
+          }
 
-      return;
-    }
+          if (language === "react-example") {
+            // Quick hack to shortcircuit react-examples, so that they can be picked
+            // up later and converted into a real react component. We can't swap this
+            // to be an HTML node, as we don't want the tree to be parsed. We want the
+            // original plaintext to be used later in the rendering process.
+            node.type = "text";
+            node.value = `react-example->${node.value.replace(/ /g, "Z")}`;
 
-    if (language === "video") {
-      const requiredFile = node.value.trim();
-      const assetURL = await copyAssetPath({
-        files,
-        markdownNode,
-        getNode,
-        requiredFile
-      });
-      if (!assetURL) return;
+            resolve();
+            return;
+          }
 
-      node.type = "html";
-      node.value = withVideo(assetURL);
-      return;
-    }
+          if (language === "video") {
+            const requiredFile = node.value.trim();
+            const assetURL = await copyAssetPath({
+              files,
+              markdownNode,
+              getNode,
+              requiredFile
+            });
+            if (!assetURL) return;
 
-    if (language === "asciinema") {
-      const requiredFile = node.value.trim();
-      const assetURL = await copyAssetPath({
-        files,
-        markdownNode,
-        getNode,
-        requiredFile
-      });
-      if (!assetURL) return;
+            node.type = "html";
+            node.value = withVideo(assetURL);
+            resolve();
+            return;
+          }
 
-      node.type = "html";
-      node.value = withAsciinema(assetURL);
-      return;
-    }
+          if (language === "asciinema") {
+            const requiredFile = node.value.trim();
+            const assetURL = await copyAssetPath({
+              files,
+              markdownNode,
+              getNode,
+              requiredFile
+            });
+            if (!assetURL) return;
 
-    // Allow users to specify a custom class prefix to avoid breaking
-    // line highlights if Prism is required by any other code.
-    // This supports custom user styling without causing Prism to
-    // re-process our already-highlighted markup.
-    // @see https://github.com/gatsbyjs/gatsby/issues/1486
-    const className = `${classPrefix}${languageName}`;
+            node.type = "html";
+            node.value = withAsciinema(assetURL);
+            resolve();
+            return;
+          }
 
-    // Replace the node with the markup we need to make
-    // 100% width highlighted code lines work
-    const html = `<div class="gatsby-highlight">
+          // Allow users to specify a custom class prefix to avoid breaking
+          // line highlights if Prism is required by any other code.
+          // This supports custom user styling without causing Prism to
+          // re-process our already-highlighted markup.
+          // @see https://github.com/gatsbyjs/gatsby/issues/1486
+          const className = `${classPrefix}${languageName}`;
+
+          // Replace the node with the markup we need to make
+          // 100% width highlighted code lines work
+          const html = `<div class="gatsby-highlight">
       <pre class="${className}"><code class="${className}">${highlightCode(
-      language,
-      node.value,
-      highlightLines
-    )}</code></pre>
+            language,
+            node.value,
+            highlightLines
+          )}</code></pre>
       </div>`;
 
-    node.type = "html";
-    node.value = hasSpoilers ? withSpoilers(html) : html;
-  });
+          node.type = "html";
+          node.value = hasSpoilers ? withSpoilers(html) : html;
+          resolve();
+        })
+    )
+  );
 };
