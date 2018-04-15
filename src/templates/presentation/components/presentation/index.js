@@ -46,17 +46,29 @@ const toText = function(node) {
 };
 
 class Asciinema extends React.Component {
+  static defaultProps = {
+    theme: "monokai",
+    idleTimeLimit: 2,
+    poster: "npt:0:3"
+  };
+
+  bindRef = ref => {
+    this.ref = ref;
+  };
+
+  componentDidMount() {
+    asciinema.player.js.CreatePlayer(this.ref, this.props.src, this.props);
+  }
+
+  componentWillUnmount() {
+    if (!this.ref) return;
+
+    asciinema.player.js.UnmountPlayer(this.ref);
+    this.ref = null;
+  }
+
   render() {
-    return (
-      <asciinema-player
-        src={this.props.src}
-        preload
-        poster="npt:0:3"
-        idle-time-limit="2"
-        theme="monokai"
-        {...this.props}
-      />
-    );
+    return <div ref={this.bindRef} />;
   }
 }
 

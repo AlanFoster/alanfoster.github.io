@@ -1,6 +1,7 @@
 {
   "globals": {
-    "graphql": false
+    "graphql": false,
+    "asciinema": false
   },
   "parser": "babel-eslint",
   "plugins": [
@@ -17,7 +18,7 @@
   },
   "overrides": [
     {
-      "files": ["plugins/**"],
+      "files": ["plugins/**", "src/html.js"],
       "env": {
         "node": true
       },

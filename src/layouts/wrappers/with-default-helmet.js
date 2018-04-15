@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
-import { withPrefix } from "gatsby-link";
 
 const metadata = {
   name: "Alan Foster",
@@ -21,17 +20,7 @@ const DefaultHelmet = ({ children }) => (
           content: metadata.description
         }
       ]}
-    >
-      <script
-        src={withPrefix("/asciinema/asciinema-player.js")}
-        type="text/javascript"
-      />
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href={withPrefix("/asciinema/asciinema-player.css")}
-      />
-    </Helmet>
+    />
     {children}
   </div>
 );
