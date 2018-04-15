@@ -4,8 +4,7 @@ import PropTypes from "prop-types";
 // during gatsby production compilation cycle when the topmost spectacle
 // component is imported.
 import ComponentPlayground from "spectacle/lib/components/component-playground.js";
-import createTheme from "spectacle/lib/themes/default";
-const theme = createTheme();
+import { theme } from "components/presentations";
 
 class ReactExample extends React.Component {
   getChildContext() {

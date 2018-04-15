@@ -2,6 +2,7 @@ import React from "react";
 import Link from "gatsby-link";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
+import ProjectorIcon from "components/projector-icon";
 import styles from "./index.module.css";
 
 const Post = ({ data }) => {
@@ -11,6 +12,14 @@ const Post = ({ data }) => {
       <Helmet title={post.frontmatter.title} />
       <div>
         <div className={styles.date}>{post.frontmatter.date}</div>
+
+        <a
+          className={styles.viewPresentation}
+          href={`presentation/#${encodeURIComponent(post.fields.slug)}`}
+        >
+          <ProjectorIcon />
+        </a>
+
         <Link to={post.fields.slug}>
           <h1>{post.frontmatter.title}</h1>
         </Link>

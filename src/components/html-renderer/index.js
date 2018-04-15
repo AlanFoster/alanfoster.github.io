@@ -2,50 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import rehype2react from "rehype-react";
 import visit from "unist-util-visit";
-import ReactExample from "./components/react-example";
-import { Player, BigPlayButton } from "video-react";
-import Spoilers from "./components/spoilers";
-
-class Asciinema extends React.Component {
-  static defaultProps = {
-    theme: "monokai",
-    idleTimeLimit: 2,
-    poster: "npt:0:3"
-  };
-
-  bindRef = ref => {
-    this.ref = ref;
-  };
-
-  componentDidMount() {
-    asciinema.player.js.CreatePlayer(this.ref, this.props.src, this.props);
-  }
-
-  componentWillUnmount() {
-    if (!this.ref) return;
-
-    asciinema.player.js.UnmountPlayer(this.ref);
-    this.ref = null;
-  }
-
-  render() {
-    return <div ref={this.bindRef} />;
-  }
-}
-
-Asciinema.propTypes = {
-  src: PropTypes.string
-};
-
-const Video = ({ src }) => (
-  <Player playsInline preload src={src}>
-    <BigPlayButton position="center" />
-  </Player>
-);
-
-Video.propTypes = {
-  src: PropTypes.string
-};
+import ReactExample from "components/react-example";
+import Spoilers from "components/spoilers";
+import Asciinema from "components/asciinema";
+import Video from "components/video";
 
 const reactCompiler = new rehype2react({
   createElement: React.createElement,

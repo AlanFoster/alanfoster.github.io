@@ -1,5 +1,6 @@
 module.exports = {
   plugins: [
+    "gatsby-plugin-resolve-src",
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -14,7 +15,7 @@ module.exports = {
           "gatsby-plugin-sharp",
           "gatsby-remark-images",
           "gatsby-remark-autolink-headers",
-          "remark-prism-with-workshop-support",
+          "remark-prism-with-workshop-support"
         ]
       }
     }

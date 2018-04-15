@@ -1,3 +1,8 @@
 .date {
   color: #777;
 }
+
+.viewPresentation {
+  float: right;
+  padding: 0.6rem;
+}

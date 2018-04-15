@@ -1,6 +1,6 @@
 ---
 layout: workshop
-title:  Linux
+title:  Linux/Unix
 date:   2018-03-06 09:33:53
 category: workshop
 workshop: /workshops/linux/workshop-goals/

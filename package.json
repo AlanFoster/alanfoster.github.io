@@ -5,7 +5,7 @@
     "develop": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "lint": "eslint src plugins --ignore-pattern \"__snapshots__\" --ignore-pattern \"node_modules\"",
+    "lint": "eslint src plugins gatsby-*.js --ignore-pattern \"__snapshots__\" --ignore-pattern \"node_modules\"",
     "format": "prettier --write \"src/**/*.{markdown,css}\" && yarn run lint --fix",
     "deploy": "gatsby build && cp ./CNAME public/ && gh-pages -d public -b master",
     "test": "jest"
@@ -25,6 +25,7 @@
     "eslint-plugin-graphql": "^1.5.0",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.7.0",
+    "gatsby-plugin-resolve-src": "^1.1.3",
     "gatsby-plugin-sharp": "^1.6.37",
     "gatsby-remark-autolink-headers": "^1.4.13",
     "gatsby-remark-images": "^1.5.53",
