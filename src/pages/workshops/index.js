@@ -45,7 +45,9 @@ export const query = graphql`
   query WorkshopsQuery {
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { category: { eq: "workshop" } } }
+      filter: {
+        frontmatter: { category: { eq: "workshop" }, published: { ne: false } }
+      }
     ) {
       totalCount
       edges {

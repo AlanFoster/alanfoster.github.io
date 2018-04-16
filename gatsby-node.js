@@ -51,7 +51,9 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   const createMarkdownPages = new Promise(resolve => {
     graphql(`
       {
-        allMarkdownRemark {
+        allMarkdownRemark(
+          filter: { frontmatter: { published: { ne: false } } }
+        ) {
           edges {
             node {
               fields {
@@ -92,6 +94,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             fileAbsolutePath: {
               regex: "/pages/workshops/\\\\w+/workshop-goals/index.markdown/"
             }
+            frontmatter: { published: { ne: false } }
           }
         ) {
           edges {

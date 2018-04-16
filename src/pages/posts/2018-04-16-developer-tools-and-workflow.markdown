@@ -3,6 +3,7 @@ layout: post
 title:  Developer Workflow and workflow
 date:   2018-04-16 17:33:53
 category: post
+published: false
 ---
 
 It's important for developers to discuss their tools and work flow, it's how we can learn from one another.

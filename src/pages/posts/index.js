@@ -46,7 +46,9 @@ export const query = graphql`
   query PostsQuery {
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { category: { eq: "post" } } }
+      filter: {
+        frontmatter: { category: { eq: "post" }, published: { ne: false } }
+      }
     ) {
       totalCount
       edges {
