@@ -3,22 +3,9 @@ import { Heading, List, Image, Text, ComponentPlayground } from "spectacle";
 import visit from "unist-util-visit";
 import select from "unist-util-select";
 import toHtml from "hast-util-to-html";
-import createTheme from "spectacle/lib/themes/default";
 import Asciinema from "components/asciinema";
 import Video from "components/video";
-
-const theme = createTheme(
-  {
-    primary: "white",
-    secondary: "#1F2022",
-    tertiary: "#03A9FC",
-    quarternary: "#CECECE"
-  },
-  {
-    primary: "Montserrat",
-    secondary: "Helvetica"
-  }
-);
+import theme from './theme';
 
 const toText = function(node) {
   let text = "";
