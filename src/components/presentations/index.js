@@ -5,7 +5,7 @@ import select from "unist-util-select";
 import toHtml from "hast-util-to-html";
 import Asciinema from "components/asciinema";
 import Video from "components/video";
-import theme from './theme';
+import theme from "./theme";
 
 const toText = function(node) {
   let text = "";

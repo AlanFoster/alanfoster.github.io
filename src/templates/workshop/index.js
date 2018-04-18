@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import ProjectorIcon from "components/projector-icon";
+import EditIcon from "components/edit-icon";
 import HtmlRenderer from "components/html-renderer";
 import Menu from "./components/menu";
 import QuickNavigation from "./components/quick-navigation";
@@ -27,12 +28,22 @@ const Workshop = props => {
       <div className={contentClassName}>
         <div>
           <a
-            className={styles.viewPresentation}
+            className={styles.quickLink}
+            href={workshop.fields.editURL}
+            target="_blank"
+          >
+            <EditIcon />
+          </a>
+
+          <a
+            className={styles.quickLink}
             href={`../presentation/#${encodeURIComponent(
               workshop.fields.slug
             )}`}
           >
-            <ProjectorIcon />
+            <div className={styles.viewPresentation}>
+              <ProjectorIcon />
+            </div>
           </a>
 
           <HtmlRenderer ast={workshop.htmlAst} />
@@ -78,6 +89,7 @@ export const query = graphql`
       }
       fields {
         slug
+        editURL
       }
     }
   }

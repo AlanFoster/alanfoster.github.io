@@ -2,6 +2,7 @@ import React from "react";
 import Link from "gatsby-link";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
+import EditIcon from "components/edit-icon";
 import ProjectorIcon from "components/projector-icon";
 import styles from "./index.module.css";
 
@@ -14,10 +15,20 @@ const Post = ({ data }) => {
         <div className={styles.date}>{post.frontmatter.date}</div>
 
         <a
-          className={styles.viewPresentation}
+          className={styles.quickLink}
+          href={post.fields.editURL}
+          target="_blank"
+        >
+          <EditIcon />
+        </a>
+
+        <a
+          className={styles.quickLink}
           href={`presentation/#${encodeURIComponent(post.fields.slug)}`}
         >
-          <ProjectorIcon />
+          <div className={styles.viewPresentation}>
+            <ProjectorIcon />
+          </div>
         </a>
 
         <Link to={post.fields.slug}>
@@ -45,6 +56,7 @@ export const query = graphql`
       }
       fields {
         slug
+        editURL
       }
     }
   }

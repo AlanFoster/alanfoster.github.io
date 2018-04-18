@@ -12,6 +12,15 @@ exports.onCreateNode = async ({ node, getNode, boundActionCreators }) => {
       name: "slug",
       value: slug
     });
+
+    const fileNode = getNode(node.parent);
+    const baseEditUrl =
+      "https://github.com/AlanFoster/alanfoster.github.io/edit/develop/src";
+    createNodeField({
+      node,
+      name: "editURL",
+      value: path.join(baseEditUrl, fileNode.relativePath)
+    });
   }
 
   if (

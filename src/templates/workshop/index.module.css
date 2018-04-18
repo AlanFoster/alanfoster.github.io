@@ -1,4 +1,8 @@
-.viewPresentation {
+.quickLink {
   float: right;
   padding: 0.6rem;
+}
+
+.viewPresentation {
+  margin-top: 2px;
 }
