@@ -26,11 +26,14 @@ items:
   - title: Mocks
     link: /workshops/jest/mocks/
 
+  - title: More Mocks
+    link: /workshops/jest/more-mocks/
+
   - title: React
     link: /workshops/jest/react/
 
-  - title: Recipes
-    link: /workshops/jest/approaches/
+  - title: Insights
+    link: /workshops/jest/insights/
 
   - title: The End
     link: /workshops/jest/the-end/

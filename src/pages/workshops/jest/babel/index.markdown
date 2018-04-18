@@ -32,6 +32,21 @@ var add = function(x, y) {
 const add = (x, y) => x + y;
 ```
 
+## Babel Terminology
+
+Babel is easily configured via:
+
+* Plugins - These read your code and output the transformed code
+* Presets - A collection of Plugins
+
+There are many presets available, but the main official presets are:
+
+* `babel-preset-env` - Plugins to target a specific environment, i.e. browsers, or node
+* `babel-preset-react` - Plugins related to React, transforming JSX code
+* `babel-preset-flow` - Plugins to Facebook's [Flow](https://flow.org/)
+
+## Your turn
+
 To introduce this to your Jest setup, firstly install Babel-Core, the integration support for jest,
 as well as `babel-present-env` - which will provide access to the latest language features:
 
@@ -76,3 +91,23 @@ We can now make use of the more modern export/import syntax as a result of this 
 ```
 
 Make these changes to your project, and run your tests again.
+
+## Further configuration
+
+Babel provides the ability to configure your presets and plugins via `.babelrc`.
+For instance, we can configure which environments we want to target:
+
+```json
+{
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": ["last 2 versions", "safari >= 7"]
+        }
+      }
+    ]
+  ]
+}
+```

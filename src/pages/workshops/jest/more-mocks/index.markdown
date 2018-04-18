@@ -1,25 +1,6 @@
 ---
-title:  Jest workshop - Approaches
+title:  Jest workshop - More Mocks
 ---
-
-## Approaches
-
-As a developer you will notice common patterns when using Jest.
-
-Below are some examples / patterns / recipes / approaches you may find
-useful when developing.
-
-## Watch Mode
-
-Following Test Driven Development you will write your tests,
-and develop your code until your tests are green.
-
-The watch mechanism incorporated in to Jest is very powerful
-in this scenario. It can be activated with **`yarn run test --watch`**
-
-```asciinema
-./watch-jest.cast
-```
 
 ## Mocking Approaches
 
@@ -149,7 +130,7 @@ one of the following solutions:
 // Use spyOn
 jest.spyOn(Date, "now").mockReturnValueOnce(1234);
 
-// Globally override time
+// Globally override time, remember jest is sandboxed
 Date.now = function() {
   return 1234;
 };
@@ -165,7 +146,9 @@ Unlike `jest.spyOn`, you can use **`jest.mock(moduleName, factory, options)`** t
 ```javascript
 jest.mock("../client", function() {
   return {
-    get: jest.fn()
+    get: jest.fn().mockReturnValueOnce("..."),
+    post: jest.fn().mockReturnValueOnce("..."),
+    delete: jest.fn().mockReturnValueOnce("...")
   };
 });
 ```
@@ -185,59 +168,21 @@ jest.mock("react-virtualized/dist/commonjs/AutoSizer", function() {
 });
 ```
 
-If possible, I recommend avoiding the usage of this style of mocking as it is can easily be mis-used.
+You can spy on all functions within a module and modify particular behaviors too:
 
-## Debugging
+```javascript
+// Although this line appears first,
+// the `jest.mock` will run first.
+import someModule from "some-module";
 
-It is possible to debug your Jest tests with ease. First add a `debugger;' statement as appropriate:
+// This will spyOn all of your module's
+// functions by default
+jest.mock("some-module");
 
-```javascript{4}
-import * as metricsService from './metrics-service';
-
-export default function ({ eventType }) {
-  debugger;
-
-  metricsService.send({
-    event: `my_application_namespace.${eventType}`,
-    time: Date.now()
-  })
-};
+// Your test
+beforeEach(function() {
+  someModule.foo.mockReturnValueOnce("...");
+});
 ```
 
-The command to run your tests is slightly different:
-
-```bash
-# Run all tests. `--runInBand` stops Jest from running in parallel.
-$ node --inspect-brk node_modules/.bin/jest --runInBand
-
-# Running particular file
-$ node --inspect-brk node_modules/.bin/jest --runInBand ./src/metrics
-```
-
-We can now see that the Jest process is paused until a debugger attaches:
-
-![](./paused-jest.png "Example of Jest waiting until a debugger has attached")
-
-There are various debuggers available, however for this workshop we will use Chrome's.
-It is accessible via:
-
-```
-chrome://inspect/#devices
-```
-
-As a full example:
-
-```video
-./debugger-example.mp4
-```
-
-At the time of writing there is also support for:
-
-* VS Code
-* Webstorm
-* [etc etc](https://facebook.github.io/jest/docs/en/troubleshooting.html)
-
-## Difficulty testing?
-
-If your code is hard to test, perhaps there is an issue with your code. A common testing smell is a test which heavily
-relies on various complex mocks, or one which requires many imports.
+Before making use of any of Jest's advanced mocking capabilities, consider whether a`jest.spyOn` would suffice instead.

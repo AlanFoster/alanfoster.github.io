@@ -53,3 +53,22 @@ Storing the previous output of a function for future comparison.
 Inbuilt code coverage by supplying `--coverage` as an argument:
 
 ![](./test-coverage.png "Example of Jest showing the percentage of code that was successfully tested")
+
+## What's different?
+
+There are various testing libraries in existence already. Why would a developer choose Jest, over something else - such as Mocha, or Jasmine?
+
+On an average day, the key distinctions between Jest and $otherFramework are:
+
+* Snapshot testing
+* `expect(...).toBe(...)` creates human readable diffs
+* Advanced mocking capabilities, out of the box
+* Inbuilt caching to decrease bootup + overall testing times
+* Streamlined command line interface
+
+As your codebase matures, and your codebase and tests increase in size, some benefits between Jest and $otherFramework are:
+
+* Tests are executed in parallel
+* Each test ran in isolation
+* [jest-codemods](https://github.com/skovhus/jest-codemods) available to update to newer Jest releases
+* Community alignment on Jest - lots of tooling, tutorials, innovation
