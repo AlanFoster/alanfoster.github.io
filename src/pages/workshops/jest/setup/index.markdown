@@ -13,8 +13,7 @@ $ yarn --version
 v1.3.2
 ```
 
-If you do not have yarn visit [installing Yarn](https://yarnpkg.com/en/docs/install) for
-further details on how to install Yarn on your operating system.
+For full details, visit [installing Yarn](https://yarnpkg.com/en/docs/install).
 
 At the time of writing the recommended approach is to use homebrew for installing yarn:
 
@@ -48,6 +47,12 @@ This will generate a new `package.json` file similar to:
   "main": "index.js",
   "license": "MIT"
 }
+```
+
+For example:
+
+```asciinema
+./setup.cast
 ```
 
 Now we can install jest:
@@ -89,18 +94,6 @@ Let's define a script within our `package.json` file to run our test suite via j
 
 We can now run our JavaScript tests with the `yarn run` command:
 
-```bash
-$ yarn run test
-yarn run v1.3.2
-$ jest
-No tests found
-In ~/Documents/jest-workshop
-  1 file checked.
-  testMatch: **/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x) - 0 matches
-  testPathIgnorePatterns: /node_modules/ - 1 match
-Pattern:  - 0 matches
-error Command failed with exit code 1.
-info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
-```
+![](./empty-tests.png "Example there being no tests available")
 
 Oops, no tests? Let's add some tests!

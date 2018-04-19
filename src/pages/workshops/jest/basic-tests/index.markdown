@@ -33,21 +33,7 @@ describe("add", function() {
 
 We can re-run the tests and see that things are looking better:
 
-```bash
-➜  jest-workshop git:(master) ✗ yarn run test
-yarn run v1.3.2
-$ jest
- PASS  ./add.spec.js
-  add
-    ✓ adds two numbers (5ms)
-
-Test Suites: 1 passed, 1 total
-Tests:       1 passed, 1 total
-Snapshots:   0 total
-Time:        1.06s
-Ran all test suites.
-✨  Done in 1.90s.
-```
+![](./basic-test-running.png "Example of yarn run test showing one passing test")
 
 ## Your Turn
 
