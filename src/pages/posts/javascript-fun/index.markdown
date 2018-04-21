@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  JavaScript Abuse
+title:  JavaScript Fun
 date:   2012-01-28 09:33:53
 category: post
 ---
 
-If there's one thing I like to do in life, it's abuse JavaScript.
+If there's one thing I like to do in life, it's have fun with JavaScript.
 
 Can you guess what this code does?
 
