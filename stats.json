@@ -1,9 +1,5 @@
 {
   "assetsByChunkName": {
-    "path---posts-2011-05-04-welcome": [
-      "path---posts-2011-05-04-welcome-658df1a57bb432c83014.js",
-      "path---posts-2011-05-04-welcome-658df1a57bb432c83014.js.map"
-    ],
     "path---workshops-jest-babel": [
       "path---workshops-jest-babel-a20dd3d5ef294b0cfd38.js",
       "path---workshops-jest-babel-a20dd3d5ef294b0cfd38.js.map"
@@ -33,56 +29,68 @@
       "component---src-pages-index-js-7c64f50e14c0a03324c1.js.map"
     ],
     "path---workshops-jest-presentation": [
-      "path---workshops-jest-presentation-98ecae8775d5e34a614b.js",
-      "path---workshops-jest-presentation-98ecae8775d5e34a614b.js.map"
+      "path---workshops-jest-presentation-e99990998bf0b72b41db.js",
+      "path---workshops-jest-presentation-e99990998bf0b72b41db.js.map"
+    ],
+    "path---posts-implementing-finite-state-machines-using-java-enum": [
+      "path---posts-implementing-finite-state-machines-using-java-enum-b7a0bc6d42d8e19f87db.js",
+      "path---posts-implementing-finite-state-machines-using-java-enum-b7a0bc6d42d8e19f87db.js.map"
     ],
     "component---src-layouts-main-js": [
       "component---src-layouts-main-js-5f8b6743810b1a7fc45b.js",
       "component---src-layouts-main-js-5f8b6743810b1a7fc45b.js.map"
     ],
-    "path---posts-2017-06-03-running-react-unit-tests-within-docker": [
-      "path---posts-2017-06-03-running-react-unit-tests-within-docker-a933b8d5f6cb139093d0.js",
-      "path---posts-2017-06-03-running-react-unit-tests-within-docker-a933b8d5f6cb139093d0.js.map"
+    "path---posts-running-react-unit-tests-within-docker-presentation": [
+      "path---posts-running-react-unit-tests-within-docker-presentation-2a869f75cdacfa8f8632.js",
+      "path---posts-running-react-unit-tests-within-docker-presentation-2a869f75cdacfa8f8632.js.map"
     ],
     "path---workshops-jest-more-mocks": [
       "path---workshops-jest-more-mocks-61a607ffc37bec8ba6e9.js",
       "path---workshops-jest-more-mocks-61a607ffc37bec8ba6e9.js.map"
     ],
-    "path---posts-2017-05-31-feature-testing-with-capybara-page-objects-presentation": [
-      "path---posts-2017-05-31-feature-testing-with-capybara-page-objects-presentation-a38af5800d13ae8de723.js",
-      "path---posts-2017-05-31-feature-testing-with-capybara-page-objects-presentation-a38af5800d13ae8de723.js.map"
-    ],
     "path---workshops-jest-workshop-goals": [
       "path---workshops-jest-workshop-goals-ecc8817f723d515ef1ed.js",
       "path---workshops-jest-workshop-goals-ecc8817f723d515ef1ed.js.map"
+    ],
+    "path---posts-developer-tools-presentation": [
+      "path---posts-developer-tools-presentation-05a3de2ab5199e58708c.js",
+      "path---posts-developer-tools-presentation-05a3de2ab5199e58708c.js.map"
     ],
     "path---": [
       "path----b399d76988b174ef99b1.js",
       "path----b399d76988b174ef99b1.js.map"
     ],
-    "path---posts-2012-01-22-implementing-finite-state-machines-using-java-enum-presentation": [
-      "path---posts-2012-01-22-implementing-finite-state-machines-using-java-enum-presentation-71644b92c0fb62151580.js",
-      "path---posts-2012-01-22-implementing-finite-state-machines-using-java-enum-presentation-71644b92c0fb62151580.js.map"
+    "path---posts-welcome-presentation": [
+      "path---posts-welcome-presentation-c84372e26063c05b3cfb.js",
+      "path---posts-welcome-presentation-c84372e26063c05b3cfb.js.map"
     ],
     "path---workshops-linux-commands": [
       "path---workshops-linux-commands-fc4d5d4f2541e233efbe.js",
       "path---workshops-linux-commands-fc4d5d4f2541e233efbe.js.map"
     ],
+    "path---posts-javascript-fun-presentation": [
+      "path---posts-javascript-fun-presentation-37a08ef6566b854115c4.js",
+      "path---posts-javascript-fun-presentation-37a08ef6566b854115c4.js.map"
+    ],
     "path---workshops-linux-shell": [
       "path---workshops-linux-shell-1ce45f5d7c87fb188a3e.js",
       "path---workshops-linux-shell-1ce45f5d7c87fb188a3e.js.map"
     ],
-    "path---posts-2012-01-22-implementing-finite-state-machines-using-java-enum": [
-      "path---posts-2012-01-22-implementing-finite-state-machines-using-java-enum-b2bcd3d086945305ed9f.js",
-      "path---posts-2012-01-22-implementing-finite-state-machines-using-java-enum-b2bcd3d086945305ed9f.js.map"
+    "path---posts-javascript-fun": [
+      "path---posts-javascript-fun-b1aeb763468124ef3543.js",
+      "path---posts-javascript-fun-b1aeb763468124ef3543.js.map"
     ],
     "path---posts": [
-      "path---posts-1ff5478824ba21842017.js",
-      "path---posts-1ff5478824ba21842017.js.map"
+      "path---posts-ae3260b922d9be36a277.js",
+      "path---posts-ae3260b922d9be36a277.js.map"
     ],
     "path---index": [
       "path---index-a0e39f21c11f6a62c5ab.js",
       "path---index-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "path---posts-developer-tools": [
+      "path---posts-developer-tools-4c896aa53dd681051ffa.js",
+      "path---posts-developer-tools-4c896aa53dd681051ffa.js.map"
     ],
     "path---workshops-jest-globals-and-matchers": [
       "path---workshops-jest-globals-and-matchers-1d922f3a836515825327.js",
@@ -118,6 +126,14 @@
       "path---workshops-jest-basic-tests-78c3f359b25f416946e1.js",
       "path---workshops-jest-basic-tests-78c3f359b25f416946e1.js.map"
     ],
+    "path---posts-welcome": [
+      "path---posts-welcome-f67fa5b51386fa187130.js",
+      "path---posts-welcome-f67fa5b51386fa187130.js.map"
+    ],
+    "path---posts-running-react-unit-tests-within-docker": [
+      "path---posts-running-react-unit-tests-within-docker-89bc081d05b58e705119.js",
+      "path---posts-running-react-unit-tests-within-docker-89bc081d05b58e705119.js.map"
+    ],
     "path---talks-2015-02-02-react-presentation": [
       "path---talks-2015-02-02-react-presentation-aa5d936376e8407d15a3.js",
       "path---talks-2015-02-02-react-presentation-aa5d936376e8407d15a3.js.map"
@@ -134,21 +150,13 @@
       "path---talks-2015-12-01-capybara-feature-testing-presentation-299eeb6e462021c394d7.js",
       "path---talks-2015-12-01-capybara-feature-testing-presentation-299eeb6e462021c394d7.js.map"
     ],
-    "path---posts-2017-06-03-running-react-unit-tests-within-docker-presentation": [
-      "path---posts-2017-06-03-running-react-unit-tests-within-docker-presentation-b97a127541cb4413ecac.js",
-      "path---posts-2017-06-03-running-react-unit-tests-within-docker-presentation-b97a127541cb4413ecac.js.map"
-    ],
-    "path---posts-2011-05-04-welcome-presentation": [
-      "path---posts-2011-05-04-welcome-presentation-59efa7601b3dbbc669a5.js",
-      "path---posts-2011-05-04-welcome-presentation-59efa7601b3dbbc669a5.js.map"
-    ],
-    "path---posts-2012-01-28-javascript-abuse-presentation": [
-      "path---posts-2012-01-28-javascript-abuse-presentation-d0bae87db536c2943a7f.js",
-      "path---posts-2012-01-28-javascript-abuse-presentation-d0bae87db536c2943a7f.js.map"
-    ],
     "component---src-templates-post-index-js": [
-      "component---src-templates-post-index-js-5575986bfe9fead9d93f.js",
-      "component---src-templates-post-index-js-5575986bfe9fead9d93f.js.map"
+      "component---src-templates-post-index-js-fff00b1dacc68321ef23.js",
+      "component---src-templates-post-index-js-fff00b1dacc68321ef23.js.map"
+    ],
+    "path---posts-implementing-finite-state-machines-using-java-enum-presentation": [
+      "path---posts-implementing-finite-state-machines-using-java-enum-presentation-4bd5154b3ae241f1582c.js",
+      "path---posts-implementing-finite-state-machines-using-java-enum-presentation-4bd5154b3ae241f1582c.js.map"
     ],
     "component---src-templates-post-presentation-index-js": [
       "component---src-templates-post-presentation-index-js-1b8ef72ad24460f62c10.js",
@@ -158,27 +166,27 @@
       "component---src-layouts-presentation-js-675d78117a055188c0fd.js",
       "component---src-layouts-presentation-js-675d78117a055188c0fd.js.map"
     ],
-    "path---posts-2017-05-31-feature-testing-with-capybara-page-objects": [
-      "path---posts-2017-05-31-feature-testing-with-capybara-page-objects-809928ec561f659c8d4b.js",
-      "path---posts-2017-05-31-feature-testing-with-capybara-page-objects-809928ec561f659c8d4b.js.map"
-    ],
     "app": [
-      "app-e1af565debbc2ec99c48.js",
+      "app-9736065a1e41884dd26e.js",
       "build-js-styles.css",
-      "app-e1af565debbc2ec99c48.js.map",
+      "app-9736065a1e41884dd26e.js.map",
       "build-js-styles.css.map"
     ],
     "path---workshops-linux-context": [
       "path---workshops-linux-context-d1381fb9b21f1fbfb643.js",
       "path---workshops-linux-context-d1381fb9b21f1fbfb643.js.map"
     ],
+    "path---posts-feature-testing-with-capybara-page-objects-presentation": [
+      "path---posts-feature-testing-with-capybara-page-objects-presentation-7a2f299cf3a15e7b2828.js",
+      "path---posts-feature-testing-with-capybara-page-objects-presentation-7a2f299cf3a15e7b2828.js.map"
+    ],
     "path---workshops-jest-features": [
       "path---workshops-jest-features-d28c5daa102c00c5c048.js",
       "path---workshops-jest-features-d28c5daa102c00c5c048.js.map"
     ],
-    "path---posts-2012-01-28-javascript-abuse": [
-      "path---posts-2012-01-28-javascript-abuse-0f7a8b71f3c98367696d.js",
-      "path---posts-2012-01-28-javascript-abuse-0f7a8b71f3c98367696d.js.map"
+    "path---posts-feature-testing-with-capybara-page-objects": [
+      "path---posts-feature-testing-with-capybara-page-objects-9ae731b42627af72d3dd.js",
+      "path---posts-feature-testing-with-capybara-page-objects-9ae731b42627af72d3dd.js.map"
     ],
     "component---src-pages-posts-index-js": [
       "component---src-pages-posts-index-js-2b61d61e909eaf0041d9.js",
