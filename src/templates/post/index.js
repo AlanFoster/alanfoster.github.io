@@ -22,7 +22,7 @@ const Post = ({ data }) => {
           <EditIcon />
         </a>
 
-        <a className={styles.quickLink} href='presentation/'>
+        <a className={styles.quickLink} href="presentation/">
           <div className={styles.viewPresentation}>
             <ProjectorIcon />
           </div>

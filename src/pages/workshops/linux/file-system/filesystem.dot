@@ -1,0 +1,16 @@
+digraph G {
+    "/" -> bin
+    bin -> echo
+    bin -> "..."
+    bin -> ls
+    "/" -> boot
+    "/" -> home
+
+    home -> user1
+    home -> user2
+    home -> user3
+
+    user1 -> desktop
+    user1 -> documents -> "my-folder" -> "my-file"
+    user1 -> pictures
+}

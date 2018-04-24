@@ -26,7 +26,9 @@ const htmlAstToIntermediateRepresentation = function(ast) {
   const isImage = node => node.tagName === "img";
   const isCode = node => node.tagName === "pre";
   const isList = node => node.tagName === "ul";
-  const isStrong = node => node.tagName === "strong";
+  const isStrongText = (node, parent) =>
+    node.tagName === "strong" && parent.tagName !== "li";
+
   const isAsciinema = node => node.tagName === "asciinema";
   const isVideo = node => node.tagName === "video";
 
@@ -34,7 +36,7 @@ const htmlAstToIntermediateRepresentation = function(ast) {
   const isReactExample = node =>
     node.value && node.value.indexOf("\nreact-example->") === 0;
 
-  visit(ast, function(node) {
+  visit(ast, function(node, index, parent) {
     if (isHeader(node)) {
       result.push(select(node, "text")[0]);
     }
@@ -58,7 +60,7 @@ const htmlAstToIntermediateRepresentation = function(ast) {
       });
     }
 
-    if (isStrong(node)) {
+    if (isStrongText(node, parent)) {
       result.push(node);
     }
 

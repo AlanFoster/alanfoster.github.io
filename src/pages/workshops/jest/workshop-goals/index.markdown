@@ -4,6 +4,7 @@ title:  Jest
 date:   2018-02-25 09:33:53
 category: workshop
 workshop: /workshops/jest/workshop-goals/
+published: true
 ---
 
 #### Workshop Goals

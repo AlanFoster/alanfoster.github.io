@@ -1,5 +1,5 @@
 ---
-title:  Linux Workshop - Shell
+title:  Linux Workshop - Shell Language
 ---
 
 ## Shell
@@ -13,7 +13,7 @@ of shell:
 ## Common Command Line Shells
 
 There are various shells available, and multiple may be available on your current operating system.
-A command shell reads commands from the terminal, and interprets them.
+A command shell reads commands from the terminal,
 
 For instance:
 
@@ -36,20 +36,11 @@ $ echo $SHELL
 /bin/bash
 ```
 
-Note, in some scenarios you may find that your shell a symlink to an alternative shell:
-
-```bash
-$ ls -l $0
-
-lrwxrwxrwx 1 root root 4 Feb 17  2016 /bin/sh -> dash
-```
-
 ## Common Controls
 
 * Move left/right with directional keys
-* Delete a line with `ctrl+u`
-* Delete words with `ctrl+w`
-* _Interrupt_ a program with `ctrl+C`
+* Delete words with ctrl+w
+* _Interrupt_ a program with Ctrl+C
 
 ## Replaying Commands
 

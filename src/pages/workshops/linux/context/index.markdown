@@ -27,13 +27,15 @@ of the Multics operating system. In 1973 the fourth edition of **Unix** had now 
 a language principally developed by Dennis Ritchie. This was the first step of an operating system
 no longer using assembly code, and provided portability via a high level language.
 
-These various Unix distros were initially shared with universities, but eventually became proprietary and closed
+Various Unix distros were initially shared with universities, but eventually became proprietary and closed
 source.
+
+**Berkeley Software Distribution (BSD)** developed during this time. Example descenants of BSD include FreeBSD and OpenBSD.
 
 ### 1983
 
-Richard Stallman started **GNU** was an attempt to create a _free_ operating system. The goal was to implement operating
-system functionality such as:
+Richard Stallman started **GNU** was an attempt to create a _free_ operating system. The goal was to implement and release
+the source code for newly created operating system software such as:
 
 * A shell - Bash
 * A compiler - GNU C Compiler (GCC)
@@ -67,6 +69,10 @@ The **linux kernel** is developed and released publicly by a Finnish undergradua
 The source code is available from the first day. The name `Linux` is clever word play on `Unix` and `Linus`
 
 In 1992 the Linux Kernel is released together with the userland components offered by GNU and branded **GNU/Linux**.
+
+## 2000s
+
+Darwin Operating System developed by Apple Inc, based on BSD.
 
 ## A brief Reflection
 

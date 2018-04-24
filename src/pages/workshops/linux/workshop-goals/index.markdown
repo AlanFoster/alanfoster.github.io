@@ -12,7 +12,10 @@ published: false
 At the end of this workshop you will learn how to use a Linux environment
 
 * Brief context and history of Unix/POSIX/GNU/Linux
+* Applied use of Ubuntu
 * Common command line utility tools
 * The Shell language
 * The file system
-* Recipes
+* $path
+* Available Distros/VMs to use
+* Using shortcuts such as `cd ~ && pwd`

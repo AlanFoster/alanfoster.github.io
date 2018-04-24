@@ -8,11 +8,20 @@ items:
   - title: Context
     link: /workshops/linux/context/
 
+  - title: Your Environment
+    link: /workshops/linux/setup/
+
+  - title: File System
+    link: /workshops/linux/file-system/
+
   - title: Shell
     link: /workshops/linux/shell/
 
   - title: Commands
     link: /workshops/linux/commands/
+
+  - title: Pipes and Redirects
+    link: /workshops/linux/pipes-and-redirection/
 
   - title: Getting Help
     link: /workshops/linux/getting-help/
