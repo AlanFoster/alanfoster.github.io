@@ -16,6 +16,8 @@ const Workshop = props => {
     contentClassName,
     Footer
   } = props;
+
+
   const { sidebar, workshop } = data;
 
   return (
