@@ -204,3 +204,42 @@ describe('movie-list', function () {
   });
 });
 ```
+
+## Mocking
+
+If you have a more complex React render tree that you wish to mock out, you can make use of `jest.mock` to either
+change the component's functionality entirely or provide a placeholder React component.
+
+For instance, if you wished to provide a placeholder React component:
+
+```javascript
+jest.mock("third-party-component", function() {
+  return () => "MockedThirdPartyComponent";
+});
+```
+
+When used in conjunction with Jest's snapshotting capabilities, the generated snapshot will be readable:
+
+```javascript
+<div>
+  <MockedThirdPartyComponent
+    active={false}
+    onClick={[MockFunction onClick]}
+  />
+</div>
+```
+
+In other scenarios you may wish to change the semantics of a third party component entirely. For instance if you wished
+to change the behaviour of React-Virtualize's autosizer component:
+
+```javascript
+jest.mock("react-virtualized/dist/commonjs/AutoSizer", function() {
+  return function(props) {
+    const renderCallback = props.children;
+
+    return renderCallback({
+      width: 600
+    });
+  };
+});
+```

@@ -7,8 +7,6 @@ title:  Jest workshop - Asynchronous Testing
 In the land of JavaScript we often find ourselves writing callbacks, and asynchronous
 code:
 
-
-
 ```javascript{"title": "src/meaning-of-index/index.js"}
 const sevenAndAHalfMillionYearsLater = 2.3652e14;
 
@@ -57,7 +55,7 @@ describe("meaning-of-life", function() {
 
 We want to write a module for fetching a list of popular movies, and add the corresponding tests.
 
-```json{"title": "http://www.alanfoster.me/movies.json"} 
+```json{"title": "http://www.alanfoster.me/movies.json"}
 {
   "movies": [
     {

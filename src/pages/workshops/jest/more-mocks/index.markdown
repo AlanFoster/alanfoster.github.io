@@ -149,21 +149,6 @@ jest.mock("../client", function() {
 });
 ```
 
-For example, it is possible to entirely rewrite the functionality of an arbitrary file and change the semantics
-as desired:
-
-```javascript
-jest.mock("react-virtualized/dist/commonjs/AutoSizer", function() {
-  return function(props) {
-    const renderCallback = props.children;
-
-    return renderCallback({
-      width: 600
-    });
-  };
-});
-```
-
 When testing you may find yourself manually mocking all exposed methods of a given file. In this scenario
 it may be easier to rely on Jest's auto-mocking functionality which will mock all exposed functions by default
 if you do not supply a factory argument:
@@ -181,7 +166,7 @@ jest.mock("../foo", function() {
 jest.mock("../foo");
 ```
 
-You can spy on all functions within a module and modify particular behaviors too:
+With the automocking functionality, you can still spy on all functions within a module and modify particular behaviors too:
 
 ```javascript
 // Although this line appears first,
