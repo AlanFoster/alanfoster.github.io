@@ -49,9 +49,7 @@ There are some issues with calling out to the _real_ service during tests:
 
 Starting with the following service:
 
-`src/api/movies/index.js`
-
-```javascript
+```javascript{"title": "src/api/movies/index.js"}
 import "whatwg-fetch";
 
 export const fetchMovies = function() {
@@ -63,9 +61,7 @@ export const fetchMovies = function() {
 
 We wish to test the scenario of our movies list being empty:
 
-`src/api/movies/__tests__/index.spec.js`
-
-```javascript
+```javascript{"title": "src/api/movies/__tests__/index.spec.js"}
 import * as service from "../";
 
 describe("movies-api", function() {
@@ -99,7 +95,7 @@ A call to `jest.spyOn` will return a mock which we can configure. By default, th
 
 Before our test runs we can spy on the the fetch call and return our mock data:
 
-```javascript{6-15}
+```javascript{"highlight": "6-15"}
 import * as service from '../';
 
 describe('movies-api', function() {
@@ -129,7 +125,7 @@ describe('movies-api', function() {
 
 We can add another expectation to ensure that the fetch API was called as expected:
 
-```javascript{22}
+```javascript{"highlight": "22"}
 import * as service from '../';
 
 describe('movies-api', function() {
@@ -162,7 +158,7 @@ describe('movies-api', function() {
 
 Add an additional test for when there are multiple movies return from the movies endpoint.
 
-```spoilers javascript
+```javascript{"hasSpoilers": true}
 import * as service from '../';
 
 describe('movies-api', function() {

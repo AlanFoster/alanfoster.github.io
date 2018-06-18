@@ -78,25 +78,13 @@ module.exports = async (
     codeBlocks.map(
       node =>
         new Promise(async resolve => {
-          let language = node.lang;
+          let languageConfiguration = node.lang;
           let {
-            splitLanguage,
+            language,
+            title,
             highlightLines,
             hasSpoilers
-          } = parseLanguageDetails(language);
-          language = splitLanguage;
-
-          // PrismJS's theme styles are targeting pre[class*="language-"]
-          // to apply its styles. We do the same here so that users
-          // can apply a PrismJS theme and get the expected, ready-to-use
-          // outcome without any additional CSS.
-          //
-          // @see https://github.com/PrismJS/prism/blob/1d5047df37aacc900f8270b1c6215028f6988eb1/themes/prism.css#L49-L54
-          let languageName = "none";
-          if (language) {
-            language = language.toLowerCase();
-            languageName = language;
-          }
+          } = parseLanguageDetails(languageConfiguration);
 
           if (language === "react-example") {
             // Quick hack to shortcircuit react-examples, so that they can be picked
@@ -147,17 +135,24 @@ module.exports = async (
           // This supports custom user styling without causing Prism to
           // re-process our already-highlighted markup.
           // @see https://github.com/gatsbyjs/gatsby/issues/1486
-          const className = `${classPrefix}${languageName}`;
+          const className = `${classPrefix}${language}`;
 
           // Replace the node with the markup we need to make
           // 100% width highlighted code lines work
-          const html = `<div class="gatsby-highlight">
-      <pre class="${className}"><code class="${className}">${highlightCode(
+          const html = `
+            <div class="code-snippet">
+              ${
+                title ? `<code class="code-snippet__title">${title}</code>` : ""
+              }
+              <div class="gatsby-highlight">
+                <pre class="${className}"><code class="${className}">${highlightCode(
             language,
             node.value,
             highlightLines
           )}</code></pre>
-      </div>`;
+              </div>
+            </div>
+          `;
 
           node.type = "html";
           node.value = hasSpoilers ? withSpoilers(html) : html;

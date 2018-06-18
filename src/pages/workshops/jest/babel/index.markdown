@@ -68,9 +68,7 @@ this is true.
 
 We can now make use of the more modern export/import syntax as a result of this change:
 
-`add.js`
-
-```diff
+```diff{"title": "add.js"}
 -function add(x, y) {
 -  return x + y;
 -}
@@ -80,9 +78,7 @@ We can now make use of the more modern export/import syntax as a result of this 
 +export default add;
 ```
 
-`add.spec.js`
-
-```diff
+```diff{"title": "add.spec.js"}
 -const add = require('./add');
 +import add from './add';
 

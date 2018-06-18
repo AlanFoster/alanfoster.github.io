@@ -24,7 +24,10 @@ const htmlAstToIntermediateRepresentation = function(ast) {
   const isHeader = node =>
     node.tagName === "h1" || node.tagName === "h2" || node.tagName === "h3";
   const isImage = node => node.tagName === "img";
-  const isCode = node => node.tagName === "pre";
+  const isCodeTitle = node =>
+    node.tagName === "code" &&
+    (node.properties.className || []).indexOf("code-snippet__title") > -1;
+  const isCodeSnippet = node => node.tagName === "pre";
   const isList = node => node.tagName === "ul";
   const isStrongText = (node, parent) =>
     node.tagName === "strong" && parent.tagName !== "li";
@@ -45,7 +48,11 @@ const htmlAstToIntermediateRepresentation = function(ast) {
       result.push(node);
     }
 
-    if (isCode(node)) {
+    if (isCodeTitle(node)) {
+      result.push(node);
+    }
+
+    if (isCodeSnippet(node)) {
       result.push(node);
     }
 
@@ -89,6 +96,13 @@ const renderNodeToSpectacle = node => {
         {node.value}
       </Heading>
     );
+  }
+
+  if (
+    node.tagName === "code" &&
+    (node.properties.className || []).indexOf("code-snippet__title") > -1
+  ) {
+    return <div dangerouslySetInnerHTML={{ __html: toHtml(node) }} />;
   }
 
   if (node.tagName === "pre") {

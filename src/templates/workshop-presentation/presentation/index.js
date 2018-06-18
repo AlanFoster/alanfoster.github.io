@@ -160,6 +160,19 @@ class PresentationWithQuickLinks extends React.Component {
   };
 
   render() {
+    // const { overview, content, sidebar } = this.props.data;
+    // if (!overview) return null;
+    //
+    // const sidebarItems = sidebar.fields.yml.items;
+    // const pages = content.edges.reduce(function(acc, edge) {
+    //   acc[edge.node.fields.slug] = (
+    //     edge.node.htmlAst
+    //   );
+    //   return acc;
+    // }, {});
+    //
+    // return <pre>{JSON.stringify(pages, null, 4)}</pre>
+
     const activeSection = this.state.activeSection;
 
     return (

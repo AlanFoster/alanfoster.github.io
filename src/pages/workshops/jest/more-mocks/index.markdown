@@ -29,9 +29,7 @@ For the implementation we will take the given eventType, and interact with the
 metrics service with the current time, and a unique marker showing the origin of the
 event:
 
-`src/metrics/index.js`
-
-```javascript
+```javascript{"title": "src/metrics/index.js"}
 import * as metricsService from "./metrics-service";
 
 export default function({ eventType }) {
@@ -46,9 +44,7 @@ Writing a test is very easy for this scenario. We can import the underlying
 metrics API, directly use **`jest.spyOn`**, and mock the functionality as required,
 and assert that we have interacted with the API as intended:
 
-`src/metrics/__tests__/index.spec.js`
-
-```javascript
+```javascript{"title": "src/metrics/__tests__/index.spec.js"}
 import sendMetric from "../index";
 import * as originalMetricsService from "../metrics-service";
 
@@ -76,7 +72,7 @@ The tests passed initially, but when we ran our tests again they failed:
 
 It turns out that the hard-coded time stamp is the issue:
 
-```javascript{15}
+```javascript{"highlight": "15"}
 import sendMetric from "../index";
 import * as originalMetricsService from "../metrics-service";
 
@@ -101,7 +97,7 @@ describe("metrics-mocking-example", function() {
 There's many ways to fix this functionality. Firstly, if we do not care about the
 particular of the time, other than requiring it being a number:
 
-```javascript{15}
+```javascript{"highlight": "15"}
 import sendMetric from "../index";
 import * as originalMetricsService from "../metrics-service";
 
@@ -146,9 +142,9 @@ Unlike `jest.spyOn`, you can use **`jest.mock(moduleName, factory, options)`** t
 ```javascript
 jest.mock("../client", function() {
   return {
-    get: jest.fn().mockReturnValueOnce("..."),
-    post: jest.fn().mockReturnValueOnce("..."),
-    delete: jest.fn().mockReturnValueOnce("...")
+    get: jest.fn().mockReturnValueOnce(/* ... */),
+    post: jest.fn().mockReturnValueOnce(/* ... */),
+    delete: jest.fn().mockReturnValueOnce(/* ... */)
   };
 });
 ```
@@ -168,6 +164,23 @@ jest.mock("react-virtualized/dist/commonjs/AutoSizer", function() {
 });
 ```
 
+When testing you may find yourself manually mocking all exposed methods of a given file. In this scenario
+it may be easier to rely on Jest's auto-mocking functionality which will mock all exposed functions by default
+if you do not supply a factory argument:
+
+```javascript
+jest.mock("../foo", function() {
+  return {
+    fooMethod: jest.fn(),
+    barMethod: jest.fn()
+  };
+});
+
+// Equivalent to the above
+// Mock all exposed methods
+jest.mock("../foo");
+```
+
 You can spy on all functions within a module and modify particular behaviors too:
 
 ```javascript
@@ -176,7 +189,8 @@ You can spy on all functions within a module and modify particular behaviors too
 import someModule from "some-module";
 
 // This will spyOn all of your module's
-// functions by default
+// functions by default. This is hoisted
+// and runs first
 jest.mock("some-module");
 
 // Your test

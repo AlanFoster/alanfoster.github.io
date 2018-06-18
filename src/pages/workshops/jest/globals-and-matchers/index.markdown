@@ -73,7 +73,7 @@ Note that in Jest, `it` and `test` are aliases for one another.
 
 You can focus on particular tests with `it.only`:
 
-```javascript{3}
+```javascript{"highlight": "3"}
  describe('repository-list', function () {
    describe.only('when there is no data available', function () {
      it.only('renders no rows', function () {
@@ -93,7 +93,7 @@ You can focus on particular tests with `it.only`:
 
 If you want to run a specific block of code before, or after each test:
 
-```javascript{2-8}
+```javascript{"highlight": "2-8"}
 describe.only('my-library', function () {
   beforeEach(function () {
     console.log('Code called before each test');
@@ -143,3 +143,40 @@ Some common matchers that you might use are:
 * .toBeInstanceOf(Class)
 * .toContain(item)
 * .toThrow(error)
+
+## Gotcha!
+
+You may mised it, but Jest actually provides two ways of asserting equality:
+
+* .toBe(value)
+* .toEqual(value)
+
+You should use `toBe` for matching against primitives, or strict `===` equality.
+
+```javascript
+expect(result).toBe(primitive);
+expect(result).toBe(exactEquality);
+
+expect(result).toBe(1337); // result === 1337
+expect(result).toBe(true);
+expect(result).toBe(false);
+expect(result).toBe("hello world");
+
+expect(result).toBe(result); // result === result
+```
+
+You should use `toEqual` for other scenarios, for instance comparing complex objects
+
+```javascript
+expect(result).toEqual(someOtherObject); // result == someOtherObject
+
+// For instance:
+expect(result).toEqual({
+  movies: [
+    {
+      title: "The Hitchhiker's Guide to the Galaxy",
+      releaseYear: 2005
+    }
+  ]
+});
+```

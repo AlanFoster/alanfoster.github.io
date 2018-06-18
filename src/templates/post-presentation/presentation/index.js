@@ -67,8 +67,6 @@ Presentation.propTypes = {
 
 class PresentationWithQuickLinks extends React.Component {
   render() {
-    // const activeSection = this.state.activeSection;
-
     return (
       <div>
         <a href="../">
