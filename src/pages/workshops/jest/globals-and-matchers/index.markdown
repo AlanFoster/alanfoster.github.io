@@ -146,7 +146,7 @@ Some common matchers that you might use are:
 
 ## Gotcha!
 
-You may mised it, but Jest actually provides two ways of asserting equality:
+You may have missed it, but Jest actually provides two ways of asserting equality:
 
 * .toBe(value)
 * .toEqual(value)
