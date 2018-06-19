@@ -44,7 +44,7 @@ Writing a test is very easy for this scenario. We can import the underlying
 metrics API, directly use **`jest.spyOn`**, and mock the functionality as required,
 and assert that we have interacted with the API as intended:
 
-```javascript{"title": "src/metrics/__tests__/index.spec.js"}
+```javascript{"title": "src/metrics/__tests__/index.spec.js", "highlight": "7"}
 import sendMetric from "../index";
 import * as originalMetricsService from "../metrics-service";
 

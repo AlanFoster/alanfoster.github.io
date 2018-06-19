@@ -57,7 +57,7 @@ yarn add --dev babel-jest babel-core babel-preset-env
 To configure Babel to use the latest syntax features, we can create a `.babelrc` file specifying
 that we want to use the previously installed `babel-present-env` present:
 
-```json
+```json{"title": ".babelrc"}
 {
   "presets": ["env"]
 }
@@ -67,6 +67,14 @@ If we re-run the tests, nothing will have changed. Verify this to prove to yours
 this is true.
 
 We can now make use of the more modern export/import syntax as a result of this change:
+
+```diff{"title": "add.spec.js"}
+-const add = require('./add');
++import add from './add';
+
+ describe('add', function () {
+   it('adds two numbers', function () {
+```
 
 ```diff{"title": "add.js"}
 -function add(x, y) {
@@ -78,14 +86,6 @@ We can now make use of the more modern export/import syntax as a result of this 
 +export default add;
 ```
 
-```diff{"title": "add.spec.js"}
--const add = require('./add');
-+import add from './add';
-
- describe('add', function () {
-   it('adds two numbers', function () {
-```
-
 Make these changes to your project, and run your tests again.
 
 ## Further configuration
@@ -93,7 +93,7 @@ Make these changes to your project, and run your tests again.
 Babel provides the ability to configure your presets and plugins via `.babelrc`.
 For instance, we can configure which environments we want to target:
 
-```json
+```json{"title": ".babelrc"}
 {
   "presets": [
     [
