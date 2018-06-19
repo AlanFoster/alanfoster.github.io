@@ -1,8 +1,8 @@
 {
   "assetsByChunkName": {
     "path---workshops-jest-babel": [
-      "path---workshops-jest-babel-aab3bc002cb4b9159d20.js",
-      "path---workshops-jest-babel-aab3bc002cb4b9159d20.js.map"
+      "path---workshops-jest-babel-1735bf3d655d261f5a7b.js",
+      "path---workshops-jest-babel-1735bf3d655d261f5a7b.js.map"
     ],
     "path---workshops-jest-insights": [
       "path---workshops-jest-insights-ecaf7cb240f690d592ed.js",
@@ -33,8 +33,8 @@
       "component---src-pages-index-js-7c64f50e14c0a03324c1.js.map"
     ],
     "path---workshops-jest-presentation": [
-      "path---workshops-jest-presentation-f2ebc1d3d4ba45a729d0.js",
-      "path---workshops-jest-presentation-f2ebc1d3d4ba45a729d0.js.map"
+      "path---workshops-jest-presentation-fa8c6087a0190360f541.js",
+      "path---workshops-jest-presentation-fa8c6087a0190360f541.js.map"
     ],
     "path---posts-implementing-finite-state-machines-using-java-enum": [
       "path---posts-implementing-finite-state-machines-using-java-enum-47f983cd651fd998b04c.js",
@@ -49,8 +49,8 @@
       "path---posts-running-react-unit-tests-within-docker-presentation-be40ec4cfa14e0ec92dc.js.map"
     ],
     "path---workshops-jest-more-mocks": [
-      "path---workshops-jest-more-mocks-3a24b3d0f4eb8c85157e.js",
-      "path---workshops-jest-more-mocks-3a24b3d0f4eb8c85157e.js.map"
+      "path---workshops-jest-more-mocks-ae00897f38821f517696.js",
+      "path---workshops-jest-more-mocks-ae00897f38821f517696.js.map"
     ],
     "path---workshops-linux-setup": [
       "path---workshops-linux-setup-6a2da534b4922d681e22.js",
