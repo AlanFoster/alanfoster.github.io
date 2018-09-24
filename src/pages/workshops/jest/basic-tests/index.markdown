@@ -54,7 +54,7 @@ module.exports = multiply;
 var multiply = require('./multiply')
 
 describe('multiply', function () {
-  it('multiples 2 * 3 to be 6', function () {
+  it('multiplies 2 * 3 to be 6', function () {
     expect(multiply(2, 3)).toBe(6)
   });
 });

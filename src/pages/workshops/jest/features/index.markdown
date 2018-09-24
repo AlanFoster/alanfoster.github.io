@@ -54,6 +54,10 @@ Inbuilt code coverage by supplying `--coverage` as an argument:
 
 ![](./test-coverage.png "Example of Jest showing the percentage of code that was successfully tested")
 
+## Interactive Command Line
+
+Jest comes with an interactive command line which can help you control which tests you wish to test.
+
 ## What's different?
 
 There are various testing libraries in existence already. Why would a developer choose Jest, over something else - such as Mocha, or Jasmine?

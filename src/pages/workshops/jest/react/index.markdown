@@ -71,7 +71,7 @@ We will want to install the React dependencies as well as the core Jest dependen
 ```bash
 yarn add --dev react react-dom
 yarn add --dev react-test-renderer
-yarn add --dev jest babel-jest babel-preset-env babel-preset-react
+yarn add --dev jest babel-jest babel-core babel-preset-env babel-preset-react
 ```
 
 Ensure that your top level `.babelrc` looks like:
