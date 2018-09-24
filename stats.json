@@ -13,8 +13,8 @@
       "path---workshops-jest-the-end-3aa0cc826aaab90cf32e.js.map"
     ],
     "path---workshops-jest-react": [
-      "path---workshops-jest-react-51fecfaaf67f8e51d6ec.js",
-      "path---workshops-jest-react-51fecfaaf67f8e51d6ec.js.map"
+      "path---workshops-jest-react-7c23a82c9c6627503d2b.js",
+      "path---workshops-jest-react-7c23a82c9c6627503d2b.js.map"
     ],
     "path---workshops": [
       "path---workshops-41755e281d15d79ca1b0.js",
@@ -28,13 +28,17 @@
       "path---workshops-linux-shell-command-language-bb8a009e453820b2a90d.js",
       "path---workshops-linux-shell-command-language-bb8a009e453820b2a90d.js.map"
     ],
+    "path---talks-2017-06-28-flow-and-typescript-presentation": [
+      "path---talks-2017-06-28-flow-and-typescript-presentation-fe94f90f077c5e82b032.js",
+      "path---talks-2017-06-28-flow-and-typescript-presentation-fe94f90f077c5e82b032.js.map"
+    ],
     "component---src-pages-index-js": [
       "component---src-pages-index-js-7c64f50e14c0a03324c1.js",
       "component---src-pages-index-js-7c64f50e14c0a03324c1.js.map"
     ],
     "path---workshops-jest-presentation": [
-      "path---workshops-jest-presentation-09beff803585afa7b4f8.js",
-      "path---workshops-jest-presentation-09beff803585afa7b4f8.js.map"
+      "path---workshops-jest-presentation-bca9813b0bc3d4b7dfc9.js",
+      "path---workshops-jest-presentation-bca9813b0bc3d4b7dfc9.js.map"
     ],
     "path---posts-implementing-finite-state-machines-using-java-enum": [
       "path---posts-implementing-finite-state-machines-using-java-enum-47f983cd651fd998b04c.js",
@@ -135,8 +139,8 @@
       "path---workshops-jest-mocks-8b278894ea60ab259775.js.map"
     ],
     "path---workshops-jest-basic-tests": [
-      "path---workshops-jest-basic-tests-cc1080643dd789dcc2b2.js",
-      "path---workshops-jest-basic-tests-cc1080643dd789dcc2b2.js.map"
+      "path---workshops-jest-basic-tests-69ff1145207ad15d7044.js",
+      "path---workshops-jest-basic-tests-69ff1145207ad15d7044.js.map"
     ],
     "path---posts-welcome": [
       "path---posts-welcome-f67fa5b51386fa187130.js",
@@ -155,8 +159,8 @@
       "path---workshops-jest-setup-8b22f8c245419b9bbd14.js.map"
     ],
     "path---talks": [
-      "path---talks-ec0e048d248082fe30d9.js",
-      "path---talks-ec0e048d248082fe30d9.js.map"
+      "path---talks-1d3e96086b7c3b763bdb.js",
+      "path---talks-1d3e96086b7c3b763bdb.js.map"
     ],
     "path---talks-2015-12-01-capybara-feature-testing-presentation": [
       "path---talks-2015-12-01-capybara-feature-testing-presentation-299eeb6e462021c394d7.js",
@@ -179,9 +183,9 @@
       "component---src-layouts-presentation-js-675d78117a055188c0fd.js.map"
     ],
     "app": [
-      "app-9cd04fcefb05ffcfe628.js",
+      "app-dcbaa9b961a0a07f8c94.js",
       "build-js-styles.css",
-      "app-9cd04fcefb05ffcfe628.js.map",
+      "app-dcbaa9b961a0a07f8c94.js.map",
       "build-js-styles.css.map"
     ],
     "path---workshops-linux-context": [
@@ -193,8 +197,8 @@
       "path---posts-feature-testing-with-capybara-page-objects-presentation-03c6c869fb74221d48a8.js.map"
     ],
     "path---workshops-jest-features": [
-      "path---workshops-jest-features-8e140887362e3e4339e5.js",
-      "path---workshops-jest-features-8e140887362e3e4339e5.js.map"
+      "path---workshops-jest-features-999587127b5640bdab74.js",
+      "path---workshops-jest-features-999587127b5640bdab74.js.map"
     ],
     "path---posts-feature-testing-with-capybara-page-objects": [
       "path---posts-feature-testing-with-capybara-page-objects-ee217f53216f11655f43.js",
