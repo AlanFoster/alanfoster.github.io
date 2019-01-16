@@ -1,8 +1,10 @@
 import React from "react";
+import { graphql } from "gatsby";
 import PropTypes from "prop-types";
-import Link from "gatsby-link";
+import { Link } from "gatsby";
 import Helmet from "react-helmet";
 import styles from "./index.module.css";
+import Layout from "components/layouts/main";
 
 const Post = function({ frontmatter, excerpt, fields }) {
   return (
@@ -23,16 +25,23 @@ Post.propTypes = {
 };
 
 const Posts = function({ data }) {
-  if (!data) return <div>There are no posts</div>;
+  if (!data)
+    return (
+      <Layout>
+        <div>There are no posts</div>
+      </Layout>
+    );
 
   return (
-    <div>
-      <Helmet title="Posts" />
-      <h5>Posts</h5>
-      {data.allMarkdownRemark.edges.map(function({ node }) {
-        return <Post key={node.id} {...node} />;
-      })}
-    </div>
+    <Layout>
+      <div>
+        <Helmet title="Posts" />
+        <h5>Posts</h5>
+        {data.allMarkdownRemark.edges.map(function({ node }) {
+          return <Post key={node.id} {...node} />;
+        })}
+      </div>
+    </Layout>
   );
 };
 

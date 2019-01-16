@@ -2,7 +2,7 @@ import React from "react";
 import Component from "../";
 import renderer from "react-test-renderer";
 
-jest.mock("../components/spoilers", () => "Spoilers");
+jest.mock("../../spoilers/index.js", () => "Spoilers");
 jest.mock(
   "spectacle/lib/components/component-playground.js",
   () => "ComponentPlayground"

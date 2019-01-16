@@ -2,8 +2,8 @@ const path = require("path");
 const jsYaml = require("js-yaml");
 const { createFilePath, loadNodeContent } = require("gatsby-source-filesystem");
 
-exports.onCreateNode = async ({ node, getNode, boundActionCreators }) => {
-  const { createNodeField } = boundActionCreators;
+exports.onCreateNode = async ({ node, getNode, actions }) => {
+  const { createNodeField } = actions;
 
   if (node.internal.type === "MarkdownRemark") {
     const slug = createFilePath({ node, getNode, basePath: "pages" });
@@ -78,12 +78,10 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         const component = isWorkshop
           ? path.resolve("./src/templates/workshop/index.js")
           : path.resolve("./src/templates/post/index.js");
-        const layout = isWorkshop ? "workshop" : "main";
 
         createPage({
           path: node.fields.slug,
           component,
-          layout,
           context: {
             sidebarPath: isWorkshop ? extractSidebarPath(node) : null,
             slug: node.fields.slug
@@ -163,7 +161,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         createPage({
           path: path.join(node.fields.slug, "presentation"),
           component: path.resolve("./src/templates/post-presentation/index.js"),
-          layout: "presentation",
           context: {
             slug: node.fields.slug
           }
@@ -210,7 +207,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           component: path.resolve(
             "./src/templates/workshop-presentation/index.js"
           ),
-          layout: "presentation",
           context: {
             sidebarPath: extractSidebarPath(node),
             overviewPathRegex: `/${extractOverviewPath(node)}/`,
@@ -229,15 +225,4 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     createPostPresentation,
     createWorkshopPresentation
   ]);
-};
-
-exports.onCreatePage = async ({ page, boundActionCreators }) => {
-  const { createPage } = boundActionCreators;
-
-  return new Promise(resolve => {
-    page.layout = "main";
-    createPage(page);
-
-    resolve();
-  });
 };

@@ -1,5 +1,7 @@
 import React from "react";
+import { graphql } from "gatsby";
 import PropTypes from "prop-types";
+import Layout from "components/layouts/workshop";
 import Helmet from "react-helmet";
 import ProjectorIcon from "components/projector-icon";
 import EditIcon from "components/edit-icon";
@@ -9,49 +11,46 @@ import QuickNavigation from "./components/quick-navigation";
 import styles from "./index.module.css";
 
 const Workshop = props => {
-  const {
-    data,
-    wrapperClassName,
-    menuClassName,
-    contentClassName,
-    Footer
-  } = props;
+  const { data } = props;
   const { sidebar, workshop } = data;
 
   return (
-    <div className={wrapperClassName}>
-      <Helmet title={workshop.frontmatter.title} />
+    <Layout>
+      {({ Footer, wrapperClassName, menuClassName, contentClassName }) => (
+        <div className={wrapperClassName}>
+          <Helmet title={workshop.frontmatter.title} />
+          <div className={menuClassName}>
+            <Menu items={data.sidebar.fields.yml.items} />
+          </div>
+          <div className={contentClassName}>
+            <div>
+              <a
+                className={styles.quickLink}
+                href={workshop.fields.editURL}
+                target="_blank"
+              >
+                <EditIcon />
+              </a>
 
-      <div className={menuClassName}>
-        <Menu items={data.sidebar.fields.yml.items} />
-      </div>
-      <div className={contentClassName}>
-        <div>
-          <a
-            className={styles.quickLink}
-            href={workshop.fields.editURL}
-            target="_blank"
-          >
-            <EditIcon />
-          </a>
+              <a
+                className={styles.quickLink}
+                href={`../presentation/#${encodeURIComponent(
+                  workshop.fields.slug
+                )}`}
+              >
+                <div className={styles.viewPresentation}>
+                  <ProjectorIcon />
+                </div>
+              </a>
 
-          <a
-            className={styles.quickLink}
-            href={`../presentation/#${encodeURIComponent(
-              workshop.fields.slug
-            )}`}
-          >
-            <div className={styles.viewPresentation}>
-              <ProjectorIcon />
+              <HtmlRenderer ast={workshop.htmlAst} />
+              <QuickNavigation sidebar={sidebar} workshop={workshop} />
             </div>
-          </a>
-
-          <HtmlRenderer ast={workshop.htmlAst} />
-          <QuickNavigation sidebar={sidebar} workshop={workshop} />
+            <Footer />
+          </div>
         </div>
-        <Footer />
-      </div>
-    </div>
+      )}
+    </Layout>
   );
 };
 

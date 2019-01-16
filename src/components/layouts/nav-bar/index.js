@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Link from "gatsby-link";
+import { Link } from "gatsby";
 import styles from "./index.module.css";
 
 import {
@@ -12,6 +12,14 @@ import {
   NavItem,
   NavLink
 } from "reactstrap";
+
+const isActive = ({ isCurrent }) => {
+  return isCurrent ? { className: "nav-link active" } : null;
+};
+
+const isPartiallyActive = ({ isPartiallyCurrent }) => {
+  return isPartiallyCurrent ? { className: "nav-link active" } : null;
+};
 
 const NavLinkTag = props => (
   <Link {...props} to={props.href} activeClassName="active" />
@@ -32,22 +40,26 @@ const TopBar = ({ brand, onToggle, isOpen }) => (
     <Collapse isOpen={isOpen} navbar>
       <Nav className="ml-auto" navbar>
         <NavItem>
-          <NavLink exact tag={NavLinkTag} href="/">
+          <NavLink getProps={isActive} tag={NavLinkTag} href="/">
             About
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink strict tag={NavLinkTag} href="/posts">
+          <NavLink getProps={isPartiallyActive} tag={NavLinkTag} href="/posts">
             Posts
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink strict tag={NavLinkTag} href="/talks">
+          <NavLink getProps={isPartiallyActive} tag={NavLinkTag} href="/talks">
             Talks
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink strict tag={NavLinkTag} href="/workshops">
+          <NavLink
+            getProps={isPartiallyActive}
+            tag={NavLinkTag}
+            href="/workshops"
+          >
             Workshops
           </NavLink>
         </NavItem>
