@@ -1,31 +1,9 @@
-/* eslint-disable react/prop-types */
-
-// Ejected from gatsby.js with cp .cache/default-html.js src/html.js
-// https://www.gatsbyjs.org/docs/custom-html/#custom-html
 import React from "react";
-import { withPrefix } from "gatsby-link/index";
+import PropTypes from "prop-types";
+import { withPrefix } from "gatsby";
 
-let stylesStr;
-if (process.env.NODE_ENV === `production`) {
-  try {
-    stylesStr = require(`!raw-loader!../public/styles.css`);
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.log(e);
-  }
-}
-
-module.exports = class HTML extends React.Component {
+export default class HTML extends React.Component {
   render() {
-    let css;
-    if (process.env.NODE_ENV === `production`) {
-      css = (
-        <style
-          id="gatsby-inlined-css"
-          dangerouslySetInnerHTML={{ __html: stylesStr }}
-        />
-      );
-    }
     return (
       <html {...this.props.htmlAttributes}>
         <head>
@@ -45,10 +23,12 @@ module.exports = class HTML extends React.Component {
             href={withPrefix("/asciinema/asciinema-player.css")}
           />
           {this.props.headComponents}
-          {css}
         </head>
         <body {...this.props.bodyAttributes}>
           {this.props.preBodyComponents}
+          <noscript key="noscript" id="gatsby-noscript">
+            This app works best with JavaScript enabled.
+          </noscript>
           <div
             key={`body`}
             id="___gatsby"
@@ -59,4 +39,13 @@ module.exports = class HTML extends React.Component {
       </html>
     );
   }
+}
+
+HTML.propTypes = {
+  htmlAttributes: PropTypes.object,
+  headComponents: PropTypes.array,
+  bodyAttributes: PropTypes.object,
+  preBodyComponents: PropTypes.array,
+  body: PropTypes.string,
+  postBodyComponents: PropTypes.array
 };

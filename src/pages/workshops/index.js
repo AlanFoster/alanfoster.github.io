@@ -1,8 +1,10 @@
 import React from "react";
+import { graphql } from "gatsby";
 import PropTypes from "prop-types";
-import Link from "gatsby-link";
+import { Link } from "gatsby";
 import Helmet from "react-helmet";
 import styles from "./index.module.css";
+import Layout from "components/layouts/main";
 
 const Workshop = function({ frontmatter, html }) {
   return (
@@ -22,16 +24,23 @@ Workshop.propTypes = {
 };
 
 const Workshops = function({ data }) {
-  if (!data) return <div>There are no workshops</div>;
+  if (!data)
+    return (
+      <Layout>
+        <div>There are no workshops</div>
+      </Layout>
+    );
 
   return (
-    <div>
-      <Helmet title="Talks" />
-      <h5>Workshops</h5>
-      {data.allMarkdownRemark.edges.map(function({ node }) {
-        return <Workshop key={node.id} {...node} />;
-      })}
-    </div>
+    <Layout>
+      <div>
+        <Helmet title="Talks" />
+        <h5>Workshops</h5>
+        {data.allMarkdownRemark.edges.map(function({ node }) {
+          return <Workshop key={node.id} {...node} />;
+        })}
+      </div>
+    </Layout>
   );
 };
 

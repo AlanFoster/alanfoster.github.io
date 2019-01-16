@@ -1,7 +1,9 @@
 import React from "react";
+import { graphql } from "gatsby";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import styles from "./index.module.css";
+import Layout from "components/layouts/main";
 
 const Talk = function({ frontmatter, html }) {
   return (
@@ -21,16 +23,23 @@ Talk.propTypes = {
 };
 
 const Talks = function({ data }) {
-  if (!data) return <div>There are no talks</div>;
+  if (!data)
+    return (
+      <Layout>
+        <div>There are no talks</div>
+      </Layout>
+    );
 
   return (
-    <div>
-      <Helmet title="Talks" />
-      <h5>Talks</h5>
-      {data.allMarkdownRemark.edges.map(function({ node }) {
-        return <Talk key={node.id} {...node} />;
-      })}
-    </div>
+    <Layout>
+      <div>
+        <Helmet title="Talks" />
+        <h5>Talks</h5>
+        {data.allMarkdownRemark.edges.map(function({ node }) {
+          return <Talk key={node.id} {...node} />;
+        })}
+      </div>
+    </Layout>
   );
 };
 

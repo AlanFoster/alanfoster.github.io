@@ -23,7 +23,7 @@ const Presentation = ({ children }) => (
       />
     </Helmet>
 
-    {children()}
+    {children}
   </WithDefaultHelmet>
 );
 

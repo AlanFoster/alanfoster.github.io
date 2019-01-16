@@ -1,4 +1,6 @@
 import React from "react";
+import { graphql } from "gatsby";
+import Layout from "components/layouts/presentation";
 import PropTypes from "prop-types";
 
 let LoadedPresentation;
@@ -15,16 +17,20 @@ class WithoutServerSideRendering extends React.Component {
 
   componentDidMount() {
     // eslint-disable-next-line no-undef
-    LoadedPresentation = require("./presentation");
+    LoadedPresentation = require("./presentation").default;
     this.setState({ hasMounted: true });
   }
 
   render() {
     if (!this.state.hasMounted) {
-      return <div />;
+      return <Layout />;
     }
 
-    return <LoadedPresentation data={this.props.data} />;
+    return (
+      <Layout>
+        <LoadedPresentation data={this.props.data} />
+      </Layout>
+    );
   }
 }
 

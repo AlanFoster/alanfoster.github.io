@@ -10,7 +10,7 @@ import "./global";
 const Main = ({ children }) => (
   <WithDefaultHelmet>
     <WithTopNavigation>
-      <Container className={`${styles.content}`}>{children()}</Container>
+      <Container className={`${styles.content}`}>{children}</Container>
       <Footer />
     </WithTopNavigation>
   </WithDefaultHelmet>
