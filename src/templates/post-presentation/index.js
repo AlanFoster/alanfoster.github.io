@@ -1,37 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { graphql } from "gatsby";
-import Layout from "components/layouts/presentation";
 import PropTypes from "prop-types";
+import Layout from "components/layouts/presentation";
 
 let LoadedPresentation;
 
 // Wrapper required to load Spectacle Presentation
 // https://github.com/gatsbyjs/gatsby/issues/401
-class WithoutServerSideRendering extends React.Component {
-  constructor(...args) {
-    super(...args);
-    this.state = {
-      hasMounted: false
-    };
-  }
+function WithoutServerSideRendering({ data }) {
+  const [hasMounted, setHasMounted] = useState(false);
 
-  componentDidMount() {
+  useEffect(function () {
+    setHasMounted(true);
+    if (LoadedPresentation) return;
+
     // eslint-disable-next-line no-undef
     LoadedPresentation = require("./presentation").default;
-    this.setState({ hasMounted: true });
+  }, [hasMounted]);
+
+  if (!hasMounted) {
+    return <Layout />;
   }
 
-  render() {
-    if (!this.state.hasMounted) {
-      return <Layout />;
-    }
-
-    return (
-      <Layout>
-        <LoadedPresentation data={this.props.data} />
-      </Layout>
-    );
-  }
+  return (
+    <Layout>
+      <LoadedPresentation data={data} />
+    </Layout>
+  );
 }
 
 WithoutServerSideRendering.propTypes = {

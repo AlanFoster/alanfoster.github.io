@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Deck, Slide, Heading, List, ListItem, Link } from "spectacle";
 import {
   htmlAstToIntermediateRepresentation,
@@ -139,58 +139,45 @@ Presentation.propTypes = {
   onExitActiveSection: PropTypes.func
 };
 
-class PresentationWithQuickLinks extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
-      activeSection: null
-    };
-  }
+const PresentationWithQuickLinks = function (props) {
+  const [activeSection, setActiveSection] = useState(null);
 
-  onEnterActiveSection = section => {
-    this.setState({
-      activeSection: section
-    });
+  const onEnterActiveSection = section => {
+    setActiveSection(section);
   };
 
-  onExitActiveSection = () => {
-    this.setState({
-      activeSection: null
-    });
+  const onExitActiveSection = () => {
+    setActiveSection(null);
   };
 
-  render() {
-    // const { overview, content, sidebar } = this.props.data;
-    // if (!overview) return null;
-    //
-    // const sidebarItems = sidebar.fields.yml.items;
-    // const pages = content.edges.reduce(function(acc, edge) {
-    //   acc[edge.node.fields.slug] = (
-    //     edge.node.htmlAst
-    //   );
-    //   return acc;
-    // }, {});
-    //
-    // return <pre>{JSON.stringify(pages, null, 4)}</pre>
+  // const { overview, content, sidebar } = this.props.data;
+  // if (!overview) return null;
+  //
+  // const sidebarItems = sidebar.fields.yml.items;
+  // const pages = content.edges.reduce(function(acc, edge) {
+  //   acc[edge.node.fields.slug] = (
+  //     edge.node.htmlAst
+  //   );
+  //   return acc;
+  // }, {});
+  //
+  // return <pre>{JSON.stringify(pages, null, 4)}</pre>
 
-    const activeSection = this.state.activeSection;
+  return (
+    <div>
+      {activeSection && (
+        <a href={activeSection.link}>
+          <ViewSectionIcon className={styles.viewSection} />
+        </a>
+      )}
 
-    return (
-      <div>
-        {activeSection && (
-          <a href={activeSection.link}>
-            <ViewSectionIcon className={styles.viewSection} />
-          </a>
-        )}
-
-        <Presentation
-          {...this.props}
-          onEnterActiveSection={this.onEnterActiveSection}
-          onExitActiveSection={this.onExitActiveSection}
-        />
-      </div>
-    );
-  }
+      <Presentation
+        {...props}
+        onEnterActiveSection={onEnterActiveSection}
+        onExitActiveSection={onExitActiveSection}
+      />
+    </div>
+  );
 }
 
 export default PresentationWithQuickLinks;
