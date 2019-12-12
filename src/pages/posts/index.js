@@ -8,13 +8,19 @@ import Layout from "components/layouts/main";
 
 const Post = function({ frontmatter, excerpt, fields }) {
   return (
-    <div className={styles.post}>
-      <div className={styles.date}>{frontmatter.date}</div>
-      <Link to={fields.slug}>
-        <h1>{frontmatter.title}</h1>
-      </Link>
-      <div>{excerpt}</div>
-    </div>
+    <article className={styles.post}>
+      <div className={styles.heading}>
+        <Link to={fields.slug}>
+          <h1 className={styles.title}>
+            {frontmatter.title}
+          </h1>
+        </Link>
+        <div className={styles.date}>
+          {frontmatter.date}
+        </div>
+      </div>
+      <div dangerouslySetInnerHTML={{ __html: excerpt }} />
+    </article>
   );
 };
 
@@ -70,7 +76,7 @@ export const query = graphql`
           fields {
             slug
           }
-          excerpt(pruneLength: 500)
+          excerpt(format: HTML)
         }
       }
     }

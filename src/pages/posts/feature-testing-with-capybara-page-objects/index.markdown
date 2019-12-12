@@ -5,7 +5,8 @@ date:   2017-05-31 17:33:53
 category: post
 ---
 
-Page objects can be used as a powerful method of abstracting your tests from implementation. Importantly they can be used reduce fragile tests, and promote DRYness - via the encapsulation of common functionality within simple methods.
+Page objects can be used as a powerful method of abstracting your tests from implementation. Importantly they can be used reduce fragile tests, and promote DRYness - via the encapsulation of common functionality within simple methods. This article attempts to define the ubiquitous language of page objects, and how you might use them when testing your web applications.
+<!-- end-excerpt -->
 
 In plain terms:
 

@@ -9,6 +9,8 @@ Docker is a great way to provide a consistent environment for running your devel
 
 For instance; If you are making use of automated tests as part of your Continuous Integration pipeline, it can be useful to know how to run your JavaScript tests within a docker container.
 
+<!-- end-excerpt -->
+
 ### Your application
 
 This post assumes that you have a React/JavaScript application ready to be tested.

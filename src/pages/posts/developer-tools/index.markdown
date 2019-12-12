@@ -5,7 +5,8 @@ date:   2018-04-16 17:33:53
 category: post
 ---
 
-Here's a collection of useful tools that you may reap productivity from.
+Here's a collection of useful tools that you may reap productivity from. From password managers, to http clients - it's good to know what's available at your disposal.
+<!-- end-excerpt -->
 
 ### Last Pass
 

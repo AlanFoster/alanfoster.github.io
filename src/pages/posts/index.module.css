@@ -1,5 +1,13 @@
 .post {
-  margin-bottom: 4em;
+  margin-bottom: 3em;
+}
+
+.heading {
+  margin-bottom: 1em;
+}
+
+.title {
+  margin-bottom: 0;
 }
 
 .date {
