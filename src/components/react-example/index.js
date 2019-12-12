@@ -1,23 +1,37 @@
 import React from "react";
 import PropTypes from "prop-types";
-// Import the playground directly to avoid createHashHistory clashes
-// during gatsby production compilation cycle when the topmost spectacle
-// component is imported.
-import ComponentPlayground from "spectacle/lib/components/component-playground.js";
 import theme from "components/presentations/theme";
 
+let LoadedComponentPlayground;
+
 class ReactExample extends React.Component {
+  constructor(...args) {
+    super(...args);
+    this.state = {
+      hasMounted: false
+    };
+  }
+
   getChildContext() {
     return {
       styles: theme.screen
     };
   }
 
+  componentDidMount() {
+      LoadedComponentPlayground = require("spectacle/lib/components/component-playground.js").default;
+      this.setState({ hasMounted: true });
+  }
+
   render() {
+    if (!LoadedComponentPlayground) {
+      return <div />
+    }
+
     // We could use react-live directly, but for consistency between the presentation
     // and normal view this component depends on the spectacle wrapper
     return (
-      <ComponentPlayground theme="dark" code={this.props.code.toString()} />
+      <LoadedComponentPlayground theme="dark" code={this.props.code.toString()} />
     );
   }
 }
