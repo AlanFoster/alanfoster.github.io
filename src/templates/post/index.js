@@ -15,8 +15,6 @@ const Post = ({ data }) => {
       <div>
         <Helmet title={post.frontmatter.title} />
         <div>
-          <div className={styles.date}>{post.frontmatter.date}</div>
-
           <a
             className={styles.quickLink}
             href={post.fields.editURL}
@@ -31,9 +29,17 @@ const Post = ({ data }) => {
             </div>
           </a>
 
-          <Link to={post.fields.slug}>
-            <h1>{post.frontmatter.title}</h1>
-          </Link>
+          <div className={styles.heading}>
+            <Link to={post.fields.slug}>
+              <h1 className={styles.title}>
+                {post.frontmatter.title}
+              </h1>
+            </Link>
+            <div className={styles.date}>
+              {post.frontmatter.date}
+            </div>
+          </div>
+
           <div dangerouslySetInnerHTML={{ __html: post.html }} />
         </div>
       </div>

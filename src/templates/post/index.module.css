@@ -1,3 +1,11 @@
+.heading {
+  margin-bottom: 1em;
+}
+
+.title {
+  margin-bottom: 0;
+}
+
 .date {
   color: #777;
 }
