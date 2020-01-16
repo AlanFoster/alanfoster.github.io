@@ -7,7 +7,7 @@ title:  Jest workshop - Basic Tests
 Let's create a new file within the top level directory called `add.js`. It will be
 a function that takes two numbers, and returns the added value:
 
-```javascript{"title": "add.js"}
+```javascript {"title": "add.js"}
 function add(x, y) {
   return x + y;
 }
@@ -17,7 +17,7 @@ module.exports = add;
 
 And let's add the subsequent test:
 
-```javascript{"title": "add.spec.js"}
+```javascript {"title": "add.spec.js"}
 var add = require("./add");
 
 describe("add", function() {
@@ -40,7 +40,7 @@ Remember to run your tests with `yarn run test`
 
 `multiply.js`
 
-```javascript{"hasSpoilers": true}
+```javascript {"hasSpoilers": true}
 function multiply(x, y) {
   return x * y;
 }
@@ -50,7 +50,7 @@ module.exports = multiply;
 
 `multiply.spec.js`
 
-```javascript{"hasSpoilers": true}
+```javascript {"hasSpoilers": true}
 var multiply = require('./multiply')
 
 describe('multiply', function () {

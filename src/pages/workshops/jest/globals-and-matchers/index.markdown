@@ -73,7 +73,7 @@ Note that in Jest, `it` and `test` are aliases for one another.
 
 You can focus on particular tests with `it.only`:
 
-```javascript{"highlight": "3"}
+```javascript {"highlight": "3"}
  describe('repository-list', function () {
    describe.only('when there is no data available', function () {
      it.only('renders no rows', function () {
@@ -93,7 +93,7 @@ You can focus on particular tests with `it.only`:
 
 If you want to run a specific block of code before, or after each test:
 
-```javascript{"highlight": "2-8"}
+```javascript {"highlight": "2-8"}
 describe.only('my-library', function () {
   beforeEach(function () {
     console.log('Code called before each test');

@@ -7,7 +7,7 @@ title:  Jest workshop - Asynchronous Testing
 In the land of JavaScript we often find ourselves writing callbacks, and asynchronous
 code:
 
-```javascript{"title": "src/meaning-of-index/index.js"}
+```javascript {"title": "src/meaning-of-index/index.js"}
 const sevenAndAHalfMillionYearsLater = 2.3652e14;
 
 export default function() {
@@ -22,7 +22,7 @@ export default function() {
 Jest provides multiple ways of testing asynchronous code, however the `.resolves` and `.rejects`
 syntax can often be the easiest:
 
-```javascript{"title": "src/meaning-of-index/index.spec.js"}
+```javascript {"title": "src/meaning-of-index/index.spec.js"}
 import meaningOfLife from "../";
 
 describe("meaning-of-life", function() {
@@ -55,7 +55,7 @@ describe("meaning-of-life", function() {
 
 We want to write a module for fetching a list of popular movies, and add the corresponding tests.
 
-```json{"title": "http://www.alanfoster.me/movies.json"}
+```json  {"title": "http://www.alanfoster.me/movies.json"}
 {
   "movies": [
     {
@@ -82,7 +82,7 @@ yarn add --dev whatwg-fetch
 
 Create your new module for retrieving the movie list:
 
-```javascript{"title": "src/api/movies/index.js"}
+```javascript {"title": "src/api/movies/index.js"}
 import "whatwg-fetch";
 
 export const fetchMovies = function() {
@@ -99,7 +99,7 @@ Look at the initial example for inspiration.
 
 `src/api/movies/__tests__/index.spec.js`
 
-```javascript{"hasSpoilers": true}
+```javascript {"hasSpoilers": true}
 import * as service from '../';
 
 describe('movies-api', function() {

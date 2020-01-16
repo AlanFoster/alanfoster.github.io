@@ -78,13 +78,12 @@ module.exports = async (
     codeBlocks.map(
       node =>
         new Promise(async resolve => {
-          let languageConfiguration = node.lang;
           let {
             language,
             title,
             highlightLines,
             hasSpoilers
-          } = parseLanguageDetails(languageConfiguration);
+          } = parseLanguageDetails(node);
 
           if (language === "react-example") {
             // Quick hack to shortcircuit react-examples, so that they can be picked
@@ -148,6 +147,7 @@ module.exports = async (
                 <pre class="${className}"><code class="${className}">${highlightCode(
             language,
             node.value,
+            {},
             highlightLines
           )}</code></pre>
               </div>

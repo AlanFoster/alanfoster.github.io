@@ -29,7 +29,7 @@ For the implementation we will take the given eventType, and interact with the
 metrics service with the current time, and a unique marker showing the origin of the
 event:
 
-```javascript{"title": "src/metrics/index.js"}
+```javascript {"title": "src/metrics/index.js"}
 import * as metricsService from "./metrics-service";
 
 export default function({ eventType }) {
@@ -44,7 +44,7 @@ Writing a test is very easy for this scenario. We can import the underlying
 metrics API, directly use **`jest.spyOn`**, and mock the functionality as required,
 and assert that we have interacted with the API as intended:
 
-```javascript{"title": "src/metrics/__tests__/index.spec.js", "highlight": "7"}
+```javascript {"title": "src/metrics/__tests__/index.spec.js", "highlight": "7"}
 import sendMetric from "../index";
 import * as originalMetricsService from "../metrics-service";
 
@@ -72,7 +72,7 @@ The tests passed initially, but when we ran our tests again they failed:
 
 It turns out that the hard-coded time stamp is the issue:
 
-```javascript{"highlight": "15"}
+```javascript {"highlight": "15"}
 import sendMetric from "../index";
 import * as originalMetricsService from "../metrics-service";
 
@@ -97,7 +97,7 @@ describe("metrics-mocking-example", function() {
 There's many ways to fix this functionality. Firstly, if we do not care about the
 particular of the time, other than requiring it being a number:
 
-```javascript{"highlight": "15"}
+```javascript {"highlight": "15"}
 import sendMetric from "../index";
 import * as originalMetricsService from "../metrics-service";
 

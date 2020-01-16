@@ -23,7 +23,7 @@ in this scenario. It can be activated with **`yarn run test --watch`**
 
 It is possible to debug your Jest tests with ease. First add a `debugger;` statement as appropriate:
 
-```javascript{"highlight": "4"}
+```javascript {"highlight": "4"}
 import * as metricsService from './metrics-service';
 
 export default function ({ eventType }) {
@@ -86,7 +86,7 @@ This can be combined with using `it.only` to focus on one particular assertion a
 
 For example:
 
-```javascript{"highlight": "6,18,21-23,25-28}"}
+```javascript {"highlight": "6,18,21-23,25-28}"}
 import * as service from "../";
 
 describe("movies-api", function() {

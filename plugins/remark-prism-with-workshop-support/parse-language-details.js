@@ -1,11 +1,11 @@
 const rangeParser = require(`parse-numeric-range`);
 
-module.exports = languageConfig => {
-  const [language, config] = (languageConfig || "").split("{");
-  const parsedConfig = JSON.parse(config ? `{${config}` : "{}");
+module.exports = node => {
+  const language = (node.lang || "none").toLowerCase();
+  const parsedConfig = JSON.parse(node.meta || "{}");
 
   return {
-    language: (language || "none").toLowerCase(),
+    language: language,
     ...parsedConfig,
     highlightLines: rangeParser
       .parse(parsedConfig.highlight || "")

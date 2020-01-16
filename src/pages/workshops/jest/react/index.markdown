@@ -86,7 +86,7 @@ Ensure that your top level `.babelrc` looks like:
 
 Let's create a file for the movie list component:
 
-```javascript{"title": "src/movie-list/index.js"}
+```javascript {"title": "src/movie-list/index.js"}
 import React from "react";
 
 // Simple Stateless/Functional React Component
@@ -117,7 +117,7 @@ export default MovieList;
 
 Additionally create the initial test file:
 
-```javascript{"title": "src/movie-list/__tests__/index.spec.js"}
+```javascript {"title": "src/movie-list/__tests__/index.spec.js"}
 import React from "react";
 import Component from "../";
 import renderer from "react-test-renderer";
@@ -151,7 +151,7 @@ You can also see the additional snapshot file within your project structure:
 
 Let's modify our React component message to have a different message:
 
-```diff{"title": "src/movie-list/index.js"}
+```diff {"title": "src/movie-list/index.js"}
 -    return <div>There are no movies.</div>;
 +    return <div>Sorry, there are no movies available.</div>;
 ```
@@ -174,7 +174,7 @@ Now that the first test has been written, it is up to you to write the second te
 * ~~When the Component has no movies~~
 * When there are movies present
 
-```javascript{"hasSpoilers": true}
+```javascript {"hasSpoilers": true}
 import React from 'react';
 import Component from '../';
 import renderer from 'react-test-renderer';
