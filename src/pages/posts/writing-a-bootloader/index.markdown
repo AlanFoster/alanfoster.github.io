@@ -13,7 +13,7 @@ This article explains how to write a very simple x86 bootloader script which can
 
 When an x86 computer turns on, it executes firmware located in motherboard ROM.
 
-There are two main firemware standards:
+There are two main firmware standards:
 
 - BIOS - "Basic Input/Output System" - Older, simpler, but widely supported
 - UEFI - "Unified Extensible Firmware Interface" - Modern, with more features
@@ -26,13 +26,13 @@ When an x86 cpu boots, the BIOS is loaded from firmware into memory. It performs
 
 The BIOS generally checks for bootable disks in a specific order. This is potentially user-configurable, known as its bootdisk hierarchy. For instance, checking in the order: floppy disks, CD-ROM drive, then the first hard drive. The BIOS may handle each disk medium differently. For floppy disks the first 512 bytes are read into memory at a specific location, but extra steps may be required for hard drives which contain master boot record information, and CD-ROMs can be loaded entirely into memory and used as a RAM disk. Regardless of medium, the bootloader script will eventually be loaded at address 0x7C00.
 
-As the BIOS iterates through the disk hierachy it attempts find the **first readable 512 bytes** (called its _boot sector_) which ends with the **magic number 0xAA55**. Once found, the BIOS now gives control to the code which has been copied at address location 0x7C00.
+As the BIOS iterates through the disk hierarchy it attempts find the **first readable 512 bytes** (called its _boot sector_) which ends with the **magic number 0xAA55**. Once found, the BIOS now gives control to the code which has been copied at address location 0x7C00.
 
 Why the magic number 0xAA55? This the binary equivalent: 101010100101010. This may also be used to determine if your system is big endian or little endian - as it will read as either 0xAA55 or 0x55AA.
 
 ### Environment
 
-When the BIOS hands over control to your bootloader, the CPU is in 16-bit Real Mode, and the program counter will be running at physical address 0x7c00. Real mode was the only mode before the 80286 Intel processor which introduced protected mode. All processors initially run in real mode, for backwards compatability purposes.
+When the BIOS hands over control to your bootloader, the CPU is in 16-bit Real Mode, and the program counter will be running at physical address 0x7c00. Real mode was the only mode before the 80286 Intel processor which introduced protected mode. All processors initially run in real mode, for backwards compatibility purposes.
 
 In **real mode** you can:
 
@@ -46,7 +46,7 @@ In **protected mode** you can:
 - Access 32 bits
 - Prevent illegal writes to other program's memory that are running at the same time
 - Register fault handlers for faulting programs
-- Access four privilege levels. Ring 0 being the most unrestricteed, and ring 3 being the most restricted
+- Access four privilege levels. Ring 0 being the most unrestricted, and ring 3 being the most restricted
 
 #### Simple Bootloader example
 
@@ -98,7 +98,7 @@ A simplified example of printing to the screen can be shown:
 ```nasm
 mov ah, 0x0e    ; Set higher bits to the display character command
 mov al, 'a'     ; Set the lower bits to our character
-int 0x10        ; Call BIOS video service interupt, which will output 'a'
+int 0x10        ; Call BIOS video service interrupt, which will output 'a'
 ```
 
 ### Emulating x86 hardware
@@ -163,9 +163,17 @@ To enter protected mode you must:
 
 - Register 3 entries in the GDT (Global Descriptor Table)
     - null descriptor
-    - code segement descriptor
+    - code segment descriptor
     - data segment descriptor
+- Set the protected mode bit within the control register, `CR0`
 - Enable the A20 line, or addressing line 20, so that the CPU can access beyond 1mb of data
+
+The `lgdt` instruction takes a pointer to a structure in memory that is composed of two parts:
+
+- size (2 bytes)
+- offset (4 bytes)
+
+Each entry within the GDT is 8-bytes. A simple overview can be found on the osdev wiki - [Global Descriptor Table](https://wiki.osdev.org/Global_Descriptor_Table)
 
 ### x86/nasm Cheat sheet
 
@@ -183,7 +191,7 @@ To enter protected mode you must:
 **Global Descriptor Table**
 
 - Supplied by the kernel
-- Defines the various memory segments, what their size is, what they can accesss, what level they
+- Defines the various memory segments, what their size is, what they can access, what level they are
 
 **Interrupt Descriptor Table**
 
@@ -201,6 +209,8 @@ To enter protected mode you must:
 **BIOS Calls**
 
 - Generally set the AH register
+- Call the required interrupt, i.e. `int 0x10`
+- No longer available in protected mode
 
 **Labels**
 
@@ -225,3 +235,4 @@ To enter protected mode you must:
 - [Unix Acronym List](http://www.roesler-ac.de/wolfram/acro/credits.htm#1)
 - [Available x86 BIOS calls](https://en.wikipedia.org/wiki/BIOS_interrupt_call)
 - [x86 Registers](https://en.wikibooks.org/wiki/X86_Assembly/X86_Architecture)
+- [OS Dev - Writing a simple operating system from scratch](https://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lectures/os-dev.pdf)
