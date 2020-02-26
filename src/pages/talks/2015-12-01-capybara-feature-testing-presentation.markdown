@@ -3,7 +3,7 @@ layout: post
 title:  Capybara Feature Testing
 date:   2015-12-01 09:33:53
 category: talk
-slides: http://www.alanfoster.me/rspec-capybara-feature-testing/#/
+slides: https://www.alanfoster.me/rspec-capybara-feature-testing/#/
 ---
 
 This presentation provides a high level overview of how to begin testing your web applications

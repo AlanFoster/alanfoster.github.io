@@ -3,7 +3,7 @@ layout: post
 title:  React-native Presentation
 date:   2017-04-26 09:33:53
 category: talk
-slides: http://www.alanfoster.me/react-native-presentation/#/
+slides: https://www.alanfoster.me/react-native-presentation/#/
 ---
 
 [React-native](https://facebook.github.io/react-native/) boosts an impressive list of features. Importantly it allows
