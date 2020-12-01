@@ -17,6 +17,7 @@ const renderSection = section => {
         key={`${section.link}__${node_index}`}
         transition={["zoom"]}
         bgColor="primary"
+
       >
         {renderNodeToSpectacle(node)}
       </Slide>
@@ -37,6 +38,8 @@ class Presentation extends React.PureComponent {
         progress="bar"
         theme={theme}
         transitionDuration={500}
+        contentHeight='100vh'
+        contentWidth='80vw'
       >
         <Slide transition={["zoom"]} bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="black">
