@@ -16,8 +16,8 @@ Docker is a new and upcoming technology, this post walks through a high level ov
 Some benefits include:
 
 - Lightweight in comparison to virtual machines
-- Quickly testing testing disposable containers which run arbitrary software
-- By default the contain's file systems are isolated from your host machine's file system
+- Quickly testing disposable containers which run arbitrary software
+- By default the container's file systems are isolated from your host machine's file system
 
 Some limitations are:
 
