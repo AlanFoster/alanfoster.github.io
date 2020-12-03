@@ -19,7 +19,7 @@ exports.onCreateNode = async ({ node, getNode, actions }) => {
     createNodeField({
       node,
       name: "editURL",
-      value: path.join(baseEditUrl, fileNode.relativePath)
+      value: `${baseEditUrl}/${fileNode.relativePath}`
     });
   }
 
