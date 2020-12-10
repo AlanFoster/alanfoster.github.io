@@ -247,7 +247,7 @@ hello from inside of the container
 $
 ```
 
-More interestingly, **you can run this container with an interactive pseudo-tty**. This allows you to run arbitrary commands from within the the container in a similar manner to having SSH'd in to the container:
+More interestingly, **you can run this container with an interactive pseudo-tty**. This allows you to run arbitrary commands from within the container in a similar manner to having SSH'd in to the container:
 
 ```bash
 $ docker run --help
@@ -1075,7 +1075,7 @@ Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
 172.17.0.1 - - [01/Dec/2020 01:03:22] "GET / HTTP/1.1" 200 -
 ```
 
-For development purposes - to allow for the the docker container to communicate to the host, you can use a pseudo dns entries or an IP:
+For development purposes - to allow for the docker container to communicate to the host, you can use a pseudo dns entries or an IP:
 
 ```bash
 
@@ -1213,7 +1213,7 @@ DATABASE_URL=postgresql+psycopg2://postgres@database:5432/postgres
 
 **Kubernetes**
 
-Kubernetes takes the takes the art of running multi-container applications a step further. It also supports yaml configuration. However, it provides additional complexities such as application autoscaling, and deployment management of your production cluster. Although Kubernetes is more of a production tool, Docker for Desktop has support for Kubernetes:
+Kubernetes takes the art of running multi-container applications a step further. It also supports yaml configuration. However, it provides additional complexities such as application autoscaling, and deployment management of your production cluster. Although Kubernetes is more of a production tool, Docker for Desktop has support for Kubernetes:
 
 ![kubernetes](kubernetes.png)
 

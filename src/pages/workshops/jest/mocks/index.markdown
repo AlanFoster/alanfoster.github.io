@@ -93,7 +93,7 @@ jest.spyOn(object, methodName);
 
 A call to `jest.spyOn` will return a mock which we can configure. By default, the mock will call the original implementation.
 
-Before our test runs we can spy on the the fetch call and return our mock data:
+Before our test runs we can spy on the fetch call and return our mock data:
 
 ```javascript {"highlight": "6-15"}
 import * as service from '../';
