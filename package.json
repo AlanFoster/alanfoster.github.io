@@ -2,7 +2,7 @@
   "name": "alanfoster.github.io",
   "description": "alanfoster.github.io",
   "scripts": {
-    "develop": "gatsby develop",
+    "develop": "gatsby develop --host 0.0.0.0",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "lint": "eslint src plugins gatsby-*.js --ignore-pattern \"__snapshots__\" --ignore-pattern \"node_modules\"",

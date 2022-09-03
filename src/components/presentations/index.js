@@ -112,7 +112,7 @@ const renderNodeToSpectacle = node => {
   if (node.tagName === "img") {
     const src = extractLargestImage(node.properties.srcSet);
 
-    return <Image width="100%" src={src} alt={node.properties.title} />;
+    return <Image width="50%" src={src} alt={node.properties.title} />;
   }
 
   if (node.tagName === "ul") {

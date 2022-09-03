@@ -1,0 +1,16 @@
+*
+
+!plugins
+!src
+!static
+!.eslintrc.json
+!.gitignore
+!.prettierignore
+!CNAME
+!gatsby-config.js
+!gatsby-node.js
+!jest-preprocess.js
+!jest.config.js
+!package.json
+!README.md
+!yarn.lock
