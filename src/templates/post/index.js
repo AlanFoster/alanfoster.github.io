@@ -6,7 +6,7 @@ import Layout from "components/layouts/main";
 import Helmet from "react-helmet";
 import EditIcon from "components/edit-icon";
 import ProjectorIcon from "components/projector-icon";
-import styles from "./index.module.css";
+import * as styles from "./index.module.css";
 
 const Post = ({ data }) => {
   const post = data.markdownRemark;

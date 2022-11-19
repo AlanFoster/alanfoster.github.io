@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
-import styles from "./index.module.css";
+import * as styles from "./index.module.css";
 
 const getNavigation = function(sidebar, workshop) {
   const links = sidebar.fields.yml.items.map(item => item.link);

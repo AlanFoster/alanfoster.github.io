@@ -2,7 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
-import styles from "./index.module.css";
+import * as styles from "./index.module.css";
 import Layout from "components/layouts/main";
 
 const Talk = function({ frontmatter, html }) {

@@ -85,18 +85,6 @@ module.exports = async (
             hasSpoilers
           } = parseLanguageDetails(node);
 
-          if (language === "react-example") {
-            // Quick hack to shortcircuit react-examples, so that they can be picked
-            // up later and converted into a real react component. We can't swap this
-            // to be an HTML node, as we don't want the tree to be parsed. We want the
-            // original plaintext to be used later in the rendering process.
-            node.type = "text";
-            node.value = `react-example->${node.value.replace(/ /g, "Z")}`;
-
-            resolve();
-            return;
-          }
-
           if (language === "video") {
             const requiredFile = node.value.trim();
             const assetURL = await copyAssetPath({

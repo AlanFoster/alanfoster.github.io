@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Footer from "./footer";
 import WithDefaultHelmet from "./wrappers/with-default-helmet";
 import WithTopNavigation from "./wrappers/with-top-navigation";
-import styles from "./index.module.css";
+import * as styles from "./index.module.css";
 import "./global";
 
 const WorkshopLayout = props => {

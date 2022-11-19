@@ -1,5 +1,5 @@
 import React from "react";
-import { Heading, List, Image, Text, ComponentPlayground } from "spectacle";
+import { Heading, List, Image, Text } from "spectacle";
 import visit from "unist-util-visit";
 import select from "unist-util-select";
 import toHtml from "hast-util-to-html";
@@ -35,10 +35,6 @@ const htmlAstToIntermediateRepresentation = function(ast) {
   const isAsciinema = node => node.tagName === "asciinema";
   const isVideo = node => node.tagName === "video";
 
-  const reactPrefix = "react-example->";
-  const isReactExample = node =>
-    node.value && node.value.indexOf("\nreact-example->") === 0;
-
   visit(ast, function(node, index, parent) {
     if (isHeader(node)) {
       result.push(select(node, "text")[0]);
@@ -58,13 +54,6 @@ const htmlAstToIntermediateRepresentation = function(ast) {
 
     if (isList(node)) {
       result.push(node);
-    }
-
-    if (isReactExample(node)) {
-      result.push({
-        tagName: "react-example",
-        value: node.value.split(reactPrefix)[1].replace(/Z/g, " ")
-      });
     }
 
     if (isStrongText(node, parent)) {
@@ -129,10 +118,6 @@ const renderNodeToSpectacle = node => {
         })}
       </List>
     );
-  }
-
-  if (node.tagName === "react-example") {
-    return <ComponentPlayground theme="dark" code={node.value.toString()} />;
   }
 
   if (node.tagName === "strong") {

@@ -19,14 +19,3 @@ exports[`html-renderer when there is a heading does renders correctly 1`] = `
   </div>
 </div>
 `;
-
-exports[`html-renderer when there is a text node present which is a react-example does renders correctly 1`] = `
-<div>
-  <div>
-    <ComponentPlayground
-      code="This is slightly hacky"
-      theme="dark"
-    />
-  </div>
-</div>
-`;

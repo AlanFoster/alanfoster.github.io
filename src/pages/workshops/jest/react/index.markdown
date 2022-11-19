@@ -17,7 +17,7 @@ The component will:
 
 Below is an example of the component we have developed:
 
-```react-example
+```javascript
 // Simple Stateless/Functional React Component
 // https://reactjs.org/docs/components-and-props.html
 const MovieList = ({ movies }) => {

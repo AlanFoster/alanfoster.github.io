@@ -6,7 +6,7 @@ import {
   theme
 } from "components/presentations";
 import ViewSectionIcon from "components/view-article/index";
-import styles from "./styles.module.css";
+import * as styles from "./styles.module.css";
 
 import PropTypes from "prop-types";
 

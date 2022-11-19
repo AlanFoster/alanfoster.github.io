@@ -54,8 +54,8 @@ const extractOverviewPath = function(node) {
   );
 };
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createPage, createRedirect } = boundActionCreators;
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage, createRedirect } = actions;
 
   const createMarkdownPages = new Promise(resolve => {
     graphql(`

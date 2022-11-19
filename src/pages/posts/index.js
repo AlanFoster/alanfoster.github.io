@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
 import Helmet from "react-helmet";
-import styles from "./index.module.css";
+import * as styles from "./index.module.css";
 import Layout from "components/layouts/main";
 
 const Post = function({ frontmatter, excerpt, fields }) {

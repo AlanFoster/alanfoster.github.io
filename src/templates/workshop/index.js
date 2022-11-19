@@ -8,7 +8,7 @@ import EditIcon from "components/edit-icon";
 import HtmlRenderer from "components/html-renderer";
 import Menu from "./components/menu";
 import QuickNavigation from "./components/quick-navigation";
-import styles from "./index.module.css";
+import * as styles from "./index.module.css";
 
 const Workshop = props => {
   const { data } = props;
