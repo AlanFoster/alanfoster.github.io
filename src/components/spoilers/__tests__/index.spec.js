@@ -7,7 +7,7 @@ reactstrap.Collapse = ({ isOpen, children }) => (isOpen ? children : null);
 
 describe("spoilers", function() {
   describe("when closed", function() {
-    fit("does not render its children", function() {
+    it("does not render its children", function() {
       let tree;
       renderer.act(() => {
         tree = renderer.create(
