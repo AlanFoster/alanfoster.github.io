@@ -18,8 +18,11 @@ const isCodeTitle = (node) =>
   (node.properties.className || []).indexOf("code-snippet__title") > -1;
 const isCodeSnippet = (node) => node.tagName === "pre";
 const isList = (node) => node.tagName === "ul";
-const isStrongText = (node, parent) =>
-  node.tagName === "strong" && parent.tagName !== "li";
+const isStrongText = (node, parent) => {
+  if (parent && parent.tagName === "li") return false;
+
+  return node.tagName === "strong";
+};
 
 const isAsciinema = (node) => node.tagName === "asciinema";
 const isVideo = (node) => node.tagName === "video";
