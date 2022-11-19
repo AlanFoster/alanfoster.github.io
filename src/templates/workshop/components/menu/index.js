@@ -1,12 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "gatsby";
 import * as styles from "./index.module.css";
+import { Link } from "gatsby";
+import PropTypes from "prop-types";
+import React from "react";
 
 const WorkshopMenu = ({ items }) => (
   <nav className="navbar">
     <ul className={`navbar-nav ${styles.list}`}>
-      {items.map(function(item, index) {
+      {items.map(function (item, index) {
         return (
           <li className="nav-item" key={item.title}>
             <Link
@@ -28,9 +28,9 @@ WorkshopMenu.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
       link: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired
+      title: PropTypes.string.isRequired,
     })
-  )
+  ),
 };
 
 export default WorkshopMenu;

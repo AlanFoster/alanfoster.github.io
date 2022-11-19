@@ -1,7 +1,7 @@
-import React, { useState, useEffect }  from "react";
+import Layout from "components/layouts/presentation";
 import { graphql } from "gatsby";
 import PropTypes from "prop-types";
-import Layout from "components/layouts/presentation";
+import React, { useState, useEffect } from "react";
 
 let LoadedPresentation;
 
@@ -10,13 +10,16 @@ let LoadedPresentation;
 function WithoutServerSideRendering({ data }) {
   const [hasMounted, setHasMounted] = useState(false);
 
-  useEffect(function () {
-    setHasMounted(true);
-    if (LoadedPresentation) return;
+  useEffect(
+    function () {
+      setHasMounted(true);
+      if (LoadedPresentation) return;
 
-    // eslint-disable-next-line no-undef
-    LoadedPresentation = require("./presentation").default;
-  }, [hasMounted]);
+      // eslint-disable-next-line no-undef
+      LoadedPresentation = require("./presentation").default;
+    },
+    [hasMounted]
+  );
 
   if (!hasMounted) {
     return <Layout />;
@@ -30,7 +33,7 @@ function WithoutServerSideRendering({ data }) {
 }
 
 WithoutServerSideRendering.propTypes = {
-  data: PropTypes.object
+  data: PropTypes.object,
 };
 
 export default WithoutServerSideRendering;

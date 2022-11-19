@@ -1,5 +1,5 @@
 ---
-title:  Jest workshop - Test Structure
+title: Jest workshop - Test Structure
 ---
 
 # Globals
@@ -11,8 +11,8 @@ For example the `describe`, `it` and `expect` functions within our first tests:
 ```javascript
 var add = require("./add");
 
-describe("add", function() {
-  it("adds 2 + 3 to be 5", function() {
+describe("add", function () {
+  it("adds 2 + 3 to be 5", function () {
     expect(add(2, 3)).toBe(5);
   });
 });
@@ -32,15 +32,15 @@ describe(name, function);
 For example:
 
 ```javascript
-describe("repository-list", function() {
-  describe("when there is no data available", function() {
-    it("renders no rows", function() {
+describe("repository-list", function () {
+  describe("when there is no data available", function () {
+    it("renders no rows", function () {
       // ...
     });
   });
 
-  describe("when there is data available", function() {
-    it("renders no rows", function() {
+  describe("when there is data available", function () {
+    it("renders no rows", function () {
       // ...
     });
   });
@@ -58,11 +58,11 @@ it(description, function, timeout);
 For example:
 
 ```javascript
-it("returns false", function() {
+it("returns false", function () {
   expect(yourFunction()).toBe(false);
 });
 
-it("returns true", function() {
+it("returns true", function () {
   expect(yourOtherFunction()).toBe(true);
 });
 ```
@@ -74,19 +74,19 @@ Note that in Jest, `it` and `test` are aliases for one another.
 You can focus on particular tests with `it.only`:
 
 ```javascript {"highlight": "3"}
- describe('repository-list', function () {
-   describe.only('when there is no data available', function () {
-     it.only('renders no rows', function () {
-       // ...
-     });
-   });
+describe("repository-list", function () {
+  describe.only("when there is no data available", function () {
+    it.only("renders no rows", function () {
+      // ...
+    });
+  });
 
-   describe('when there is data available', function () {
-     it('renders rows', function () {
-       // ...
-     });
-   });
- });
+  describe("when there is data available", function () {
+    it("renders rows", function () {
+      // ...
+    });
+  });
+});
 ```
 
 ## beforeEach / afterEach
@@ -94,23 +94,23 @@ You can focus on particular tests with `it.only`:
 If you want to run a specific block of code before, or after each test:
 
 ```javascript {"highlight": "2-8"}
-describe.only('my-library', function () {
+describe.only("my-library", function () {
   beforeEach(function () {
-    console.log('Code called before each test');
+    console.log("Code called before each test");
   });
 
   afterEach(function () {
-    console.log('Code called after each test');
+    console.log("Code called after each test");
   });
 
-  it('works when...', function () {
-    console.log('first test called');
+  it("works when...", function () {
+    console.log("first test called");
 
     expect(true).toBe(true);
   });
 
-  it('also works when...', function () {
-    console.log('second test called');
+  it("also works when...", function () {
+    console.log("second test called");
 
     expect(true).toBe(true);
   });
@@ -134,22 +134,22 @@ Out of the box Jest provides lots of useful matchers, and you can even write you
 
 Some common matchers that you might use are:
 
-* .toBe(value)
-* .toEqual(value)
-* .toMatchSnapshot(optionalString)
-* .toHaveBeenCalled()
-* .toHaveBeenCalledTimes(number)
-* .toHaveBeenCalledWith(arg1, arg2, ...)
-* .toBeInstanceOf(Class)
-* .toContain(item)
-* .toThrow(error)
+- .toBe(value)
+- .toEqual(value)
+- .toMatchSnapshot(optionalString)
+- .toHaveBeenCalled()
+- .toHaveBeenCalledTimes(number)
+- .toHaveBeenCalledWith(arg1, arg2, ...)
+- .toBeInstanceOf(Class)
+- .toContain(item)
+- .toThrow(error)
 
 ## Gotcha!
 
 You may have missed it, but Jest actually provides two ways of asserting equality:
 
-* .toBe(value)
-* .toEqual(value)
+- .toBe(value)
+- .toEqual(value)
 
 You should use `toBe` for matching against primitives, or strict `===` equality.
 
@@ -175,8 +175,8 @@ expect(result).toEqual({
   movies: [
     {
       title: "The Hitchhiker's Guide to the Galaxy",
-      releaseYear: 2005
-    }
-  ]
+      releaseYear: 2005,
+    },
+  ],
 });
 ```

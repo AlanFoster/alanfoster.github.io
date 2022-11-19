@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import WithDefaultHelmet from "./wrappers/with-default-helmet";
-import Helmet from "react-helmet";
 import "./global";
+import WithDefaultHelmet from "./wrappers/with-default-helmet";
+import PropTypes from "prop-types";
+import React from "react";
+import Helmet from "react-helmet";
 
 const Presentation = ({ children }) => (
   <WithDefaultHelmet>
@@ -28,7 +28,7 @@ const Presentation = ({ children }) => (
 );
 
 Presentation.propTypes = {
-  children: PropTypes.func.isRequired
+  children: PropTypes.func.isRequired,
 };
 
 export default Presentation;

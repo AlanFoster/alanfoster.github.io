@@ -1,11 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Container } from "reactstrap";
+import Footer from "./footer";
+import "./global";
+import * as styles from "./index.module.css";
 import WithDefaultHelmet from "./wrappers/with-default-helmet";
 import WithTopNavigation from "./wrappers/with-top-navigation";
-import Footer from "./footer";
-import * as styles from "./index.module.css";
-import "./global";
+import PropTypes from "prop-types";
+import React from "react";
+import { Container } from "reactstrap";
 
 const Main = ({ children }) => (
   <WithDefaultHelmet>
@@ -17,7 +17,7 @@ const Main = ({ children }) => (
 );
 
 Main.propTypes = {
-  children: PropTypes.func.isRequired
+  children: PropTypes.func.isRequired,
 };
 
 export default Main;

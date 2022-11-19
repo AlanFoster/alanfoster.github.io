@@ -1,5 +1,5 @@
 ---
-title:  Linux Workshop - Setup
+title: Linux Workshop - Setup
 ---
 
 ## Virtual Machine
@@ -22,5 +22,5 @@ It is possible to run
 A shell provides access to the operating system's services. At a high level there are two kinds
 of shell:
 
-* Command Line Interface - CLI
-* Graphical User Interface - GUI
+- Command Line Interface - CLI
+- Graphical User Interface - GUI

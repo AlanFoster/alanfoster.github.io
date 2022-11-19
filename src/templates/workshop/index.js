@@ -1,16 +1,16 @@
-import React from "react";
-import { graphql } from "gatsby";
-import PropTypes from "prop-types";
-import Layout from "components/layouts/workshop";
-import Helmet from "react-helmet";
-import ProjectorIcon from "components/projector-icon";
-import EditIcon from "components/edit-icon";
-import HtmlRenderer from "components/html-renderer";
 import Menu from "./components/menu";
 import QuickNavigation from "./components/quick-navigation";
 import * as styles from "./index.module.css";
+import EditIcon from "components/edit-icon";
+import HtmlRenderer from "components/html-renderer";
+import Layout from "components/layouts/workshop";
+import ProjectorIcon from "components/projector-icon";
+import { graphql } from "gatsby";
+import PropTypes from "prop-types";
+import React from "react";
+import Helmet from "react-helmet";
 
-const Workshop = props => {
+const Workshop = (props) => {
   const { data } = props;
   const { sidebar, workshop } = data;
 
@@ -28,6 +28,7 @@ const Workshop = props => {
                 className={styles.quickLink}
                 href={workshop.fields.editURL}
                 target="_blank"
+                rel="noreferrer"
               >
                 <EditIcon />
               </a>
@@ -59,7 +60,7 @@ Workshop.propTypes = {
   wrapperClassName: PropTypes.string,
   menuClassName: PropTypes.string,
   contentClassName: PropTypes.string,
-  Footer: PropTypes.func.isRequired
+  Footer: PropTypes.func.isRequired,
 };
 
 export default Workshop;

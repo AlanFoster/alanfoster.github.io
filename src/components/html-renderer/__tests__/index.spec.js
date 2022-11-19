@@ -1,12 +1,12 @@
-import React from "react";
 import Component from "../";
+import React from "react";
 import renderer from "react-test-renderer";
 
 jest.mock("../../spoilers/index.js", () => "Spoilers");
 
-describe("html-renderer", function() {
-  describe("when there is a heading", function() {
-    it("does renders correctly", function() {
+describe("html-renderer", function () {
+  describe("when there is a heading", function () {
+    it("does renders correctly", function () {
       const ast = {
         type: "root",
         children: [
@@ -14,10 +14,10 @@ describe("html-renderer", function() {
             type: "element",
             tagName: "h2",
             properties: {
-              id: "heading-example"
-            }
-          }
-        ]
+              id: "heading-example",
+            },
+          },
+        ],
       };
 
       const tree = renderer.create(<Component ast={ast} />);
@@ -26,8 +26,8 @@ describe("html-renderer", function() {
     });
   });
 
-  describe("when there are spoilers present", function() {
-    it("does renders correctly", function() {
+  describe("when there are spoilers present", function () {
+    it("does renders correctly", function () {
       const ast = {
         type: "root",
         children: [
@@ -38,11 +38,11 @@ describe("html-renderer", function() {
             children: [
               {
                 type: "text",
-                value: "Text which should be hidden"
-              }
-            ]
-          }
-        ]
+                value: "Text which should be hidden",
+              },
+            ],
+          },
+        ],
       };
 
       const tree = renderer.create(<Component ast={ast} />);

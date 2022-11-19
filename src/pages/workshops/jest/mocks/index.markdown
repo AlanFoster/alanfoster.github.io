@@ -1,5 +1,5 @@
 ---
-title:  Jest workshop - Mocks
+title: Jest workshop - Mocks
 ---
 
 ## Mocks
@@ -41,9 +41,9 @@ In the previous example we made use of `fetch` to retrieve a list of movies:
 
 There are some issues with calling out to the _real_ service during tests:
 
-* It's not possible to test edge cases i.e. empty payloads, lots of items, etc.
-* The website has gone down, and now our tests are broken?
-* Our tests are _slow_!
+- It's not possible to test edge cases i.e. empty payloads, lots of items, etc.
+- The website has gone down, and now our tests are broken?
+- Our tests are _slow_!
 
 ## Using Mocks
 
@@ -52,8 +52,8 @@ Starting with the following service:
 ```javascript {"title": "src/api/movies/index.js"}
 import "whatwg-fetch";
 
-export const fetchMovies = function() {
-  return fetch("http://www.alanfoster.me/movies.json").then(response =>
+export const fetchMovies = function () {
+  return fetch("http://www.alanfoster.me/movies.json").then((response) =>
     response.json()
   );
 };
@@ -64,13 +64,13 @@ We wish to test the scenario of our movies list being empty:
 ```javascript {"title": "src/api/movies/__tests__/index.spec.js"}
 import * as service from "../";
 
-describe("movies-api", function() {
-  describe("fetchMovies", function() {
-    describe("when there are no movies available", function() {
-      it("returns the data", async function() {
+describe("movies-api", function () {
+  describe("fetchMovies", function () {
+    describe("when there are no movies available", function () {
+      it("returns the data", async function () {
         const result = await service.fetchMovies();
         expect(result).toEqual({
-          movies: []
+          movies: [],
         });
       });
     });
@@ -96,26 +96,28 @@ A call to `jest.spyOn` will return a mock which we can configure. By default, th
 Before our test runs we can spy on the fetch call and return our mock data:
 
 ```javascript {"highlight": "6-15"}
-import * as service from '../';
+import * as service from "../";
 
-describe('movies-api', function() {
-  describe('fetchMovies', function() {
-    describe('when there are no movies available', function () {
+describe("movies-api", function () {
+  describe("fetchMovies", function () {
+    describe("when there are no movies available", function () {
       beforeEach(function () {
-        const fetchMock = jest.spyOn(global, 'fetch');
-        fetchMock.mockReturnValueOnce(Promise.resolve({
-          json: function () {
-            return Promise.resolve({
-              "movies": []
-            })
-          }
-        }));
+        const fetchMock = jest.spyOn(global, "fetch");
+        fetchMock.mockReturnValueOnce(
+          Promise.resolve({
+            json: function () {
+              return Promise.resolve({
+                movies: [],
+              });
+            },
+          })
+        );
       });
 
-      it('returns the data', async function() {
+      it("returns the data", async function () {
         const result = await service.fetchMovies();
         expect(result).toEqual({
-          "movies": []
+          movies: [],
         });
       });
     });
@@ -126,28 +128,32 @@ describe('movies-api', function() {
 We can add another expectation to ensure that the fetch API was called as expected:
 
 ```javascript {"highlight": "22"}
-import * as service from '../';
+import * as service from "../";
 
-describe('movies-api', function() {
-  describe('fetchMovies', function() {
-    describe('when there are no movies available', function () {
+describe("movies-api", function () {
+  describe("fetchMovies", function () {
+    describe("when there are no movies available", function () {
       beforeEach(function () {
-        const fetchMock = jest.spyOn(global, 'fetch');
-        fetchMock.mockReturnValueOnce(Promise.resolve({
-          json: function () {
-            return Promise.resolve({
-              "movies": []
-            })
-          }
-        }));
+        const fetchMock = jest.spyOn(global, "fetch");
+        fetchMock.mockReturnValueOnce(
+          Promise.resolve({
+            json: function () {
+              return Promise.resolve({
+                movies: [],
+              });
+            },
+          })
+        );
       });
 
-      it('returns the data', async function() {
+      it("returns the data", async function () {
         const result = await service.fetchMovies();
         expect(result).toEqual({
-          "movies": []
+          movies: [],
         });
-        expect(fetch).toHaveBeenCalledWith('http://www.alanfoster.me/movies.json');
+        expect(fetch).toHaveBeenCalledWith(
+          "http://www.alanfoster.me/movies.json"
+        );
       });
     });
   });
@@ -159,48 +165,52 @@ describe('movies-api', function() {
 Add an additional test for when there are multiple movies return from the movies endpoint.
 
 ```javascript {"hasSpoilers": true}
-import * as service from '../';
+import * as service from "../";
 
-describe('movies-api', function() {
-  describe('fetchMovies', function() {
+describe("movies-api", function () {
+  describe("fetchMovies", function () {
     // ...
 
-    describe('when there are multiple movies available', function () {
+    describe("when there are multiple movies available", function () {
       beforeEach(function () {
-        const fetchMock = jest.spyOn(global, 'fetch');
-        fetchMock.mockReturnValueOnce(Promise.resolve({
-          json: function () {
-            return Promise.resolve({
-              "movies": [
-                {
-                  "title": "The Hitchhiker's Guide to the Galaxy",
-                  "releaseYear": 2005
-                },
-                {
-                  "title": "Thor: Ragnarok",
-                  "releaseYear": 2017
-                }
-              ]
-            })
-          }
-        }));
+        const fetchMock = jest.spyOn(global, "fetch");
+        fetchMock.mockReturnValueOnce(
+          Promise.resolve({
+            json: function () {
+              return Promise.resolve({
+                movies: [
+                  {
+                    title: "The Hitchhiker's Guide to the Galaxy",
+                    releaseYear: 2005,
+                  },
+                  {
+                    title: "Thor: Ragnarok",
+                    releaseYear: 2017,
+                  },
+                ],
+              });
+            },
+          })
+        );
       });
 
-      it('returns the data', async function() {
+      it("returns the data", async function () {
         const result = await service.fetchMovies();
         expect(result).toEqual({
-          "movies": [
+          movies: [
             {
-              "title": "The Hitchhiker's Guide to the Galaxy",
-              "releaseYear": 2005
+              title: "The Hitchhiker's Guide to the Galaxy",
+              releaseYear: 2005,
             },
             {
-              "title": "Thor: Ragnarok",
-              "releaseYear": 2017
-            }
-          ]
+              title: "Thor: Ragnarok",
+              releaseYear: 2017,
+            },
+          ],
         });
-        expect(fetch).toHaveBeenCalledWith('http://www.alanfoster.me/movies.json');
+        expect(fetch).toHaveBeenCalledWith(
+          "http://www.alanfoster.me/movies.json"
+        );
       });
     });
   });

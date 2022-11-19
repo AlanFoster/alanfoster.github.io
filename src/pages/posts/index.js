@@ -1,23 +1,19 @@
-import React from "react";
-import { graphql } from "gatsby";
-import PropTypes from "prop-types";
-import { Link } from "gatsby";
-import Helmet from "react-helmet";
 import * as styles from "./index.module.css";
 import Layout from "components/layouts/main";
+import { graphql } from "gatsby";
+import { Link } from "gatsby";
+import PropTypes from "prop-types";
+import React from "react";
+import Helmet from "react-helmet";
 
-const Post = function({ frontmatter, excerpt, fields }) {
+const Post = function ({ frontmatter, excerpt, fields }) {
   return (
     <article className={styles.post}>
       <div className={styles.heading}>
         <Link to={fields.slug}>
-          <h1 className={styles.title}>
-            {frontmatter.title}
-          </h1>
+          <h1 className={styles.title}>{frontmatter.title}</h1>
         </Link>
-        <div className={styles.date}>
-          {frontmatter.date}
-        </div>
+        <div className={styles.date}>{frontmatter.date}</div>
       </div>
       <div dangerouslySetInnerHTML={{ __html: excerpt }} />
     </article>
@@ -27,10 +23,10 @@ const Post = function({ frontmatter, excerpt, fields }) {
 Post.propTypes = {
   frontmatter: PropTypes.object.isRequired,
   excerpt: PropTypes.string.isRequired,
-  fields: PropTypes.object.isRequired
+  fields: PropTypes.object.isRequired,
 };
 
-const Posts = function({ data }) {
+const Posts = function ({ data }) {
   if (!data)
     return (
       <Layout>
@@ -43,7 +39,7 @@ const Posts = function({ data }) {
       <div>
         <Helmet title="Posts" />
         <h5>Posts</h5>
-        {data.allMarkdownRemark.edges.map(function({ node }) {
+        {data.allMarkdownRemark.edges.map(function ({ node }) {
           return <Post key={node.id} {...node} />;
         })}
       </div>
@@ -52,7 +48,7 @@ const Posts = function({ data }) {
 };
 
 Posts.propTypes = {
-  data: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired,
 };
 
 export default Posts;

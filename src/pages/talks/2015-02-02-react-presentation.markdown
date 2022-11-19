@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  React.js Presentation
-date:   2015-05-04 09:33:53
+title: React.js Presentation
+date: 2015-05-04 09:33:53
 category: talk
 slides: https://www.alanfoster.me/react-presentation/#/
 ---

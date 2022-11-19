@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  Welcome
-date:   2011-05-04 09:33:53
+title: Welcome
+date: 2011-05-04 09:33:53
 category: post
 ---
 

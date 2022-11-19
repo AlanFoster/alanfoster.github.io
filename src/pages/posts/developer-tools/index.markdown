@@ -1,11 +1,12 @@
 ---
 layout: post
-title:  Developer tools
-date:   2018-04-16 17:33:53
+title: Developer tools
+date: 2018-04-16 17:33:53
 category: post
 ---
 
 Here's a collection of useful tools that you may reap productivity from. From password managers, to http clients - it's good to know what's available at your disposal.
+
 <!-- end-excerpt -->
 
 ### Last Pass
@@ -17,9 +18,9 @@ It also has great mobile support.
 
 [Tamper Monkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en) is great for **running custom scripts** on arbitrary websites. You can use it to either change the user interface, or functionality of a website. For instance, I have used it as part of my development cycle to:
 
-* Provide auto-completion for frequently filled out forms
-* Log analytics requests, rather than send them
-* User Interface tweaks, such as modifying or hiding functionality
+- Provide auto-completion for frequently filled out forms
+- Log analytics requests, rather than send them
+- User Interface tweaks, such as modifying or hiding functionality
 
 If you use Firefox, then you may find [Grease Monkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) useful.
 
@@ -83,12 +84,12 @@ Kitematic's interface can search docker hub, create containers, view logs, confi
 Improve developer productivity by installing [oh my zsh](https://github.com/robbyrussell/oh-my-zsh) and choosing from
 some of the available plugins such as:
 
-* aws
-* docker
-* git
-* bundler
-* ruby
-* yarn
+- aws
+- docker
+- git
+- bundler
+- ruby
+- yarn
 
 ## Postico
 

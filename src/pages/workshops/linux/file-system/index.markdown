@@ -1,21 +1,21 @@
 ---
-title:  Linux Workshop - Filesystem
+title: Linux Workshop - Filesystem
 ---
 
 ## Terminology
 
-* Directory - Folders within your operating system
-* Volume - Drives with file systems
-* File System - Saving/Retrieving of data structures stored within a volume
+- Directory - Folders within your operating system
+- Volume - Drives with file systems
+- File System - Saving/Retrieving of data structures stored within a volume
 
 ## File systems
 
 There are numerous file systems available, for instance:
 
-* Fourth Extended Filesystem (EXT4) - Debian GNU/Linux, Ubuntu
-* File Allocation Table (Fat) - Windows
-* New technology File System (NTFS) - Windows
-* Apple File System (APFS) - iOS
+- Fourth Extended Filesystem (EXT4) - Debian GNU/Linux, Ubuntu
+- File Allocation Table (Fat) - Windows
+- New technology File System (NTFS) - Windows
+- Apple File System (APFS) - iOS
 
 This workshop will specifically make use of EXT4 within its examples.
 
@@ -64,12 +64,12 @@ Your output should be similar to the follow, albeit with more files:
 
 It's important to be aware of some of the conventions within a unix file system. For instance:
 
-* Case sensitivity - `myFile` and `MyFile` are different files
-* Avoid spaces - File names should _not_ contain spaces
-* `/` - refers to the root of the filesystem
-* `~` - refers to your home directory
-* `.` - The current directory
-* `..` - The parent directory
+- Case sensitivity - `myFile` and `MyFile` are different files
+- Avoid spaces - File names should _not_ contain spaces
+- `/` - refers to the root of the filesystem
+- `~` - refers to your home directory
+- `.` - The current directory
+- `..` - The parent directory
 
 ## Exploring
 
@@ -131,23 +131,23 @@ drwxr-xr-x   2 root root 4096 Apr 12 10:27 bin
 
 The first character shows what type of file this is:
 
-* `-` = File
-* `d` = Directory
-* `l` = Symbolic Link
-* `s` = Socket
-* `p` = Named Pipes
+- `-` = File
+- `d` = Directory
+- `l` = Symbolic Link
+- `s` = Socket
+- `p` = Named Pipes
 
 Next the permissions are shown. There are three characters each for setting the permissions of:
 
-* users
-* owners
-* world
+- users
+- owners
+- world
 
 And the corresponding characters are:
 
-* **r**ead
-* **w**rite
-* e**x**ecute
+- **r**ead
+- **w**rite
+- e**x**ecute
 
 ## Chmod
 

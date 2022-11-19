@@ -1,12 +1,12 @@
-import React from "react";
-import { graphql } from "gatsby";
-import PropTypes from "prop-types";
-import { Link } from "gatsby";
-import Helmet from "react-helmet";
 import * as styles from "./index.module.css";
 import Layout from "components/layouts/main";
+import { graphql } from "gatsby";
+import { Link } from "gatsby";
+import PropTypes from "prop-types";
+import React from "react";
+import Helmet from "react-helmet";
 
-const Workshop = function({ frontmatter, html }) {
+const Workshop = function ({ frontmatter, html }) {
   return (
     <div className={styles.workshop}>
       <div className={styles.date}>{frontmatter.date}</div>
@@ -20,10 +20,10 @@ const Workshop = function({ frontmatter, html }) {
 
 Workshop.propTypes = {
   frontmatter: PropTypes.object.isRequired,
-  html: PropTypes.string.isRequired
+  html: PropTypes.string.isRequired,
 };
 
-const Workshops = function({ data }) {
+const Workshops = function ({ data }) {
   if (!data)
     return (
       <Layout>
@@ -36,7 +36,7 @@ const Workshops = function({ data }) {
       <div>
         <Helmet title="Talks" />
         <h5>Workshops</h5>
-        {data.allMarkdownRemark.edges.map(function({ node }) {
+        {data.allMarkdownRemark.edges.map(function ({ node }) {
           return <Workshop key={node.id} {...node} />;
         })}
       </div>
@@ -45,7 +45,7 @@ const Workshops = function({ data }) {
 };
 
 Workshops.propTypes = {
-  data: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired,
 };
 
 export default Workshops;

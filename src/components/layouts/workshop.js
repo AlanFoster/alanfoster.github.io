@@ -1,12 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
 import Footer from "./footer";
+import "./global";
+import * as styles from "./index.module.css";
 import WithDefaultHelmet from "./wrappers/with-default-helmet";
 import WithTopNavigation from "./wrappers/with-top-navigation";
-import * as styles from "./index.module.css";
-import "./global";
+import PropTypes from "prop-types";
+import React from "react";
 
-const WorkshopLayout = props => {
+const WorkshopLayout = (props) => {
   return (
     <WithDefaultHelmet>
       <WithTopNavigation>
@@ -17,7 +17,7 @@ const WorkshopLayout = props => {
           wrapperClassName: styles.wrapper,
           menuClassName: `${styles.left} bg-light`,
           contentClassName: styles.content,
-          Footer
+          Footer,
         })}
       </WithTopNavigation>
     </WithDefaultHelmet>
@@ -27,7 +27,7 @@ const WorkshopLayout = props => {
 WorkshopLayout.propTypes = {
   children: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired
+  location: PropTypes.object.isRequired,
 };
 
 export default WorkshopLayout;

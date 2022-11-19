@@ -1,5 +1,5 @@
 ---
-title:  Linux Workshop - Command
+title: Linux Workshop - Command
 ---
 
 ## Commands
@@ -7,13 +7,13 @@ title:  Linux Workshop - Command
 Portable Operating System Interface (POSIX) defines useful command line utilities
 that developers can make use of. A subset of these are:
 
-* cat
-* cd
-* cp
-* less
-* mkdir
-* pwd
-* ... etc ...
+- cat
+- cd
+- cp
+- less
+- mkdir
+- pwd
+- ... etc ...
 
 The list in its entirety can be found [here](http://pubs.opengroup.org/onlinepubs/9699919799/idx/utilities.html).
 Although there are many utilities available, an average developer can survive with only a subset.
@@ -75,15 +75,15 @@ less /usr/share/dict/words
 
 Useful `less` commands are:
 
-* Use the space bar to move down
-* Press `h` to display the list of available commands
-* Use `q` to quit
+- Use the space bar to move down
+- Press `h` to display the list of available commands
+- Use `q` to quit
 
 Extra: Various commands within `less` are derived from `vi` and `more`
 
-* Search with `/`, and use `n` to find the next occurrence
-* Use `g` to go to the start of the man pages
-* use `G` to go to the end of the man pages
+- Search with `/`, and use `n` to find the next occurrence
+- Use `g` to go to the start of the man pages
+- use `G` to go to the end of the man pages
 
 ## mkdir
 

@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  Implementing Finite State Machines using Java's enums
-date:   2012-01-22 16:57:21
+title: Implementing Finite State Machines using Java's enums
+date: 2012-01-22 16:57:21
 category: post
 ---
 
@@ -10,7 +10,6 @@ There's many ways to implement finite state machines within Java, this article d
 <!-- end-excerpt -->
 
 I often see a lot of java programs which make use of enums for finite state machines. They perform logic based on switch statements. For instance they may do:
-
 
 One approach to implement
 

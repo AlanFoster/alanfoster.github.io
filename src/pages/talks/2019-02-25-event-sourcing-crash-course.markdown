@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  Event sourcing crash course
-date:   2019-02-25 18:30:00
+title: Event sourcing crash course
+date: 2019-02-25 18:30:00
 category: talk
 slides: https://www.alanfoster.me/ticket-management-graphql-eventsourcing/#
 ---

@@ -1,5 +1,5 @@
 ---
-title:  Jest workshop - Babel
+title: Jest workshop - Babel
 ---
 
 ## Using the latest JavaScript features
@@ -36,14 +36,14 @@ const add = (x, y) => x + y;
 
 Babel is easily configured via:
 
-* Plugins - These read your code and output the transformed code
-* Presets - A collection of Plugins
+- Plugins - These read your code and output the transformed code
+- Presets - A collection of Plugins
 
 There are many presets available, but the main official presets are:
 
-* `babel-preset-env` - Plugins to target a specific environment, i.e. browsers, or node
-* `babel-preset-react` - Plugins related to React, transforming JSX code
-* `babel-preset-flow` - Plugins to Facebook's [Flow](https://flow.org/)
+- `babel-preset-env` - Plugins to target a specific environment, i.e. browsers, or node
+- `babel-preset-react` - Plugins related to React, transforming JSX code
+- `babel-preset-flow` - Plugins to Facebook's [Flow](https://flow.org/)
 
 ## Your turn
 
@@ -57,7 +57,7 @@ yarn add --dev babel-jest babel-core babel-preset-env
 To configure Babel to use the latest syntax features, we can create a `.babelrc` file specifying
 that we want to use the previously installed `babel-present-env` present:
 
-```json  {"title": ".babelrc"}
+```json {"title": ".babelrc"}
 {
   "presets": ["env"]
 }
@@ -93,7 +93,7 @@ Make these changes to your project, and run your tests again.
 Babel provides the ability to configure your presets and plugins via `.babelrc`.
 For instance, we can configure which environments we want to target:
 
-```json  {"title": ".babelrc"}
+```json {"title": ".babelrc"}
 {
   "presets": [
     [

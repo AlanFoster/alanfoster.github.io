@@ -1,5 +1,5 @@
 ---
-title:  Jest workshop - React
+title: Jest workshop - React
 ---
 
 ## React Support
@@ -12,8 +12,8 @@ has support for Jest by default. We will continue this tutorial _without_ using 
 We've been tasked with building a new React component for a movie list.
 The component will:
 
-* Tell us when there are no movies available
-* When there are movies available; Show movie details
+- Tell us when there are no movies available
+- When there are movies available; Show movie details
 
 Below is an example of the component we have developed:
 
@@ -34,7 +34,7 @@ const MovieList = ({ movies }) => {
             <li key={movie.title}>
               {movie.title} - {movie.releaseYear}
             </li>
-          )
+          );
         })}
       </ul>
     </div>
@@ -42,16 +42,16 @@ const MovieList = ({ movies }) => {
 };
 
 const mockServerResponse = {
-  "movies": [
+  movies: [
     {
-      "title": "The Hitchhiker's Guide to the Galaxy",
-      "releaseYear": 2005
+      title: "The Hitchhiker's Guide to the Galaxy",
+      releaseYear: 2005,
     },
     {
-      "title": "Thor: Ragnarok",
-      "releaseYear": 2017
-    }
-  ]
+      title: "Thor: Ragnarok",
+      releaseYear: 2017,
+    },
+  ],
 };
 
 render(<MovieList movies={mockServerResponse.movies} />);
@@ -59,8 +59,8 @@ render(<MovieList movies={mockServerResponse.movies} />);
 
 We will write tests for the following two scenarios:
 
-* When the Component has no movies
-* When there are movies present
+- When the Component has no movies
+- When there are movies present
 
 We will not test the undefined / null / error data scenarios.
 
@@ -100,7 +100,7 @@ const MovieList = ({ movies }) => {
     <div>
       <div>There are {movies.length} movies</div>
       <ul>
-        {movies.map(function(movie) {
+        {movies.map(function (movie) {
           return (
             <li key={movie.title}>
               {movie.title} - {movie.releaseYear}
@@ -118,13 +118,13 @@ export default MovieList;
 Additionally create the initial test file:
 
 ```javascript {"title": "src/movie-list/__tests__/index.spec.js"}
-import React from "react";
 import Component from "../";
+import React from "react";
 import renderer from "react-test-renderer";
 
-describe("movie-list", function() {
-  describe("when there are no movies", function() {
-    it("renders the empty message", function() {
+describe("movie-list", function () {
+  describe("when there are no movies", function () {
+    it("renders the empty message", function () {
       const movies = [];
 
       const tree = renderer.create(<Component movies={movies} />);
@@ -171,33 +171,31 @@ To record a new snapshot you can simply run the test command with the `-u` flag 
 
 Now that the first test has been written, it is up to you to write the second test:
 
-* ~~When the Component has no movies~~
-* When there are movies present
+- ~~When the Component has no movies~~
+- When there are movies present
 
 ```javascript {"hasSpoilers": true}
-import React from 'react';
-import Component from '../';
-import renderer from 'react-test-renderer';
+import Component from "../";
+import React from "react";
+import renderer from "react-test-renderer";
 
-describe('movie-list', function () {
+describe("movie-list", function () {
   // ...
 
-  describe('when there are multiple movies', function () {
-    it('renders the movies', function () {
+  describe("when there are multiple movies", function () {
+    it("renders the movies", function () {
       const movies = [
         {
-          "title": "The Hitchhiker's Guide to the Galaxy",
-          "releaseYear": 2005
+          title: "The Hitchhiker's Guide to the Galaxy",
+          releaseYear: 2005,
         },
         {
-          "title": "Thor: Ragnarok",
-          "releaseYear": 2017
-        }
+          title: "Thor: Ragnarok",
+          releaseYear: 2017,
+        },
       ];
 
-      const tree = renderer.create(
-        <Component movies={movies} />
-      );
+      const tree = renderer.create(<Component movies={movies} />);
 
       expect(tree).toMatchSnapshot();
     });
@@ -213,7 +211,7 @@ change the component's functionality entirely or provide a placeholder React com
 For instance, if you wished to provide a placeholder React component:
 
 ```javascript
-jest.mock("third-party-component", function() {
+jest.mock("third-party-component", function () {
   return () => "MockedThirdPartyComponent";
 });
 ```
@@ -233,12 +231,12 @@ In other scenarios you may wish to change the semantics of a third party compone
 to change the behaviour of React-Virtualize's autosizer component:
 
 ```javascript
-jest.mock("react-virtualized/dist/commonjs/AutoSizer", function() {
-  return function(props) {
+jest.mock("react-virtualized/dist/commonjs/AutoSizer", function () {
+  return function (props) {
     const renderCallback = props.children;
 
     return renderCallback({
-      width: 600
+      width: 600,
     });
   };
 });

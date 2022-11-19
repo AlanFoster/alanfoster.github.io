@@ -1,5 +1,5 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 
 // https://www.svgrepo.com/svg/941/right-arrow
 const ViewSectionIcon = ({ className }) => (
@@ -27,7 +27,7 @@ const ViewSectionIcon = ({ className }) => (
 );
 
 ViewSectionIcon.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default ViewSectionIcon;

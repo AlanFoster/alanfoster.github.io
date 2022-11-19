@@ -1,6 +1,6 @@
 const rangeParser = require(`parse-numeric-range`);
 
-module.exports = node => {
+module.exports = (node) => {
   const language = (node.lang || "none").toLowerCase();
   const parsedConfig = JSON.parse(node.meta || "{}");
 
@@ -9,6 +9,6 @@ module.exports = node => {
     ...parsedConfig,
     highlightLines: rangeParser
       .parse(parsedConfig.highlight || "")
-      .filter(n => n > 0)
+      .filter((n) => n > 0),
   };
 };

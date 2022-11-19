@@ -8,7 +8,7 @@ const EditIcon = () => (
     viewBox="0 0 612 612"
     width="24"
     height="24"
-    arial-label="Edit Content"
+    aria-label="Edit Content"
   >
     <title>Edit Content</title>
     <desc>Use this to fix an issue on this page</desc>

@@ -5,7 +5,7 @@ const fsExtra = require("fs-extra");
 const path = require("path");
 
 // This will be replaced with a real react component later via rehype
-const withSpoilers = html => {
+const withSpoilers = (html) => {
   return `
     <spoilers>
       ${html}
@@ -13,28 +13,28 @@ const withSpoilers = html => {
   `.trim();
 };
 
-const withAsciinema = src => {
+const withAsciinema = (src) => {
   return `
     <asciinema src="${src}"></asciinema>
   `.trim();
 };
 
-const withVideo = src => {
+const withVideo = (src) => {
   return `
     <video src="${src}"></video>
   `.trim();
 };
 
-const copyAssetPath = async function({
+const copyAssetPath = async function ({
   files,
   markdownNode,
   getNode,
-  requiredFile
+  requiredFile,
 }) {
   const parentNode = getNode(markdownNode.parent);
   const absolutePath = path.join(path.join(parentNode.dir), requiredFile);
 
-  const file = files.find(file => {
+  const file = files.find((file) => {
     if (file && file.absolutePath === absolutePath) {
       return file;
     }
@@ -48,9 +48,7 @@ const copyAssetPath = async function({
     return null;
   }
 
-  const fileName = `${file.name}-${file.internal.contentDigest}.${
-    file.extension
-  }`;
+  const fileName = `${file.name}-${file.internal.contentDigest}.${file.extension}`;
   const publicURL = path.join(process.cwd(), "public", "static", fileName);
 
   // Don't copy anything is the file already exists at the location.
@@ -76,14 +74,10 @@ module.exports = async (
 
   return Promise.all(
     codeBlocks.map(
-      node =>
-        new Promise(async resolve => {
-          let {
-            language,
-            title,
-            highlightLines,
-            hasSpoilers
-          } = parseLanguageDetails(node);
+      (node) =>
+        new Promise(async (resolve) => {
+          let { language, title, highlightLines, hasSpoilers } =
+            parseLanguageDetails(node);
 
           if (language === "video") {
             const requiredFile = node.value.trim();
@@ -91,7 +85,7 @@ module.exports = async (
               files,
               markdownNode,
               getNode,
-              requiredFile
+              requiredFile,
             });
             if (!assetURL) return;
 
@@ -107,7 +101,7 @@ module.exports = async (
               files,
               markdownNode,
               getNode,
-              requiredFile
+              requiredFile,
             });
             if (!assetURL) return;
 

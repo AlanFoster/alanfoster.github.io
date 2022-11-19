@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  Testing approaches in Ruby
-date:   2022-08-30 17:33:53
+title: Testing approaches in Ruby
+date: 2022-08-30 17:33:53
 category: post
 ---
 
@@ -210,6 +210,7 @@ end
 The existing test suite must be able to identify this new mutant code. If it does not, then the test coverage is not sufficient enough - or the implementation could be simplified.
 
 Other mutations include:
+
 - Statement deletion
 - Replacing booleans, i.e. true to false
 - Modifying comparison operators from `>` to `>=` or `==`
@@ -254,7 +255,7 @@ I recommend reading through [**betterspecs**](https://www.betterspecs.org/) whic
 
 ### Example
 
-RSpec provides a domain specific language for writing tests. For *unit tests* you will want to *use the real class name in the top level describe* to signify the class that you are wishing to test. This will allow RSpec to load the class that is being tested, as well as provide access to useful helper methods later:
+RSpec provides a domain specific language for writing tests. For _unit tests_ you will want to _use the real class name in the top level describe_ to signify the class that you are wishing to test. This will allow RSpec to load the class that is being tested, as well as provide access to useful helper methods later:
 
 ```ruby
 # If you're testing a class in isolation
@@ -592,25 +593,25 @@ When the test first runs this will generate a cassette file which is saved to di
 ```yaml
 ---
 http_interactions:
-- request:
-    method: get
-    uri: http://example.com/foo
-    body:
-      encoding: UTF-8
-      string: ""
-    headers: {}
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Content-Length:
-      - "5"
-    body:
-      encoding: UTF-8
-      string: Hello
-    http_version: "1.1"
-  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+  - request:
+      method: get
+      uri: http://example.com/foo
+      body:
+        encoding: UTF-8
+        string: ""
+      headers: {}
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        Content-Length:
+          - "5"
+      body:
+        encoding: UTF-8
+        string: Hello
+      http_version: "1.1"
+    recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
 recorded_with: VCR 2.0.0
 ```
 

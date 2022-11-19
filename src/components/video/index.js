@@ -1,5 +1,5 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 import { Player, BigPlayButton } from "video-react";
 
 const Video = ({ src }) => (
@@ -9,7 +9,7 @@ const Video = ({ src }) => (
 );
 
 Video.propTypes = {
-  src: PropTypes.string
+  src: PropTypes.string,
 };
 
 export default Video;

@@ -1,5 +1,5 @@
 ---
-title:  Jest workshop - Setup
+title: Jest workshop - Setup
 ---
 
 ## Getting started
@@ -63,7 +63,7 @@ yarn add --dev jest
 
 This command has also modified your `package.json` file:
 
-```json  {"highlight": "6-8"}
+```json {"highlight": "6-8"}
 {
   "name": "jest-workshop",
   "version": "1.0.0",
@@ -77,7 +77,7 @@ This command has also modified your `package.json` file:
 
 Let's define a script within our `package.json` file to run our test suite via jest:
 
-```json  {"highlight": "6-8"}
+```json {"highlight": "6-8"}
 {
   "name": "jest-workshop",
   "version": "1.0.0",

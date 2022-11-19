@@ -1,12 +1,12 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 import Helmet from "react-helmet";
 
 const metadata = {
   name: "Alan Foster",
   website: "alanfoster.me",
   description:
-    "This is the blog of Alan Foster; a developer with a passion for learning new programming languages, frameworks, and paradigms."
+    "This is the blog of Alan Foster; a developer with a passion for learning new programming languages, frameworks, and paradigms.",
 };
 
 const DefaultHelmet = ({ children }) => (
@@ -17,8 +17,8 @@ const DefaultHelmet = ({ children }) => (
       meta={[
         {
           name: "description",
-          content: metadata.description
-        }
+          content: metadata.description,
+        },
       ]}
     />
     {children}
@@ -28,8 +28,8 @@ const DefaultHelmet = ({ children }) => (
 DefaultHelmet.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.element,
-    PropTypes.arrayOf(PropTypes.element)
-  ]).isRequired
+    PropTypes.arrayOf(PropTypes.element),
+  ]).isRequired,
 };
 
 export default DefaultHelmet;

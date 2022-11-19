@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  JavaScript Fun
-date:   2012-01-28 09:33:53
+title: JavaScript Fun
+date: 2012-01-28 09:33:53
 category: post
 ---
 

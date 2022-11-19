@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  Practical Docker
-date:   2020-12-11 17:33:53
+title: Practical Docker
+date: 2020-12-11 17:33:53
 category: post
 ---
 
@@ -82,7 +82,7 @@ arm32v7/postgres                        The PostgreSQL object-relational databas
 
 The Docker CLI can interact with other repositories too. For instance you can run your own private repositories if you are part of a large organization. You can view the current configuration for the Docker with `docker info`:
 
-```bash  {"highlight": "1,8"}
+```bash {"highlight": "1,8"}
 $ docker info
 Client:
  Debug Mode: false
@@ -97,9 +97,9 @@ Note that the above output uses the terminology `Client` and `Server`. The Docke
 
 ### How did docker know to run nginx?
 
-**The  docker image will specify a single command to run**. **When that process ends, the docker container will stop**. We can use the docker CLI tools to inspect a particular image and see its configuration. If we look closely, we can clearly see the `Cmd` configuration:
+**The docker image will specify a single command to run**. **When that process ends, the docker container will stop**. We can use the docker CLI tools to inspect a particular image and see its configuration. If we look closely, we can clearly see the `Cmd` configuration:
 
-```json  {"highlight": "73-77"}
+```json {"highlight": "73-77"}
 $ docker image inspect nginx
 [
     {
@@ -229,7 +229,7 @@ Usage:	docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 Run a command in a new container
 ```
 
- This will take precedence over the default `nginx` command. For instance:
+This will take precedence over the default `nginx` command. For instance:
 
 ```bash
 
@@ -392,7 +392,7 @@ flask = '1.1.2'
 python_version = "3.7"
 ```
 
- Finally we can create the new **`Dockerfile`** which will define how to build our image:
+Finally we can create the new **`Dockerfile`** which will define how to build our image:
 
 ```docker
 FROM python:3.7.3-alpine3.9
@@ -455,7 +455,7 @@ $ docker build -t image_name:1.0.0 -f some_folder/DockerFile ./some_build_contex
 
 Let's see the full build results:
 
-```bash  {"highlight": "2-4,44-49"}
+```bash {"highlight": "2-4,44-49"}
 $ docker build --tag image_name:latest .
 Sending build context to Docker daemon  10.24kB
 Step 1/7 : FROM python:3.7.3-alpine3.9
@@ -564,9 +564,9 @@ $ curl http://127.0.0.1:8000
 Hello, World!
 ```
 
-In some scenarios we may notice our build context is far larger than expected.  This is how we can **reduce the files sent to the build context**:
+In some scenarios we may notice our build context is far larger than expected. This is how we can **reduce the files sent to the build context**:
 
-```bash  {"highlight": "2"}
+```bash {"highlight": "2"}
 $ docker build -t docker_ignore_example .
 Sending build context to Docker daemon  395.4MB
 Step 1/6 : FROM node:10.9-alpine
@@ -668,7 +668,7 @@ $ docker history nginx --no-trunc
 
 Let's say we had the following docker build break:
 
-```bash  {"highlight": "1,13-28"}
+```bash {"highlight": "1,13-28"}
 $ docker build -t my_image:latest .
 Sending build context to Docker daemon  9.728kB
 Step 1/7 : FROM python:3.7.3-alpine3.9
@@ -701,7 +701,7 @@ The command '/bin/sh -c pipenv install --deploy --dev --ignore-pipfile --system'
 
 **Each intermediate docker stage has a unique id** that can be used to run commands against arbitrary intermediate stages of a docker build. This is great for debugging broken builds. **We can run the step prior to failure within an interactive shell** and investigate further:
 
-```bash  {"highlight": "5-10"}
+```bash {"highlight": "5-10"}
 # The build failed. Let's use the previous image id:
 $ docker build -t my_image:latest .
 Sending build context to Docker daemon  9.728kB
@@ -939,7 +939,7 @@ c72689d423c5        none                   null                local
 
 We can inspect the network to see the configuration, and what containers are present:
 
-```bash  {"highlight": "5,14-19,30-34,42"}
+```bash {"highlight": "5,14-19,30-34,42"}
 $ docker network inspect bridge
 docker network inspect bridge
 [
@@ -1159,14 +1159,14 @@ Some benefits include:
 The important commands are:
 
 - `docker-compose build` - Build all of the required containers
-- `docker-compose up`  - Run all of the containers
+- `docker-compose up` - Run all of the containers
 - `docker-compose down` - Stop all of the containers
 - `docker-compose exec` - Execute a one off command against a container
 
 An example **`docker-compose.yml`** file may be:
 
 ```yaml
-version: '3.7'
+version: "3.7"
 
 services:
   database:
@@ -1327,7 +1327,7 @@ You may have no longer needed containers / images that you wish to remove:
 
 - `docker system prune` - Remove all unused data
 - `docker kill $(docker ps -a -q)` - Kill all containers
-- `docker rmi -f $(docker images -a -q)` - Remove *all* images
+- `docker rmi -f $(docker images -a -q)` - Remove _all_ images
 
 ### Security Aspects
 
@@ -1339,7 +1339,7 @@ Firstly, there are build stage security issues:
 
 Additionally there are run time security issues:
 
-- If you don't specify an IP with  `--publish` then it will default to `0.0.0.0`. This may or may not be a security concern for your use case and set up.
+- If you don't specify an IP with `--publish` then it will default to `0.0.0.0`. This may or may not be a security concern for your use case and set up.
 - Mounted volumes allows for files to be shared between the container and the host machine. This also means if the docker container runs as root, it can write files on the host with root permissions, potentially with the SUID bit set - potentially leading to local privilege escalation.
 - Docker in docker is possible by mounting the docker socket in a container. If the container gets compromised - then the child container can interact with the mounted docker socket to create a new container with custom options, including mounting the host file system directly, allowing access to arbitrary files - potentially including `/root` etc. This problem also exists if a user is granted write permissions to this socket with `docker -H unix:///var/run/docker.sock run -v /:/host -it ubuntu chroot /host /bin/bash`
 - When testing software, Docker also provides a `--read-only` flag when running containers, and read-only volumes

@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  Capybara Feature Testing
-date:   2015-12-01 09:33:53
+title: Capybara Feature Testing
+date: 2015-12-01 09:33:53
 category: talk
 slides: https://www.alanfoster.me/rspec-capybara-feature-testing/#/
 ---

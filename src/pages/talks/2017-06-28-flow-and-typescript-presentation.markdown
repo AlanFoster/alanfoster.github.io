@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  Flow and TypeScript presentation
-date:   2017-04-26 18:30:00
+title: Flow and TypeScript presentation
+date: 2017-04-26 18:30:00
 category: talk
 slides: https://www.alanfoster.me/flow-and-typescript-presentation/#/
 ---

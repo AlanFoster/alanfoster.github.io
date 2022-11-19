@@ -1,15 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "gatsby";
 import * as styles from "./index.module.css";
+import { Link } from "gatsby";
+import PropTypes from "prop-types";
+import React from "react";
 
-const getNavigation = function(sidebar, workshop) {
-  const links = sidebar.fields.yml.items.map(item => item.link);
+const getNavigation = function (sidebar, workshop) {
+  const links = sidebar.fields.yml.items.map((item) => item.link);
   const index = links.indexOf(workshop.fields.slug);
 
   return {
     previous: index <= 1 ? undefined : links[index - 1],
-    next: links[index + 1]
+    next: links[index + 1],
   };
 };
 
@@ -47,7 +47,7 @@ const QuickNavigation = ({ sidebar, workshop }) => {
 
 QuickNavigation.propTypes = {
   sidebar: PropTypes.object,
-  workshop: PropTypes.object
+  workshop: PropTypes.object,
 };
 
 export default QuickNavigation;

@@ -1,5 +1,5 @@
 ---
-title:  Jest workshop - More Mocks
+title: Jest workshop - More Mocks
 ---
 
 ## Mocking Approaches
@@ -12,9 +12,9 @@ If the user clicks on our banner, we will send a custom metrics event:
 ```javascript
 import sendMetric from "./send-metric";
 
-const trackBannerClick = function() {
+const trackBannerClick = function () {
   sendMetric({
-    eventType: "click.banner"
+    eventType: "click.banner",
   });
 };
 
@@ -32,10 +32,10 @@ event:
 ```javascript {"title": "src/metrics/index.js"}
 import * as metricsService from "./metrics-service";
 
-export default function({ eventType }) {
+export default function ({ eventType }) {
   metricsService.send({
     event: `my_application_namespace.${eventType}`,
-    time: Date.now()
+    time: Date.now(),
   });
 }
 ```
@@ -48,18 +48,18 @@ and assert that we have interacted with the API as intended:
 import sendMetric from "../index";
 import * as originalMetricsService from "../metrics-service";
 
-describe("metrics-mocking-example", function() {
-  describe("when calling with a custom eventType", function() {
-    beforeEach(function() {
+describe("metrics-mocking-example", function () {
+  describe("when calling with a custom eventType", function () {
+    beforeEach(function () {
       jest.spyOn(originalMetricsService, "send").mockReturnValueOnce(true);
 
       sendMetric({ eventType: "click.banner" });
     });
 
-    it("calls the metrics service as expected", function() {
+    it("calls the metrics service as expected", function () {
       expect(originalMetricsService.send).toHaveBeenCalledWith({
         event: "my_application_namespace.click_banner",
-        time: 1523724949703
+        time: 1523724949703,
       });
     });
   });
@@ -76,18 +76,18 @@ It turns out that the hard-coded time stamp is the issue:
 import sendMetric from "../index";
 import * as originalMetricsService from "../metrics-service";
 
-describe("metrics-mocking-example", function() {
-  describe("when calling with a custom eventType", function() {
-    beforeEach(function() {
+describe("metrics-mocking-example", function () {
+  describe("when calling with a custom eventType", function () {
+    beforeEach(function () {
       jest.spyOn(originalMetricsService, "send").mockReturnValueOnce(true);
 
       sendMetric({ eventType: "click.banner" });
     });
 
-    it("calls the metrics service as expected", function() {
+    it("calls the metrics service as expected", function () {
       expect(originalMetricsService.send).toHaveBeenCalledWith({
         event: "my_application_namespace.click_banner",
-        time: 1523724949703
+        time: 1523724949703,
       });
     });
   });
@@ -101,18 +101,18 @@ particular of the time, other than requiring it being a number:
 import sendMetric from "../index";
 import * as originalMetricsService from "../metrics-service";
 
-describe("metrics-mocking-example", function() {
-  describe("when calling with a custom eventType", function() {
-    beforeEach(function() {
+describe("metrics-mocking-example", function () {
+  describe("when calling with a custom eventType", function () {
+    beforeEach(function () {
       jest.spyOn(originalMetricsService, "send").mockReturnValueOnce(true);
 
       sendMetric({ eventType: "click.banner" });
     });
 
-    it("calls the metrics service as expected", function() {
+    it("calls the metrics service as expected", function () {
       expect(originalMetricsService.send).toHaveBeenCalledWith({
         event: "my_application_namespace.click_banner",
-        time: expect.any(Number)
+        time: expect.any(Number),
       });
     });
   });
@@ -127,7 +127,7 @@ one of the following solutions:
 jest.spyOn(Date, "now").mockReturnValueOnce(1234);
 
 // Globally override time, remember jest is sandboxed
-Date.now = function() {
+Date.now = function () {
   return 1234;
 };
 ```
@@ -140,11 +140,11 @@ of this can be unexpected in certain scenarios - as it uses babel to inspect and
 Unlike `jest.spyOn`, you can use **`jest.mock(moduleName, factory, options)`** to rewrite entire modules:
 
 ```javascript
-jest.mock("../client", function() {
+jest.mock("../client", function () {
   return {
     get: jest.fn().mockReturnValueOnce(/* ... */),
     post: jest.fn().mockReturnValueOnce(/* ... */),
-    delete: jest.fn().mockReturnValueOnce(/* ... */)
+    delete: jest.fn().mockReturnValueOnce(/* ... */),
   };
 });
 ```
@@ -154,10 +154,10 @@ it may be easier to rely on Jest's auto-mocking functionality which will mock al
 if you do not supply a factory argument:
 
 ```javascript
-jest.mock("../foo", function() {
+jest.mock("../foo", function () {
   return {
     fooMethod: jest.fn(),
-    barMethod: jest.fn()
+    barMethod: jest.fn(),
   };
 });
 
@@ -179,7 +179,7 @@ import someModule from "some-module";
 jest.mock("some-module");
 
 // Your test
-beforeEach(function() {
+beforeEach(function () {
   someModule.foo.mockReturnValueOnce("...");
 });
 ```

@@ -1,5 +1,5 @@
 ---
-title:  Linux Workshop - Pipes and Redirects
+title: Linux Workshop - Pipes and Redirects
 ---
 
 ## Pipes

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import PropTypes from "prop-types";
+import React, { useState } from "react";
 import { Collapse } from "reactstrap";
 
 const Spoilers = function ({ children }) {
@@ -24,10 +24,10 @@ const Spoilers = function ({ children }) {
       </div>
     </div>
   );
-}
+};
 
 Spoilers.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 export default Spoilers;

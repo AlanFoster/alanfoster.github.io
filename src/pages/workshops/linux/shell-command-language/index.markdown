@@ -1,5 +1,5 @@
 ---
-title:  Linux Workshop - Shell Language
+title: Linux Workshop - Shell Language
 ---
 
 ## Shell
@@ -7,8 +7,8 @@ title:  Linux Workshop - Shell Language
 A shell provides access to the operating system's services. At a high level there are two kinds
 of shell:
 
-* Command Line Interface - CLI
-* Graphical User Interface - GUI
+- Command Line Interface - CLI
+- Graphical User Interface - GUI
 
 ## Common Command Line Shells
 
@@ -17,12 +17,12 @@ A command shell reads commands from the terminal,
 
 For instance:
 
-* `/bin/sh` - Bourne Shell, the default Unix shell
-* `/bin/bash` - Bourne again Shell, the GNU shell
-* `/bin/ksh` - Korne shell, based on the Bourne Shell
-* `/bin/csh`
-* `/bin/tcsh`
-* `/bin/zsh` - oh my zsh shell, based on bash, ksh, and tcsh
+- `/bin/sh` - Bourne Shell, the default Unix shell
+- `/bin/bash` - Bourne again Shell, the GNU shell
+- `/bin/ksh` - Korne shell, based on the Bourne Shell
+- `/bin/csh`
+- `/bin/tcsh`
+- `/bin/zsh` - oh my zsh shell, based on bash, ksh, and tcsh
 
 You can easily change your preferred shell with `chsh`
 
@@ -38,9 +38,9 @@ $ echo $SHELL
 
 ## Common Controls
 
-* Move left/right with directional keys
-* Delete words with ctrl+w
-* _Interrupt_ a program with Ctrl+C
+- Move left/right with directional keys
+- Delete words with ctrl+w
+- _Interrupt_ a program with Ctrl+C
 
 ## Replaying Commands
 

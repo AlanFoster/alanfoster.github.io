@@ -1,23 +1,21 @@
-import React from "react";
-import { Deck, Slide, Heading } from "spectacle";
+import * as styles from "./styles.module.css";
 import {
   htmlAstToIntermediateRepresentation,
   renderNodeToSpectacle,
-  theme
+  theme,
 } from "components/presentations";
 import ViewSectionIcon from "components/view-article/index";
-import * as styles from "./styles.module.css";
-
 import PropTypes from "prop-types";
+import React from "react";
+import { Deck, Slide, Heading } from "spectacle";
 
-const renderSection = section => {
+const renderSection = (section) => {
   return section.map((node, node_index) => {
     return (
       <Slide
         key={`${section.link}__${node_index}`}
         transition={["zoom"]}
         bgColor="primary"
-
       >
         {renderNodeToSpectacle(node)}
       </Slide>
@@ -38,8 +36,8 @@ class Presentation extends React.PureComponent {
         progress="bar"
         theme={theme}
         transitionDuration={500}
-        contentHeight='100vh'
-        contentWidth='80vw'
+        contentHeight="100vh"
+        contentWidth="80vw"
       >
         <Slide transition={["zoom"]} bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="black">
@@ -65,7 +63,7 @@ class Presentation extends React.PureComponent {
 }
 
 Presentation.propTypes = {
-  data: PropTypes.object
+  data: PropTypes.object,
 };
 
 class PresentationWithQuickLinks extends React.Component {

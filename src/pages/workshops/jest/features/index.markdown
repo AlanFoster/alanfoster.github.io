@@ -1,5 +1,5 @@
 ---
-title:  Jest workshop - Overview
+title: Jest workshop - Overview
 ---
 
 ## What is Jest?
@@ -62,17 +62,17 @@ Jest comes with an interactive command line which can help you control which tes
 
 There are various testing libraries in existence already. Why would a developer choose Jest, over something else - such as Mocha, or Jasmine?
 
-On an average day, the key distinctions between Jest and $otherFramework are:
+On an average day, the key distinctions between Jest and \$otherFramework are:
 
-* Snapshot testing
-* `expect(...).toBe(...)` creates human readable diffs
-* Advanced mocking capabilities, out of the box
-* Inbuilt caching to decrease bootup + overall testing times
-* Streamlined command line interface
+- Snapshot testing
+- `expect(...).toBe(...)` creates human readable diffs
+- Advanced mocking capabilities, out of the box
+- Inbuilt caching to decrease bootup + overall testing times
+- Streamlined command line interface
 
-As your codebase matures, and your codebase and tests increase in size, some benefits between Jest and $otherFramework are:
+As your codebase matures, and your codebase and tests increase in size, some benefits between Jest and \$otherFramework are:
 
-* Tests are executed in parallel
-* Each test ran in isolation
-* [jest-codemods](https://github.com/skovhus/jest-codemods) available to update to newer Jest releases
-* Community alignment on Jest - lots of tooling, tutorials, innovation
+- Tests are executed in parallel
+- Each test ran in isolation
+- [jest-codemods](https://github.com/skovhus/jest-codemods) available to update to newer Jest releases
+- Community alignment on Jest - lots of tooling, tutorials, innovation

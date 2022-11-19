@@ -1,16 +1,14 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-
 import NavBar from "../nav-bar";
-
-import "prismjs/themes/prism-tomorrow.css";
 import "bootstrap/dist/css/bootstrap.css";
+import "prismjs/themes/prism-tomorrow.css";
+import PropTypes from "prop-types";
+import React, { useState } from "react";
 
 const metadata = {
   name: "Alan Foster",
   website: "alanfoster.me",
   description:
-    "This is the blog of Alan Foster; a developer with a passion for learning new programming languages, frameworks, and paradigms."
+    "This is the blog of Alan Foster; a developer with a passion for learning new programming languages, frameworks, and paradigms.",
 };
 
 const Layout = function ({ children }) {
@@ -27,10 +25,10 @@ const Layout = function ({ children }) {
       {children}
     </div>
   );
-}
+};
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 export default Layout;

@@ -1,5 +1,5 @@
 ---
-title:  Jest workshop - Basic Tests
+title: Jest workshop - Basic Tests
 ---
 
 ## Adding our first test
@@ -20,8 +20,8 @@ And let's add the subsequent test:
 ```javascript {"title": "add.spec.js"}
 var add = require("./add");
 
-describe("add", function() {
-  it("adds 2 + 3 to be 5", function() {
+describe("add", function () {
+  it("adds 2 + 3 to be 5", function () {
     expect(add(2, 3)).toBe(5);
   });
 });
@@ -51,11 +51,11 @@ module.exports = multiply;
 `multiply.spec.js`
 
 ```javascript {"hasSpoilers": true}
-var multiply = require('./multiply')
+var multiply = require("./multiply");
 
-describe('multiply', function () {
-  it('multiplies 2 * 3 to be 6', function () {
-    expect(multiply(2, 3)).toBe(6)
+describe("multiply", function () {
+  it("multiplies 2 * 3 to be 6", function () {
+    expect(multiply(2, 3)).toBe(6);
   });
 });
 ```

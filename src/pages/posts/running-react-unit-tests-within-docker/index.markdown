@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  Running react unit tests within docker
-date:   2017-06-03 17:33:53
+title: Running react unit tests within docker
+date: 2017-06-03 17:33:53
 category: post
 ---
 
@@ -107,12 +107,12 @@ COPY . .
 
 Docker will run sequentially through each line within the docker file.
 
-* `FROM node:8.0.0-alpine` - For our application we wish to run on an environment that has node and yarn installed. Thankfully this is a common requirement and there are various base docker images that can be used and searched for within the [docker hub](https://hub.docker.com/). In our case we can specify a node version from the [node official repository](https://hub.docker.com/_/node/). In particular we will make use of the Alpine linux distro, which is small - at only around 5MB.
-* `RUN mkdir /srv/app` - Create a new folder to contain our application
-* `WORKDIR /srv/app` - Specify the working directory for future commands such as `COPY`, `ADD`, etc.
-* `COPY package.json yarn.lock ./` - Place the required dependency files onto our image. Note that the copy command follows the pattern `COPY <src>... <dest>`
-* `RUN yarn && yarn cache clean` Install our dependencies and remove the cache in one operation.
-* `COPY . .` Copy the rest of the files within our daemon context into our working directory.
+- `FROM node:8.0.0-alpine` - For our application we wish to run on an environment that has node and yarn installed. Thankfully this is a common requirement and there are various base docker images that can be used and searched for within the [docker hub](https://hub.docker.com/). In our case we can specify a node version from the [node official repository](https://hub.docker.com/_/node/). In particular we will make use of the Alpine linux distro, which is small - at only around 5MB.
+- `RUN mkdir /srv/app` - Create a new folder to contain our application
+- `WORKDIR /srv/app` - Specify the working directory for future commands such as `COPY`, `ADD`, etc.
+- `COPY package.json yarn.lock ./` - Place the required dependency files onto our image. Note that the copy command follows the pattern `COPY <src>... <dest>`
+- `RUN yarn && yarn cache clean` Install our dependencies and remove the cache in one operation.
+- `COPY . .` Copy the rest of the files within our daemon context into our working directory.
 
 Remember: With Docker, order matters. Docker will run each instruction independently, and if possible Docker will attempt to re-use intermediate steps if possible. This is why we chose to copy across our `package.json` and `yarn.lock` before running the `yarn` install command. Importantly, we wish for any changes to these files to invalidate the next docker step and download the updated dependencies. However we don't wish to download our dependencies again if other unrelated files change. The atomic nature of the `RUN` command explains explains why we delete our yarn cache too, as we don't want for these files to be cached by Docker and create an necessarily large docker image.
 
@@ -146,7 +146,7 @@ Docker compose allows you to manage multi-container docker applications. In our 
 Create a new file `docker-compose.yml` with the content:
 
 ```yaml
-version: '3'
+version: "3"
 
 services:
   test:
@@ -212,7 +212,7 @@ It is also possible to use docker for development. This is useful when you wish 
 We can modify the `docker-compose.yml` file to have an additional `dev` service:
 
 ```yaml
-version: '3'
+version: "3"
 
 services:
   dev:

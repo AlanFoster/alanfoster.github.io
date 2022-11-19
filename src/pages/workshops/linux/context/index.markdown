@@ -1,5 +1,5 @@
 ---
-title:  Linux Workshop - History
+title: Linux Workshop - History
 ---
 
 ## What is Linux?
@@ -10,8 +10,8 @@ Linux is a Kernel, it is one piece of an operating system.
 
 At a high level, an operating system is composed of two main parts:
 
-* The kernel - Responsible for providing programs access to hardware, CPU, RAM, I/O Devices, etc.
-* System programs - Browsers, Shells, Word Processors, Visual programs, etc.
+- The kernel - Responsible for providing programs access to hardware, CPU, RAM, I/O Devices, etc.
+- System programs - Browsers, Shells, Word Processors, Visual programs, etc.
 
 ## A brief history
 
@@ -37,11 +37,11 @@ source.
 Richard Stallman started **GNU** was an attempt to create a _free_ operating system. The goal was to implement and release
 the source code for newly created operating system software such as:
 
-* A shell - Bash
-* A compiler - GNU C Compiler (GCC)
-* Editors - EMacs
-* Kernel - HURD
-* Various other userland components
+- A shell - Bash
+- A compiler - GNU C Compiler (GCC)
+- Editors - EMacs
+- Kernel - HURD
+- Various other userland components
 
 GNU is a recursive acronym standing for GNU is not Unix.
 
@@ -57,11 +57,11 @@ multiply systems.
 
 At a high level POSIX defines core functionality such as:
 
-* Shell Language - `a=2; b=5; echo $(($a + $b))`
-* Built-In Command Line utilities - `cd`, `ls`, `mkdir`, `grep`, etc
-* Environment Variables - `$HOME`, `$USER`, `$PATH`, etc
-* Consistent filenames and directory Structure
-* A core set of C functions
+- Shell Language - `a=2; b=5; echo $(($a + $b))`
+- Built-In Command Line utilities - `cd`, `ls`, `mkdir`, `grep`, etc
+- Environment Variables - `$HOME`, `$USER`, `$PATH`, etc
+- Consistent filenames and directory Structure
+- A core set of C functions
 
 ### 1990s
 
@@ -76,10 +76,10 @@ Darwin Operating System developed by Apple Inc, based on BSD.
 
 ## A brief Reflection
 
-* 1960s: Multics
-* 1970s: Unix
-* 1983: GNU Operating System
-* 1988: Posix Standards
-* 1991: Linux Kernel
-* 1992: Linux Kernel combined with GNU - GNU/Linux.
+- 1960s: Multics
+- 1970s: Unix
+- 1983: GNU Operating System
+- 1988: Posix Standards
+- 1991: Linux Kernel
+- 1992: Linux Kernel combined with GNU - GNU/Linux.
   Richard Stallman will cry if you refer to Linux as a full operating system

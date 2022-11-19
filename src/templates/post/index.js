@@ -1,12 +1,12 @@
-import React from "react";
+import * as styles from "./index.module.css";
+import EditIcon from "components/edit-icon";
+import Layout from "components/layouts/main";
+import ProjectorIcon from "components/projector-icon";
 import { graphql } from "gatsby";
 import { Link } from "gatsby";
 import PropTypes from "prop-types";
-import Layout from "components/layouts/main";
+import React from "react";
 import Helmet from "react-helmet";
-import EditIcon from "components/edit-icon";
-import ProjectorIcon from "components/projector-icon";
-import * as styles from "./index.module.css";
 
 const Post = ({ data }) => {
   const post = data.markdownRemark;
@@ -19,6 +19,7 @@ const Post = ({ data }) => {
             className={styles.quickLink}
             href={post.fields.editURL}
             target="_blank"
+            rel="noreferrer"
           >
             <EditIcon />
           </a>
@@ -31,13 +32,9 @@ const Post = ({ data }) => {
 
           <div className={styles.heading}>
             <Link to={post.fields.slug}>
-              <h1 className={styles.title}>
-                {post.frontmatter.title}
-              </h1>
+              <h1 className={styles.title}>{post.frontmatter.title}</h1>
             </Link>
-            <div className={styles.date}>
-              {post.frontmatter.date}
-            </div>
+            <div className={styles.date}>{post.frontmatter.date}</div>
           </div>
 
           <div dangerouslySetInnerHTML={{ __html: post.html }} />
@@ -48,7 +45,7 @@ const Post = ({ data }) => {
 };
 
 Post.propTypes = {
-  data: PropTypes.object
+  data: PropTypes.object,
 };
 
 export default Post;

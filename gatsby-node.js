@@ -10,7 +10,7 @@ exports.onCreateNode = async ({ node, getNode, actions }) => {
     createNodeField({
       node,
       name: "slug",
-      value: slug
+      value: slug,
     });
 
     const fileNode = getNode(node.parent);
@@ -19,7 +19,7 @@ exports.onCreateNode = async ({ node, getNode, actions }) => {
     createNodeField({
       node,
       name: "editURL",
-      value: `${baseEditUrl}/${fileNode.relativePath}`
+      value: `${baseEditUrl}/${fileNode.relativePath}`,
     });
   }
 
@@ -33,20 +33,20 @@ exports.onCreateNode = async ({ node, getNode, actions }) => {
     createNodeField({
       node,
       name: "yml",
-      value: parsedContent
+      value: parsedContent,
     });
   }
 };
 
-const extractWorkshopBase = function(node) {
+const extractWorkshopBase = function (node) {
   return path.dirname(node.fields.slug);
 };
 
-const extractSidebarPath = function(node) {
+const extractSidebarPath = function (node) {
   return path.join("pages", extractWorkshopBase(node), "sidebar.yaml");
 };
 
-const extractOverviewPath = function(node) {
+const extractOverviewPath = function (node) {
   return path.join(
     "pages",
     extractWorkshopBase(node),
@@ -57,7 +57,7 @@ const extractOverviewPath = function(node) {
 exports.createPages = ({ graphql, actions }) => {
   const { createPage, createRedirect } = actions;
 
-  const createMarkdownPages = new Promise(resolve => {
+  const createMarkdownPages = new Promise((resolve) => {
     graphql(`
       {
         allMarkdownRemark(
@@ -72,7 +72,7 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }
-    `).then(result => {
+    `).then((result) => {
       result.data.allMarkdownRemark.edges.forEach(({ node }) => {
         const isWorkshop = node.fields.slug.indexOf("/workshops/") === 0;
         const component = isWorkshop
@@ -84,8 +84,8 @@ exports.createPages = ({ graphql, actions }) => {
           component,
           context: {
             sidebarPath: isWorkshop ? extractSidebarPath(node) : null,
-            slug: node.fields.slug
-          }
+            slug: node.fields.slug,
+          },
         });
       });
 
@@ -93,7 +93,7 @@ exports.createPages = ({ graphql, actions }) => {
     });
   });
 
-  const createIndexRedirectForWorkshops = new Promise(resolve => {
+  const createIndexRedirectForWorkshops = new Promise((resolve) => {
     graphql(`
       {
         allMarkdownRemark(
@@ -113,14 +113,14 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }
-    `).then(result => {
+    `).then((result) => {
       result.data.allMarkdownRemark.edges.forEach(({ node }) => {
         const createRedirectToWorkshopGoals = ({ fromPath }) =>
           createRedirect({
             fromPath,
             isPermanent: true,
             redirectInBrowser: true,
-            toPath: node.fields.slug
+            toPath: node.fields.slug,
           });
 
         const workshopBase = extractWorkshopBase(node);
@@ -132,7 +132,7 @@ exports.createPages = ({ graphql, actions }) => {
     });
   });
 
-  const createPostPresentation = new Promise(resolve => {
+  const createPostPresentation = new Promise((resolve) => {
     graphql(`
       {
         allMarkdownRemark(
@@ -156,14 +156,14 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }
-    `).then(result => {
+    `).then((result) => {
       result.data.allMarkdownRemark.edges.forEach(({ node }) => {
         createPage({
           path: path.join(node.fields.slug, "presentation"),
           component: path.resolve("./src/templates/post-presentation/index.js"),
           context: {
-            slug: node.fields.slug
-          }
+            slug: node.fields.slug,
+          },
         });
       });
 
@@ -171,7 +171,7 @@ exports.createPages = ({ graphql, actions }) => {
     });
   });
 
-  const createWorkshopPresentation = new Promise(resolve => {
+  const createWorkshopPresentation = new Promise((resolve) => {
     graphql(`
       {
         allMarkdownRemark(
@@ -198,7 +198,7 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }
-    `).then(result => {
+    `).then((result) => {
       result.data.allMarkdownRemark.edges.forEach(({ node }) => {
         const workshopBase = extractWorkshopBase(node);
 
@@ -210,8 +210,8 @@ exports.createPages = ({ graphql, actions }) => {
           context: {
             sidebarPath: extractSidebarPath(node),
             overviewPathRegex: `/${extractOverviewPath(node)}/`,
-            workshopRegex: `/${workshopBase}.*/`
-          }
+            workshopRegex: `/${workshopBase}.*/`,
+          },
         });
       });
 
@@ -223,6 +223,6 @@ exports.createPages = ({ graphql, actions }) => {
     createMarkdownPages,
     createIndexRedirectForWorkshops,
     createPostPresentation,
-    createWorkshopPresentation
+    createWorkshopPresentation,
   ]);
 };

@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  Writing a simple x86 BIOS bootloader
-date:   2019-12-01 14:33:53
+title: Writing a simple x86 BIOS bootloader
+date: 2019-12-01 14:33:53
 category: post
 ---
 
@@ -162,9 +162,9 @@ After running you should see the simple message appear:
 To enter protected mode you must:
 
 - Register 3 entries in the GDT (Global Descriptor Table)
-    - null descriptor
-    - code segment descriptor
-    - data segment descriptor
+  - null descriptor
+  - code segment descriptor
+  - data segment descriptor
 - Set the protected mode bit within the control register, `CR0`
 - Enable the A20 line, or addressing line 20, so that the CPU can access beyond 1mb of data
 
@@ -220,10 +220,10 @@ Each entry within the GDT is 8-bytes. A simple overview can be found on the osde
 **Pseudo-instructions**
 
 - DB, DW, DD, DQ, DT, DO, DY and DZ declare initialized data in the output file.
-- $ evaluates to the assembly position at the beginning of the line containing the expression
-- $$ evaluates to the beginning of the current section; so you can tell how far into the section you are by using ($-$$)
+- `$` evaluates to the assembly position at the beginning of the line containing the expression
+- `$$` evaluates to the beginning of the current section; so you can tell how far into the section you are by using `($-$$)`
 
-### Useful links
+### Useful links
 
 - [Writing a Tiny x86 Bootloader](http://joebergeron.io/posts/post_two.html)
 - [MIT Operating System Engineering](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-828-operating-system-engineering-fall-2012/index.htm)

@@ -1,14 +1,13 @@
-import React, { useState } from "react";
-import { Deck, Slide, Heading, List, ListItem, Link } from "spectacle";
+import * as styles from "./styles.module.css";
 import {
   htmlAstToIntermediateRepresentation,
   renderNodeToSpectacle,
-  theme
+  theme,
 } from "components/presentations";
 import ViewSectionIcon from "components/view-article/index";
-import * as styles from "./styles.module.css";
-
 import PropTypes from "prop-types";
+import React, { useState } from "react";
+import { Deck, Slide, Heading, List, ListItem, Link } from "spectacle";
 
 const renderSection = (section, index, onEnterActiveSection) => {
   if (section.title === "Presentation") return null;
@@ -61,7 +60,7 @@ class Presentation extends React.PureComponent {
     if (!overview) return null;
 
     const sidebarItems = sidebar.fields.yml.items;
-    const pages = content.edges.reduce(function(acc, edge) {
+    const pages = content.edges.reduce(function (acc, edge) {
       acc[edge.node.fields.slug] = htmlAstToIntermediateRepresentation(
         edge.node.htmlAst
       );
@@ -69,15 +68,15 @@ class Presentation extends React.PureComponent {
     }, {});
 
     const sections = sidebarItems
-      .map(item => {
+      .map((item) => {
         return {
           title: item.title,
           link: item.link,
           id: item.link,
-          page: pages[item.link]
+          page: pages[item.link],
         };
       })
-      .filter(section => section.title !== "Presentation");
+      .filter((section) => section.title !== "Presentation");
 
     return (
       <Deck
@@ -105,7 +104,7 @@ class Presentation extends React.PureComponent {
           onActive={onExitActiveSection}
         >
           <List ordered>
-            {sections.map(function(item) {
+            {sections.map(function (item) {
               return (
                 <ListItem key={item.title}>
                   <Link href={item.link}>{item.title}</Link>
@@ -136,13 +135,13 @@ class Presentation extends React.PureComponent {
 Presentation.propTypes = {
   data: PropTypes.object,
   onEnterActiveSection: PropTypes.func,
-  onExitActiveSection: PropTypes.func
+  onExitActiveSection: PropTypes.func,
 };
 
 const PresentationWithQuickLinks = function (props) {
   const [activeSection, setActiveSection] = useState(null);
 
-  const onEnterActiveSection = section => {
+  const onEnterActiveSection = (section) => {
     setActiveSection(section);
   };
 
@@ -178,6 +177,6 @@ const PresentationWithQuickLinks = function (props) {
       />
     </div>
   );
-}
+};
 
 export default PresentationWithQuickLinks;

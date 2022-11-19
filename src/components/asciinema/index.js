@@ -1,14 +1,14 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 
 class Asciinema extends React.Component {
   static defaultProps = {
     theme: "monokai",
     idleTimeLimit: 2,
-    poster: "npt:0:3"
+    poster: "npt:0:3",
   };
 
-  bindRef = ref => {
+  bindRef = (ref) => {
     this.ref = ref;
   };
 
@@ -29,7 +29,7 @@ class Asciinema extends React.Component {
 }
 
 Asciinema.propTypes = {
-  src: PropTypes.string
+  src: PropTypes.string,
 };
 
 export default Asciinema;

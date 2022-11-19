@@ -1,5 +1,5 @@
 ---
-title:  Linux Workshop - Getting Help
+title: Linux Workshop - Getting Help
 ---
 
 ## Teaching a man to fish
@@ -36,15 +36,15 @@ $ man less
 
 Useful `less` commands are:
 
-* Use the space bar to move down
-* Press `h` to display the list of available commands
-* Use `q` to quit
+- Use the space bar to move down
+- Press `h` to display the list of available commands
+- Use `q` to quit
 
 Extra: Various commands within `less` are derived from `vi` and `more`
 
-* Search with `/`, and use `n` to find the next occurrence
-* Use `g` to go to the start of the man pages
-* use `G` to go to the end of the man pages
+- Search with `/`, and use `n` to find the next occurrence
+- Use `g` to go to the start of the man pages
+- use `G` to go to the end of the man pages
 
 ### info
 

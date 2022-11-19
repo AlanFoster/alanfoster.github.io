@@ -1,5 +1,5 @@
 ---
-title:  Jest workshop - Approaches
+title: Jest workshop - Approaches
 ---
 
 ## Insights
@@ -24,16 +24,16 @@ in this scenario. It can be activated with **`yarn run test --watch`**
 It is possible to debug your Jest tests with ease. First add a `debugger;` statement as appropriate:
 
 ```javascript {"highlight": "4"}
-import * as metricsService from './metrics-service';
+import * as metricsService from "./metrics-service";
 
 export default function ({ eventType }) {
   debugger;
 
   metricsService.send({
     event: `my_application_namespace.${eventType}`,
-    time: Date.now()
-  })
-};
+    time: Date.now(),
+  });
+}
 ```
 
 The command to run your tests is slightly different:
@@ -65,9 +65,9 @@ As a full example:
 
 At the time of writing there is also support for:
 
-* VS Code
-* Webstorm
-* [etc etc](https://facebook.github.io/jest/docs/en/troubleshooting.html)
+- VS Code
+- Webstorm
+- [etc etc](https://facebook.github.io/jest/docs/en/troubleshooting.html)
 
 ## Test structure
 
@@ -76,8 +76,8 @@ Although aimed at Ruby, you can follow some of the approaches recommended by htt
 
 For instance, you may like the convention for writing descriptions such as:
 
-* `#` to describe functions you wish to test, `#add`
-* `::` to describe class methods
+- `#` to describe functions you wish to test, `#add`
+- `::` to describe class methods
 
 You may also find it easier to have one **single expectation per test**. This means if you are applying TDD, you can gradually make your tests pass,
 rather than attempt to make one test pass - which actually contains multiple assertions.
@@ -89,29 +89,29 @@ For example:
 ```javascript {"highlight": "6,18,21-23,25-28}"}
 import * as service from "../";
 
-describe("movies-api", function() {
-  describe("#fetchMovies", function() {
-    describe("when there are no movies available", function() {
+describe("movies-api", function () {
+  describe("#fetchMovies", function () {
+    describe("when there are no movies available", function () {
       let testContext;
 
-      beforeEach(async function() {
+      beforeEach(async function () {
         testContext = {};
 
         const fetchMock = jest.spyOn(global, "fetch");
         fetchMock.mockReturnValueOnce(
           Promise.resolve({
-            json: () => Promise.resolve({ movies: [] })
+            json: () => Promise.resolve({ movies: [] }),
           })
         );
 
         testContext.result = await service.fetchMovies();
       });
 
-      it("returns the data", function() {
+      it("returns the data", function () {
         expect(testContext.result).toEqual({ movies: [] });
       });
 
-      it("fetches from the correct endpoint", function() {
+      it("fetches from the correct endpoint", function () {
         expect(fetch).toHaveBeenCalledWith(
           "http://www.alanfoster.me/movies.json"
         );
@@ -125,10 +125,10 @@ describe("movies-api", function() {
 
 You can extend Jest's default matchers. There are various open source libraries available, for instance:
 
-* [jest-image-snapshot](https://www.npmjs.com/package/jest-image-snapshot) - visual regression testing
-* [jest-extended](https://github.com/jest-community/jest-extended) - Additional useful matchers
-* [jest-immutable-matchers](https://www.npmjs.com/package/jest-immutable-matchers) - Matchers for Facebook's [ImmutableJS](https://facebook.github.io/immutable-js/)
-* ... And more [awesome-jest](https://github.com/jest-community/awesome-jest)
+- [jest-image-snapshot](https://www.npmjs.com/package/jest-image-snapshot) - visual regression testing
+- [jest-extended](https://github.com/jest-community/jest-extended) - Additional useful matchers
+- [jest-immutable-matchers](https://www.npmjs.com/package/jest-immutable-matchers) - Matchers for Facebook's [ImmutableJS](https://facebook.github.io/immutable-js/)
+- ... And more [awesome-jest](https://github.com/jest-community/awesome-jest)
 
 Or you can add your own custom matchers:
 
@@ -138,18 +138,18 @@ expect.extend({
     if (received === "potato") {
       return {
         message: () => `expected ${received} to not be potato`,
-        pass: true
+        pass: true,
       };
     } else {
       return {
         message: () => `expected ${received} to be potato`,
-        pass: false
+        pass: false,
       };
     }
-  }
+  },
 });
 
-it("works successfully", function() {
+it("works successfully", function () {
   expect("potato").toBePotato();
   expect("sausage roll").not.toBePotato();
 });

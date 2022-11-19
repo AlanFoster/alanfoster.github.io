@@ -1,5 +1,5 @@
 ---
-title:  Jest workshop - Asynchronous Testing
+title: Jest workshop - Asynchronous Testing
 ---
 
 ## Asynchronous Testing
@@ -10,8 +10,8 @@ code:
 ```javascript {"title": "src/meaning-of-index/index.js"}
 const sevenAndAHalfMillionYearsLater = 2.3652e14;
 
-export default function() {
-  return new Promise(function(resolve, reject) {
+export default function () {
+  return new Promise(function (resolve, reject) {
     setTimeout(() => resolve(42), sevenAndAHalfMillionYearsLater);
   });
 }
@@ -25,8 +25,8 @@ syntax can often be the easiest:
 ```javascript {"title": "src/meaning-of-index/index.spec.js"}
 import meaningOfLife from "../";
 
-describe("meaning-of-life", function() {
-  it("calculates the meaning of life", function() {
+describe("meaning-of-life", function () {
+  it("calculates the meaning of life", function () {
     return expect(meaningOfLife()).resolves.toBe(42);
   });
 });
@@ -42,8 +42,8 @@ If you have integrated Babel with your Jest setup you can make use of the new as
 ```javascript
 import meaningOfLife from "../";
 
-describe("meaning-of-life", function() {
-  it("calculates the meaning of life", async function() {
+describe("meaning-of-life", function () {
+  it("calculates the meaning of life", async function () {
     const result = await meaningOfLife();
 
     expect(result).toBe(42);
@@ -55,7 +55,7 @@ describe("meaning-of-life", function() {
 
 We want to write a module for fetching a list of popular movies, and add the corresponding tests.
 
-```json  {"title": "http://www.alanfoster.me/movies.json"}
+```json {"title": "http://www.alanfoster.me/movies.json"}
 {
   "movies": [
     {
@@ -85,8 +85,8 @@ Create your new module for retrieving the movie list:
 ```javascript {"title": "src/api/movies/index.js"}
 import "whatwg-fetch";
 
-export const fetchMovies = function() {
-  return fetch("http://www.alanfoster.me/movies.json").then(response =>
+export const fetchMovies = function () {
+  return fetch("http://www.alanfoster.me/movies.json").then((response) =>
     response.json()
   );
 };
@@ -100,25 +100,25 @@ Look at the initial example for inspiration.
 `src/api/movies/__tests__/index.spec.js`
 
 ```javascript {"hasSpoilers": true}
-import * as service from '../';
+import * as service from "../";
 
-describe('movies-api', function() {
-  describe('fetchMovies', function() {
-    it('returns the data', async function() {
+describe("movies-api", function () {
+  describe("fetchMovies", function () {
+    it("returns the data", async function () {
       const result = await service.fetchMovies();
 
       expect(result).toEqual({
-        "movies": [
+        movies: [
           {
-            "title": "The Hitchhiker's Guide to the Galaxy",
-            "releaseYear": 2005
+            title: "The Hitchhiker's Guide to the Galaxy",
+            releaseYear: 2005,
           },
           {
-            "title": "Thor: Ragnarok",
-            "releaseYear": 2017
-          }
-        ]
-      })
+            title: "Thor: Ragnarok",
+            releaseYear: 2017,
+          },
+        ],
+      });
     });
   });
 });

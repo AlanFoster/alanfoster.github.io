@@ -1,16 +1,16 @@
-import React from "react";
-import { Heading, List, Image, Text } from "spectacle";
-import visit from "unist-util-visit";
-import select from "unist-util-select";
-import toHtml from "hast-util-to-html";
+import theme from "./theme";
 import Asciinema from "components/asciinema";
 import Video from "components/video";
-import theme from "./theme";
+import toHtml from "hast-util-to-html";
+import React from "react";
+import { Heading, List, Image, Text } from "spectacle";
+import select from "unist-util-select";
+import visit from "unist-util-visit";
 
-const toText = function(node) {
+const toText = function (node) {
   let text = "";
 
-  visit(node, function(node) {
+  visit(node, function (node) {
     if (node.type === "text") {
       text += node.value;
     }
@@ -19,23 +19,23 @@ const toText = function(node) {
   return text;
 };
 
-const htmlAstToIntermediateRepresentation = function(ast) {
+const htmlAstToIntermediateRepresentation = function (ast) {
   const result = [];
-  const isHeader = node =>
+  const isHeader = (node) =>
     node.tagName === "h1" || node.tagName === "h2" || node.tagName === "h3";
-  const isImage = node => node.tagName === "img";
-  const isCodeTitle = node =>
+  const isImage = (node) => node.tagName === "img";
+  const isCodeTitle = (node) =>
     node.tagName === "code" &&
     (node.properties.className || []).indexOf("code-snippet__title") > -1;
-  const isCodeSnippet = node => node.tagName === "pre";
-  const isList = node => node.tagName === "ul";
+  const isCodeSnippet = (node) => node.tagName === "pre";
+  const isList = (node) => node.tagName === "ul";
   const isStrongText = (node, parent) =>
     node.tagName === "strong" && parent.tagName !== "li";
 
-  const isAsciinema = node => node.tagName === "asciinema";
-  const isVideo = node => node.tagName === "video";
+  const isAsciinema = (node) => node.tagName === "asciinema";
+  const isVideo = (node) => node.tagName === "video";
 
-  visit(ast, function(node, index, parent) {
+  visit(ast, function (node, index, parent) {
     if (isHeader(node)) {
       result.push(select(node, "text")[0]);
     }
@@ -72,13 +72,13 @@ const htmlAstToIntermediateRepresentation = function(ast) {
   return result;
 };
 
-const extractLargestImage = function(srcSet) {
+const extractLargestImage = function (srcSet) {
   if (!srcSet) return;
 
   return srcSet[srcSet.length - 1].split(" ")[0];
 };
 
-const renderNodeToSpectacle = node => {
+const renderNodeToSpectacle = (node) => {
   if (node.type === "text") {
     return (
       <Heading size={1} caps lineHeight={1} textColor="black">
@@ -107,7 +107,7 @@ const renderNodeToSpectacle = node => {
   if (node.tagName === "ul") {
     return (
       <List>
-        {node.children.map(function(child, index) {
+        {node.children.map(function (child, index) {
           if (child.tagName !== "li") return null;
           return (
             <div

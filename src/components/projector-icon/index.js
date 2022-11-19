@@ -6,7 +6,7 @@ const ProjectorIcon = () => (
     width="24"
     height="24"
     viewBox="0 0 297 297"
-    arial-label="View presentation"
+    aria-label="View presentation"
   >
     <title>View Presentation</title>
     <desc>Open presentation associated with this section</desc>
