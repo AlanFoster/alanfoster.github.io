@@ -181,6 +181,23 @@ expect(result.title).to eq('...')
 expect(result.content).to eq('...')
 ```
 
+## Red-Green-Refactor
+
+A common workflow as part of Test-driven development (TDD) is the concept of red-green-factor, summarised as:
+
+- Red - Write automated tests
+- Green - Write the least amount of code to make tests pass
+- Refactor - Restructure/improve the code quality
+
+This pattern will be repeated until the feature is successfully developed:
+
+```mermaid
+flowchart TB
+    Red --> Green
+    Green --> Refactor
+    Refactor --> Red
+```
+
 ## Coverage tools
 
 These tools are **useful for highlighting code paths that are not tested**, for instance this is the output of [**simplecov**](https://github.com/simplecov-ruby/simplecov):

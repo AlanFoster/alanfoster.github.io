@@ -2,7 +2,7 @@
 
 exports[`projector-icon renders the icon 1`] = `
 <svg
-  arial-label="View presentation"
+  aria-label="View presentation"
   height="24"
   viewBox="0 0 297 297"
   width="24"

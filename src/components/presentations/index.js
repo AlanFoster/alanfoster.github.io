@@ -4,8 +4,25 @@ import Video from "components/video";
 import toHtml from "hast-util-to-html";
 import React from "react";
 import { Heading, List, Image, Text } from "spectacle";
-import select from "unist-util-select";
+import { select } from "unist-util-select";
 import visit from "unist-util-visit";
+
+const isHeader = (node) =>
+  node.tagName === "h1" || node.tagName === "h2" || node.tagName === "h3";
+const isImage = (node) => node.tagName === "img";
+const isMermaid = (node) =>
+  node.tagName === "div" &&
+  (node.properties.className || []).indexOf("mermaid") > -1;
+const isCodeTitle = (node) =>
+  node.tagName === "code" &&
+  (node.properties.className || []).indexOf("code-snippet__title") > -1;
+const isCodeSnippet = (node) => node.tagName === "pre";
+const isList = (node) => node.tagName === "ul";
+const isStrongText = (node, parent) =>
+  node.tagName === "strong" && parent.tagName !== "li";
+
+const isAsciinema = (node) => node.tagName === "asciinema";
+const isVideo = (node) => node.tagName === "video";
 
 const toText = function (node) {
   let text = "";
@@ -21,26 +38,17 @@ const toText = function (node) {
 
 const htmlAstToIntermediateRepresentation = function (ast) {
   const result = [];
-  const isHeader = (node) =>
-    node.tagName === "h1" || node.tagName === "h2" || node.tagName === "h3";
-  const isImage = (node) => node.tagName === "img";
-  const isCodeTitle = (node) =>
-    node.tagName === "code" &&
-    (node.properties.className || []).indexOf("code-snippet__title") > -1;
-  const isCodeSnippet = (node) => node.tagName === "pre";
-  const isList = (node) => node.tagName === "ul";
-  const isStrongText = (node, parent) =>
-    node.tagName === "strong" && parent.tagName !== "li";
-
-  const isAsciinema = (node) => node.tagName === "asciinema";
-  const isVideo = (node) => node.tagName === "video";
 
   visit(ast, function (node, index, parent) {
     if (isHeader(node)) {
-      result.push(select(node, "text")[0]);
+      result.push(select("text", node));
     }
 
     if (isImage(node)) {
+      result.push(node);
+    }
+
+    if (isMermaid(node)) {
       result.push(node);
     }
 
@@ -87,24 +95,25 @@ const renderNodeToSpectacle = (node) => {
     );
   }
 
-  if (
-    node.tagName === "code" &&
-    (node.properties.className || []).indexOf("code-snippet__title") > -1
-  ) {
+  if (isMermaid(node)) {
     return <div dangerouslySetInnerHTML={{ __html: toHtml(node) }} />;
   }
 
-  if (node.tagName === "pre") {
+  if (isCodeTitle(node)) {
     return <div dangerouslySetInnerHTML={{ __html: toHtml(node) }} />;
   }
 
-  if (node.tagName === "img") {
+  if (isCodeSnippet(node)) {
+    return <div dangerouslySetInnerHTML={{ __html: toHtml(node) }} />;
+  }
+
+  if (isImage(node)) {
     const src = extractLargestImage(node.properties.srcSet);
 
     return <Image width="50%" src={src} alt={node.properties.title} />;
   }
 
-  if (node.tagName === "ul") {
+  if (isList(node)) {
     return (
       <List>
         {node.children.map(function (child, index) {
@@ -120,15 +129,15 @@ const renderNodeToSpectacle = (node) => {
     );
   }
 
-  if (node.tagName === "strong") {
+  if (isStrongText(node)) {
     return <Text>{toText(node)}</Text>;
   }
 
-  if (node.tagName === "asciinema") {
+  if (isAsciinema(node)) {
     return <Asciinema {...node.properties} />;
   }
 
-  if (node.tagName === "video") {
+  if (isVideo(node)) {
     return <Video {...node.properties} />;
   }
 };

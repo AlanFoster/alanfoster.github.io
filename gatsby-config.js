@@ -16,6 +16,21 @@ module.exports = {
           "gatsby-plugin-sharp",
           "gatsby-remark-images",
           "gatsby-remark-autolink-headers",
+          {
+            resolve: "gatsby-remark-mermaid",
+            options: {
+              language: "mermaid",
+              theme: "default",
+              viewport: {
+                width: 200,
+                height: 200,
+              },
+              mermaidOptions: {
+                // themeCSS: ".node rect { fill: cornflowerblue; }",
+              },
+            },
+          },
+          // Important: This should appear last in the plugin list
           "remark-prism-with-workshop-support",
         ],
       },

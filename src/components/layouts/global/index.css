@@ -58,3 +58,7 @@ a:hover svg {
 .spectacle-slide {
   overflow-y: scroll !important;
 }
+
+.mermaid {
+  text-align: center;
+}

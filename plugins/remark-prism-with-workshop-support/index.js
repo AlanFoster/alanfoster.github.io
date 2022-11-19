@@ -1,4 +1,4 @@
-const select = require("unist-util-select");
+const { selectAll } = require("unist-util-select");
 const parseLanguageDetails = require("./parse-language-details");
 const highlightCode = require("gatsby-remark-prismjs/highlight-code");
 const fsExtra = require("fs-extra");
@@ -70,7 +70,7 @@ module.exports = async (
   { files, markdownNode, getNode, markdownAST },
   { classPrefix = "language-" } = {}
 ) => {
-  const codeBlocks = select(markdownAST, "code");
+  const codeBlocks = selectAll("code", markdownAST);
 
   return Promise.all(
     codeBlocks.map(

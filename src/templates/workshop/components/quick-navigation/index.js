@@ -21,10 +21,7 @@ const QuickNavigation = ({ sidebar, workshop }) => {
       <div className={styles.navigation}>
         <span>
           {previous && (
-            <Link
-              to={previous}
-              className={`btn btn-outline-secondary}`}
-            >
+            <Link to={previous} className={`btn btn-outline-secondary`}>
               &lt; Previous
             </Link>
           )}
@@ -32,10 +29,7 @@ const QuickNavigation = ({ sidebar, workshop }) => {
 
         <span>
           {next && (
-            <Link
-              to={next}
-              className={`btn btn-outline-secondary`}
-            >
+            <Link to={next} className={`btn btn-outline-secondary`}>
               Next &gt;
             </Link>
           )}
